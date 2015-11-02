@@ -1,0 +1,21 @@
+image: ruby:2.1
+services:
+  - postgres
+
+before_script:
+  - bundle_install
+
+stages:
+  - build
+  - test
+
+job1:
+  stage: build
+  script:
+    - make setup
+
+job2:
+  stage: test
+  script:
+    - make lint
+    - make test

@@ -20,13 +20,6 @@ SRC_NODE    = $(shell find . \( -path './lib/*' -or -path './test/*' \) \
  								-not -path './test/fixtures/*' -name '*.js')
 SRC_ALL = $(SRC_NODE) $(SRC_BROWSER)
 
-.PHONY: lint
-lint:
-	@$(JSHINT_NODE) -- $(SRC_NODE)
-	@$(DEV_TOOLS)/bin/check-use-strict $(SRC_NODE)
-	@$(DEV_TOOLS)/bin/check-comments $(SRC_NODE)
-	@$(JSCS) -- $(SRC_NODE)
-
 .PHONY: start
 start:
 	$(NPM) start
@@ -39,9 +32,19 @@ setup-dependencies:
 	$(NPM) install
 	$(BOWER) install
 
+
 .PHONY: clean
 clean:
 	$(NPM) rm -rf public/vendor && rm -rf node_modules
+
+
+.PHONY: lint
+lint:
+	@$(JSHINT_NODE) -- $(SRC_NODE)
+	@$(DEV_TOOLS)/bin/check-use-strict $(SRC_NODE)
+	@$(DEV_TOOLS)/bin/check-comments $(SRC_NODE)
+	@$(JSCS) -- $(SRC_NODE)
+
 
 .PHONY: test
 test:
