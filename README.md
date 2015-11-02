@@ -8,5 +8,6 @@ This is the primary repo for the MiddCourses scheduler
 - Dana Silver
 - Yanfeng Jin (Tony)
 - Paolo Bernasconi
+- Gilbert Kipkorir
 
 ## Install & Run
