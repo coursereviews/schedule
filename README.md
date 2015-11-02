@@ -3,6 +3,25 @@ Schedule
 
 This is the primary repo for the MiddCourses scheduler
 
+## Install
+
+Make sure you have [node](https://nodejs.org/en/) installed, everything else should work properly using the following command:
+
+```bash
+make setup
+```
+
+## Run
+
+```bash
+make start
+```
+
+## Environment Variables
+
+None so far.
+
+
 ## Authors
 
 - Dana Silver
@@ -12,5 +31,3 @@ This is the primary repo for the MiddCourses scheduler
 - Julian Billings
 - Sofy Maia
 - Amanuel Afework
-
-## Install & Run
