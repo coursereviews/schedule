@@ -1,0 +1,30 @@
+{
+  "name": "middcourses-schedule",
+  "description": "main repo for the scheduler",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@cliff.cs.middlebury.edu:middcourses/catalog-api.git"
+  },
+  "engines": {
+    "node": "0.12.x"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/nodemon --ext hbs,js,json --watch lib --harmony lib/server.js"
+  },
+  "dependencies": {
+    "bluebird": "2.10.x",
+    "express": "4.13.x",
+    "sequelize": "3.13.x",
+    "sqlite3": "3.1.x"
+  },
+  "devDependencies": {
+    "bower": "1.6.x",
+    "istanbul": "0.4.x",
+    "jscs": "2.4.x",
+    "jshint": "2.8.x",
+    "mocha": "2.3.x",
+    "nodemon": "1.8.x"
+  }
+}
