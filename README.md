@@ -3,6 +3,8 @@ Schedule
 
 This is the primary repo for the MiddCourses scheduler
 
-## Install & Run
+## Authors
 
-tbd
+- Dana Silver
+
+## Install & Run
