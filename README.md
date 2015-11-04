@@ -10,5 +10,6 @@ This is the primary repo for the MiddCourses scheduler
 - Paolo Bernasconi
 - Gilbert Kipkorir
 - Julian Billings
+- Sofy Maia
 
 ## Install & Run
