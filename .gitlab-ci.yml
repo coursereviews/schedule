@@ -1,0 +1,14 @@
+stages:
+  - build
+  - test
+
+job1:
+  stage: build
+  script:
+    - make setup
+
+job2:
+  stage: test
+  script:
+    - make lint
+    - make test
