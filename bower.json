@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "backbone": "1.2.x",
-    "underscore": "1.8.x"
+    "underscore": "1.8.x",
+    "requirejs": "2.1.x",
+    "jquery": "2.1.x",
+    "bootstrap": "3.3.x"
   }
 }
