@@ -28,7 +28,6 @@ require([
 	'routers/router',
 ], function(Backbone, AppView, Workspace) {
 
-  new Workspace();
-
   new AppView();
+  new Workspace();
 });
