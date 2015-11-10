@@ -8,7 +8,7 @@
     "url": "git@cliff.cs.middlebury.edu:middcourses/catalog-api.git"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": "4.2"
   },
   "scripts": {
     "start": "node_modules/.bin/nodemon --ext hbs,js,json --watch lib --harmony lib/server.js"
