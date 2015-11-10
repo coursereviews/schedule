@@ -8,7 +8,7 @@
     "url": "git@cliff.cs.middlebury.edu:middcourses/catalog-api.git"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": "4.2"
   },
   "scripts": {
     "start": "node_modules/.bin/nodemon --ext hbs,js,json --watch lib --harmony lib/server.js"
@@ -17,6 +17,7 @@
     "bluebird": "2.10.x",
     "body-parser": "1.14.x",
     "bookshelf": "0.9.x",
+    "bower": "1.6.x",
     "cas-authentication": "0.0.x",
     "cookie-parser": "1.4.x",
     "express": "4.13.x",
@@ -27,7 +28,6 @@
     "sqlite3": "3.1.x"
   },
   "devDependencies": {
-    "bower": "1.6.x",
     "istanbul": "0.4.x",
     "jscs": "2.4.x",
     "jshint": "2.8.x",
