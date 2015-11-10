@@ -1,4 +1,4 @@
-Schedule
+Schedule [![Build Status](https://travis-ci.org/coursereviews/schedule.svg?branch=master)](https://travis-ci.org/coursereviews/schedule)
 ---
 
 This is the primary repo for the MiddCourses scheduler
