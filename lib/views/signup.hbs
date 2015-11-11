@@ -6,11 +6,11 @@
     <p id="profile-name" class="profile-name-card"></p>
     <form class="form-signin" action="/login" method="POST">
       <span id="reauth-email" class="reauth-email"></span>
+      <input type="text" name="name" class="form-control" placeholder="Name" required autofocus>
       <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
       <input type="password" name="password" class="form-control" placeholder="Password" required>
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Login</button>
+      <input type="password" name="confirm-password" class="form-control" placeholder="Confirm Password" required>
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign up</button>
     </form>
-
-    <a href="/forgot" class="forgot-password">Forgot your password?</a>
   </div>
 </div>
