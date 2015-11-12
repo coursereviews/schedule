@@ -11,7 +11,8 @@
     "node": "4.2"
   },
   "scripts": {
-    "start": "node_modules/.bin/nodemon --ext hbs,js,json --watch lib --harmony lib/server.js"
+    "start": "node_modules/.bin/nodemon --ext hbs,js,json --watch lib --harmony lib/server.js",
+    "migrate:latest": "node_modules/knex/lib/bin/cli.js migrate:latest --knexfile lib/settings/knexfile.js"
   },
   "dependencies": {
     "bluebird": "2.10.x",
