@@ -14,6 +14,7 @@
     "migrate:latest": "node_modules/knex/lib/bin/cli.js migrate:latest --knexfile lib/settings/knexfile.js"
   },
   "dependencies": {
+    "bcrypt": "^0.8.5",
     "bluebird": "2.10.x",
     "body-parser": "1.14.x",
     "bookshelf": "0.9.x",
