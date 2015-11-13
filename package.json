@@ -2,10 +2,9 @@
   "name": "middcourses-schedule",
   "description": "main repo for the scheduler",
   "version": "0.0.1",
-  "private": true,
   "repository": {
     "type": "git",
-    "url": "git@cliff.cs.middlebury.edu:middcourses/catalog-api.git"
+    "url": "git@github.com:coursereviews/schedule.git"
   },
   "engines": {
     "node": "4.2"
@@ -19,13 +18,15 @@
     "body-parser": "1.14.x",
     "bookshelf": "0.9.x",
     "bower": "1.6.x",
-    "cas-authentication": "0.0.x",
+    "connect-session-knex": "1.0.x",
     "cookie-parser": "1.4.x",
     "express": "4.13.x",
     "express-handlebars": "2.0.x",
     "express-session": "1.12.x",
+    "express-validator": "2.18.x",
     "knex": "0.9.x",
     "passport": "0.3.x",
+    "passport-local": "1.0.x",
     "sqlite3": "3.1.x"
   },
   "devDependencies": {

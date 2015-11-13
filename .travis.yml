@@ -4,3 +4,5 @@ node_js:
 before_install:
   - make setup
 script: make lint test
+notifications:
+  email: false
