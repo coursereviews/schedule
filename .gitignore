@@ -23,3 +23,6 @@ public/bower_components/
 
 # Project specific
 public/vendor
+
+# SQLite
+*.db
