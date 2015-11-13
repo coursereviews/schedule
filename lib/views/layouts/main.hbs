@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Example App</title>
+  <title>Schedule</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css" media="screen" title="no title" charset="utf-8">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
@@ -12,9 +12,74 @@
 
 <body>
 
-  {{{body}}}
+  <div class="container">
+    <a href="/">
+      <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">schedule</h1></a>
+  </div>
 
-  <script data-main="js/main" src="./bower_components/requirejs/require.js"></script>
+
+
+  <form method="get" action="/api/catalog/query">
+    <div class="form-group">
+
+      <div class="container" style="padding-bottom:.5cm">
+        <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
+      </div>
+
+      <div class="container" style="padding-bottom:.5cm">
+        <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
+      </div>
+
+      <div class="container"><div class="form-group">
+        <form role="search" method="get" action="/api/catalog/query">
+          <select class="form-control" name="department">
+            <option value="">Any Department</option>
+            <option value="AMST">American Studies</option>
+            <option value="ART">Arts Division</option>
+            <option value="BIOL">Biology</option>
+            <option value="CHEM">Chemistry and Biochemistry</option>
+            <option value="CHNS">Chinese</option>
+            <option value="CLAS">Classics</option>
+            <option value="CMLT">Comparative Literature</option>
+            <option value="CSCI">Computer Science</option>
+          </select></form>
+        </div>
+      </div>
+
+      <div class="container" style="padding-bottom:.5cm">
+        <table>
+          <tr>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="aal">AAL</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="art">ART</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="cmp">CMP</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="cw">CW</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="ded">DED</label></td>
+          </tr>
+          <tr>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="eur">EUR</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="his">HIS</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="lit">LIT</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="lng">LNG</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="nor">NOR</label></td>
+          </tr>
+          <tr>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="wtr">WTR</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="pe">PE</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="phl">PHL</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="sci">SCI</label></td>
+            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="soc">SOC</label></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="container" style="padding-bottom:.5cm">
+        <button class="btn btn-default" type="submit">Search</button>
+      </div>
+
+    </div>
+  </form>
+
+  <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
 </body>
 
 </html>
