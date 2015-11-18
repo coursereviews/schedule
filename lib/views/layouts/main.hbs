@@ -12,74 +12,120 @@
 
 <body>
 
-  <div class="container">
+  <div class=container>
     <a href="/">
-      <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">schedule</h1></a>
+      <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">schedule</h1>
+    </a>
   </div>
 
+  <div class=container>
 
+    <div class=container><form method="get" action="/api/catalog/query"><div class="form-group">
 
-  <form method="get" action="/api/catalog/query">
-    <div class="form-group">
+          <div class="row" style="padding-bottom:.5cm">
+            <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
+          </div>
 
-      <div class="container" style="padding-bottom:.5cm">
-        <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
-      </div>
+          <div class="row" style="padding-bottom:.5cm">
+            <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
+          </div>
 
-      <div class="container" style="padding-bottom:.5cm">
-        <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
-      </div>
+          <div class="row"><div class="form-group">
+            <form role="search" method="get" action="/api/catalog/query">
+              <select class="form-control" name="location">
+                <option value="">Any Location</option>
+                <option value="ADK">Adirondack Coltrane Lounge</option>
+                <option value="ATA">Atwater A</option>
+                <option value="ATD">Atwater Dining</option>
+                <option value="AXN">Axinn Center</option>
+                <option value="AXT">Twilight Hall</option>
+                <option value="BR+LOAF">Bread Loaf</option>
+                <option value="CHT">Chateau</option>
+                <option value="LIB">Davis Family Library</option>
+                <option value="FIC">Freeman International Center</option>
+                <option value="GFD">Gifford</option>
+                <option value="HLD">Franklin Environmental Center</option>
+                <option value="HPB">Hepburn Hall</option>
+                <option value="JHN">Johnson</option>
+                <option value="KYN">Peterson Family Athletic Complex</option>
+                <option value="LAF">LaForce</option>
+                <option value="GFD">Gifford</option>
+                <option value="MBH">McCardell Bicentennial Hall</option>
+                <option value="MCA">Mahaney Center for the Arts</option>
+                <option value="MFH">Memorial Field House</option>
+                <option value="MNR">Munroe</option>
+                <option value="OCH">Old Chapel</option>
+                <option value="PRS">Pearsons</option>
+                <option value="RAJ">Robert A. Jones</option>
+                <option value="RCD">Ross Seminar Room</option>
+                <option value="SDL">Sunderland</option>
+                <option value="VFH">Virtue Field House</option>
+                <option value="WNS">Warner</option>
+                <option value="WTH">Wright Theatre</option>
+              </select></form>
+            </div>
+          </div>
 
-      <div class="container"><div class="form-group">
-        <form role="search" method="get" action="/api/catalog/query">
-          <select class="form-control" name="department">
-            <option value="">Any Department</option>
-            <option value="AMST">American Studies</option>
-            <option value="ART">Arts Division</option>
-            <option value="BIOL">Biology</option>
-            <option value="CHEM">Chemistry and Biochemistry</option>
-            <option value="CHNS">Chinese</option>
-            <option value="CLAS">Classics</option>
-            <option value="CMLT">Comparative Literature</option>
-            <option value="CSCI">Computer Science</option>
-          </select></form>
+          <div class="row">
+            <button class="btn btn-default" type="submit">Search</button>
+          </div>
+
+    </div></form></div>
+
+    <div class=row>
+
+      <div class="col-sm-3">
+        <div class="list-group departments-list" style="height: 700px;">
+          <a class="list-group-item" href=api/catalog/query?subject=AMST>American Studies</a>
+          <a class="list-group-item" href=api/catalog/query?subject=ARBC>Arabic</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=ART>Arts Division</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=BIOL>Biology</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=CHEM>Chemistry and Biochemistry</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=CHNS>Chinese</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=CLAS>Classics</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=CMLT>Comparative Literature</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=CSCI>Computer Science</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=CRWR>Creative Writing</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=DANC>Dance</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=ECON>Economics</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=EDST>Education Studies</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=ENAM>English and American Literatures</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=ENVS>Environmental Studies</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=FMMC>Film and Media Culture</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=FYSE>First Year Seminar</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=FREN>French</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=GSFS>Gender, Sexuality, and Feminist Studies</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=GEOG>Geography</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=GEOL>Geology</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=GRMN>German</a></td>
+          <a class="list-group-item" href=api/catalog/query?subject=GREK>Greek</a></td>
         </div>
       </div>
 
-      <div class="container" style="padding-bottom:.5cm">
-        <table>
-          <tr>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="aal">AAL</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="art">ART</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="cmp">CMP</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="cw">CW</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="ded">DED</label></td>
-          </tr>
-          <tr>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="eur">EUR</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="his">HIS</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="lit">LIT</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="lng">LNG</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="nor">NOR</label></td>
-          </tr>
-          <tr>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="wtr">WTR</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="pe">PE</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="phl">PHL</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="sci">SCI</label></td>
-            <td width=21%><label class="checkbox-inline"><input type="checkbox" name="requirements" value="soc">SOC</label></td>
-          </tr>
-        </table>
-      </div>
-
-      <div class="container" style="padding-bottom:.5cm">
-        <button class="btn btn-default" type="submit">Search</button>
+      <div class=col-md-9>
+        <table class=list-group-horizontal align=center><tr>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=AAL>AAL</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=EUR>EUR</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=WTR>WTR</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=ART>ART</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=HIS>HIS</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=PE>PE</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=CMP>CMP</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=LIT>LIT</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=PHL>PHL</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=CW>CW</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=LNG>LNG</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=SCI>SCI</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=DED>DED</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=NOR>NOR</a></td>
+          <td class="list-group-item" align=center><a style="text-decoration: none; color:black" href=api/catalog/query?requirements=SOC>SOC</a></td>
+        </tr></table>
       </div>
 
     </div>
-  </form>
 
-  <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
+    <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
+  </div>
+
 </body>
-
 </html>
