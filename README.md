@@ -1,7 +1,7 @@
 Schedule [![Build Status](https://travis-ci.org/coursereviews/schedule.svg?branch=master)](https://travis-ci.org/coursereviews/schedule)
 ---
 
-This is the primary repo for the MiddCourses scheduler
+This is the primary repo for the MiddCourses Schedule.
 
 ## Install
 
@@ -16,6 +16,22 @@ make setup
 ```bash
 make start
 ```
+
+## Setup the database
+
+Create the database at `db/schedule.db` and run migrations:
+
+```bash
+npm run migrate:latest
+```
+
+Scrape the Fall 2015 catalog and load it into the database:
+
+```bash
+node lib/scripts/scrape_catalog.js 201590
+```
+
+where `201590` is the term id.
 
 ## Environment Variables
 
@@ -33,5 +49,3 @@ None so far.
 - Amanuel Afework
 - Khi Chou
 - Andrew Jung
-
-## Install & Run
