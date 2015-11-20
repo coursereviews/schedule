@@ -26,9 +26,100 @@
             <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
           </div>
 
-          <div class="row" style="padding-bottom:.5cm" id="prof_search">
+          <div class="row" style="padding-bottom:.5cm">
             <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
           </div>
+
+          <div class="container" style="padding-bottom:.0.3cm">
+            <table>
+              <tr>
+                <strong> Days of the week</strong>
+                  <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Monday">Monday</label></td>
+                  <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Tuesday">Tuesday</label></td>
+                  <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Wednesday">Wednesday</label></td>
+                  <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Thursday">Thursday</label></td>
+                  <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Friday">Friday</label></td>
+                </tr>
+              </table>
+            </div>​
+
+          <div class="container" style="padding-bottom:.0.4cm">
+            <table>
+              <tr>
+                <td width=21%><strong>From</strong>
+                  <form role="search" method="get" action="/api/catalog/query">
+                    <select class="form-control" name="schedule">
+                      <option value="START_TIME">Any Time</option>
+                      <option value="START_TIME">  8:00  am</option>
+                      <option value="START_TIME">  8:30  am</option>
+                      <option value="START_TIME">  9:00  am</option>
+                      <option value="START_TIME">  9:30  am</option>
+                      <option value="START_TIME">  10:00 am</option>
+                      <option value="START_TIME">  10:30 am</option>
+                      <option value="START_TIME">  11:00 am</option>
+                      <option value="START_TIME">  11:30 am</option>
+                      <option value="START_TIME"> 12:00 pm</option>
+                      <option value="START_TIME"> 12:30 pm</option>
+                      <option value="START_TIME"> 1:00  pm</option>
+                      <option value="START_TIME"> 1:30  pm</option>
+                      <option value="START_TIME"> 2:00  pm</option>
+                      <option value="START_TIME"> 2:30  pm</option>
+                      <option value="START_TIME"> 3:00  pm</option>
+                      <option value="START_TIME"> 3:30  pm</option>
+                      <option value="START_TIME"> 4:00 pm</option>
+                      <option value="START_TIME"> 4:30 pm</option>
+                      <option value="START_TIME"> 5:00 pm</option>
+                      <option value="START_TIME"> 5:30 pm</option>
+                      <option value="START_TIME"> 6:00 pm</option>
+                      <option value="START_TIME"> 6:30 pm</option>
+                      <option value="START_TIME"> 7:00 pm</option>
+                      <option value="START_TIME"> 7:30 pm</option>
+                      <option value="START_TIME"> 8:00 pm</option>
+                      <option value="START_TIME"> 8:30 pm</option>
+                      <option value="START_TIME"> 9:00 pm</option>
+                      <option value="START_TIME"> 9:30 pm</option>
+                      <option value="START_TIME"> 10:00 pm</option>
+                    </select></form>
+                  </td>
+
+                <td width=21%><strong>To</strong>
+                  <form role="search" method="get" action="/api/catalog/query">
+                    <select class="form-control" name="schedule">
+                      <option value="END_TIME">Any Time</option>
+                      <option value="END_TIME"> 8:00  am</option>
+                      <option value="END_TIME"> 8:30  am</option>
+                      <option value="END_TIME"> 9:00  am</option>
+                      <option value="END_TIME"> 9:30  am</option>
+                      <option value="END_TIME"> 10:00 am</option>
+                      <option value="END_TIME"> 10:30 am</option>
+                      <option value="END_TIME"> 11:00 am</option>
+                      <option value="END_TIME"> 11:30 am</option>
+                      <option value="END_TIME"> 12:00 pm</option>
+                      <option value="END_TIME"> 12:30 pm</option>
+                      <option value="END_TIME"> 1:00  pm</option>
+                      <option value="END_TIME"> 1:30  pm</option>
+                      <option value="END_TIME"> 2:00  pm</option>
+                      <option value="END_TIME"> 2:30  pm</option>
+                      <option value="END_TIME"> 3:00  pm</option>
+                      <option value="END_TIME"> 3:30  pm</option>
+                      <option value="END_TIME"> 4:00 pm</option>
+                      <option value="END_TIME"> 4:30 pm</option>
+                      <option value="END_TIME"> 5:00 pm</option>
+                      <option value="END_TIME"> 5:30 pm</option>
+                      <option value="END_TIME"> 6:00 pm</option>
+                      <option value="END_TIME"> 6:30 pm</option>
+                      <option value="END_TIME"> 7:00 pm</option>
+                      <option value="END_TIME"> 7:30 pm</option>
+                      <option value="END_TIME"> 8:00 pm</option>
+                      <option value="END_TIME"> 8:30 pm</option>
+                      <option value="END_TIME"> 9:00 pm</option>
+                      <option value="END_TIME"> 9:30 pm</option>
+                      <option value="END_TIME"> 10:00 pm</option>
+                    </select></form>
+                  </td>
+                </tr>
+              </table>
+            </div>​
 
           <div class="row"><div class="form-group">
             <form role="search" method="get" action="/api/catalog/query">
