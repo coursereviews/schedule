@@ -23,8 +23,28 @@
     <div class=container><form method="get" action="/api/catalog/query"><div class="form-group">
 
           <div class="row" style="padding-bottom:.5cm">
+
             <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
           </div>
+
+
+          <div class="container" style="padding-bottom:.7cm">
+          <table>
+            <tr>
+
+              <strong> Days of the week<strong>
+              <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Monday">Monday</label></td>
+              <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Tuesday">Tuesday</label></td>
+              <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Wednesday">Wednesday</label></td>
+              <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Thursday">Thursday</label></td>
+              <td width=21%><label class="checkbox-inline"><input type="checkbox" name="schedule" value="Friday">Friday</label></td>
+
+            </tr>
+
+          </table>
+
+        </div>​
+
 
           <div class="row" style="padding-bottom:.5cm">
             <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
