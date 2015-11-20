@@ -22,6 +22,10 @@ html {
   cursor: default;
 }
 
+.btn:hover {
+  cursor: pointer;
+}
+
 .departments-list {
   overflow: auto;
 }
@@ -49,20 +53,29 @@ html {
   border-bottom-right-radius: 3px;
 }
 
+.course-panel-heading:hover {
+  cursor: pointer;
+}
+
 .course-panel-body {
   background-color: white;
   padding: 5px;
 }
 
-.list-group-horizontal .list-group-item {
-	display: inline-block;
-}
 .list-group-item:hover {
+  cursor: pointer;
   color: #333;
   background-color: #e6e6e6;
-  border-color: #adadad;
 }
+
+.list-group-item.clicked{
+  cursor: pointer;
+  color: #333;
+  background-color: #e6e6e6;
+}
+
 .list-group-horizontal .list-group-item {
+  display: inline-block;
 	margin-bottom: 0;
 	margin-left:-4px;
 	margin-right: 0;
