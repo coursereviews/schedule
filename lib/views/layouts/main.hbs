@@ -6,12 +6,12 @@
   <title>Schedule</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="/css/main.css" media="screen" title="no title" charset="utf-8">
+  <script src="/js/views/main_view.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
 </head>
 
 <body>
-
   <div class=container>
     <a href="/">
       <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">schedule</h1>
@@ -22,24 +22,24 @@
 
     <div class=container><form method="get" action="/api/catalog/query"><div class="form-group">
 
-          <div class="row" style="padding-bottom:.5cm">
+          <div class="row" style="padding-bottom:.5cm" id="keywordsearch">
             <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
           </div>
 
-          <div class="row" style="padding-bottom:.5cm">
+          <div class="row" style="padding-bottom:.5cm" id="prof_search">
             <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
           </div>
 
           <div class="row"><div class="form-group">
             <form role="search" method="get" action="/api/catalog/query">
-              <select class="form-control" name="location">
+              <select class="form-control" name="location" id="loc_select">
                 <option value="">Any Location</option>
                 <option value="ADK">Adirondack Coltrane Lounge</option>
                 <option value="ATA">Atwater A</option>
                 <option value="ATD">Atwater Dining</option>
                 <option value="AXN">Axinn Center</option>
                 <option value="AXT">Twilight Hall</option>
-                <option value="BR+LOAF">Bread Loaf</option>
+                <option value="BR_LOAF">Bread Loaf</option>
                 <option value="CHT">Chateau</option>
                 <option value="LIB">Davis Family Library</option>
                 <option value="FIC">Freeman International Center</option>
@@ -66,39 +66,39 @@
             </div>
           </div>
 
-          <div class="row">
+          <div class="row" id=search_btn>
             <button class="btn btn-default" type="submit">Search</button>
           </div>
 
     </div></form></div>
 
-    <div class=row>
+    <div class=row id=body>
 
       <div class="col-sm-3">
-        <div class="list-group departments-list" style="height: 700px;">
-          <a class="list-group-item" href=api/catalog/query?subject=AMST>American Studies</a>
-          <a class="list-group-item" href=api/catalog/query?subject=ARBC>Arabic</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=ART>Arts Division</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=BIOL>Biology</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=CHEM>Chemistry and Biochemistry</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=CHNS>Chinese</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=CLAS>Classics</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=CMLT>Comparative Literature</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=CSCI>Computer Science</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=CRWR>Creative Writing</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=DANC>Dance</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=ECON>Economics</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=EDST>Education Studies</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=ENAM>English and American Literatures</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=ENVS>Environmental Studies</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=FMMC>Film and Media Culture</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=FYSE>First Year Seminar</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=FREN>French</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=GSFS>Gender, Sexuality, and Feminist Studies</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=GEOG>Geography</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=GEOL>Geology</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=GRMN>German</a></td>
-          <a class="list-group-item" href=api/catalog/query?subject=GREK>Greek</a></td>
+        <div class="list-group departments-list" style="height: 700px;" id=dept_list>
+          <a class="list-group-item" id=AMST>American Studies</a>
+          <a class="list-group-item" id=ARBC>Arabic</a></td>
+          <a class="list-group-item" id=ART>Arts Division</a></td>
+          <a class="list-group-item" id=BIOL>Biology</a></td>
+          <a class="list-group-item" id=CHEM>Chemistry and Biochemistry</a></td>
+          <a class="list-group-item" id=CHNS>Chinese</a></td>
+          <a class="list-group-item" id=CLAS>Classics</a></td>
+          <a class="list-group-item" id=CMLT>Comparative Literature</a></td>
+          <a class="list-group-item" id=CSCI>Computer Science</a></td>
+          <a class="list-group-item" id=CRWR>Creative Writing</a></td>
+          <a class="list-group-item" id=DANC>Dance</a></td>
+          <a class="list-group-item" id=ECON>Economics</a></td>
+          <a class="list-group-item" id=EDST>Education Studies</a></td>
+          <a class="list-group-item" id=ENAM>English and American Literatures</a></td>
+          <a class="list-group-item" id=ENVS>Environmental Studies</a></td>
+          <a class="list-group-item" id=FMMC>Film and Media Culture</a></td>
+          <a class="list-group-item" id=FYSE>First Year Seminar</a></td>
+          <a class="list-group-item" id=FREN>French</a></td>
+          <a class="list-group-item" id=GSFS>Gender, Sexuality, and Feminist Studies</a></td>
+          <a class="list-group-item" id=GEOG>Geography</a></td>
+          <a class="list-group-item" id=GEOL>Geology</a></td>
+          <a class="list-group-item" id=GRMN>German</a></td>
+          <a class="list-group-item" id=GREK>Greek</a></td>
         </div>
       </div>
 
@@ -122,7 +122,7 @@
         </tr></table>
       </div>
 
-    </div>
+      <div id=courses></div>
 
     <script data-main="js/main" src="/bower_components/requirejs/require.js"></script>
   </div>

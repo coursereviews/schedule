@@ -6,7 +6,6 @@ body,
 html {
   background-position: left top;
   background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(114, 161, 236), rgb(5, 21, 46));
 }
 
 .card-container.card {
@@ -25,6 +24,34 @@ html {
 
 .departments-list {
   overflow: auto;
+}
+
+.results-list {
+  overflow: auto;
+}
+
+.course-panel {
+  margin-bottom: 20px;
+  background-color: #fff;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+          box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+.course-panel-heading {
+  padding: 2px 15px;
+  background-color: rgb(66, 100, 150);
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.course-panel-body {
+  background-color: white;
+  padding: 5px;
 }
 
 .list-group-horizontal .list-group-item {
