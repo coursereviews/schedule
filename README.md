@@ -8,13 +8,14 @@ This is the primary repo for the MiddCourses Schedule.
 Make sure you have [node](https://nodejs.org/en/) installed, everything else should work properly using the following command:
 
 ```bash
-make setup
+npm install
+bower install
 ```
 
 ## Run
 
 ```bash
-make start
+npm start
 ```
 
 ## Setup the database
