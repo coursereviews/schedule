@@ -29,7 +29,7 @@ npm run migrate:latest
 Scrape the Fall 2015 catalog and load it into the database:
 
 ```bash
-node --harmony lib/scripts/scrape_catalog.js 201590
+node lib/scripts/scrape_catalog.js 201590
 ```
 
 where `201590` is the term id.
