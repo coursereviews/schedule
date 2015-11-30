@@ -25,7 +25,7 @@ window.onload = function displayResults(){
 
 var getData = function(url){
   var request = new XMLHttpRequest();
-  var path = 'http://localhost:8000/api/catalog/'+url;
+  var path = 'http://localhost:8000/api/catalog-test/'+url;
   request.open('GET', path, true);
   request.setRequestHeader("Content-Type", "text/xml");
   request.onreadystatechange = function(){
