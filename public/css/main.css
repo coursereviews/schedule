@@ -203,3 +203,28 @@ body {
 .forgot-password:focus {
   color: rgb(12, 97, 33);
 }
+
+.favorites{
+  width: 270px;
+  min-height: 200px;
+  border-radius: 3px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  /*border: 1px solid rgba(200,200,200,0.5);*/
+  margin-bottom: 20px;
+  float: left;
+
+
+}
+
+.calendar{
+  float: right;
+  background-color: white;
+  width: 750px;
+  height: 400px;
+
+}
+.calDiv{
+  float: right;
+
+}
