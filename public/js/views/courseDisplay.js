@@ -1,7 +1,8 @@
 window.onload = function displayResults(){
   //get qualifier lists
+  var descripkey = document.getElementById("keysearch");
+  var profkey = document.getElementById("profsearch");
   var locslist = document.getElementById("loc_select");
-  var locs = document.getElementsByTagName("option");
   var depts = document.getElementById("dept_list");
   var reqs = document.getElementById("req_list");
   var qualifsArr = Array.from(depts.children).concat(Array.from(reqs.children));
@@ -36,7 +37,7 @@ window.onload = function displayResults(){
 
   //add event listener to all depts & reqs
   qualifsArr.forEach(function(elmnt){elmnt.addEventListener("click", function(){Click(elmnt);});});
-  locslist.onchange = function(){Click(locs[locslist.selectedIndex]);}
+  locslist.onchange = function(){Click(document.getElementsByTagName("option")[locslist.selectedIndex]);}
 };
 
 var getData = function(url){
