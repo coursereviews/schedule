@@ -1,38 +1,37 @@
-// DesktopRouter.js
-// ----------------
-define(['jquery',
-        'underscore',
-        'backbone',
-        'models/model',
-        'views/view',
-], function($, _, Backbone, Model, View) {
+var schedule = schedule || {};
 
-  var MainRouter = Backbone.Router.extend({
-    initialize: function() {
-      // Tells Backbone to start watching for hashchange events
-      Backbone.history.start();
-    },
+(function() {
+  'use strict';
 
-    // All of your Backbone Routes (add more)
+  var ScheduleRouter = Backbone.Router.extend({
     routes: {
-      // When there is no hash on the url, the home method is called
       '': 'index',
-      'login': 'login',
-      'logout': 'logout',
+      'schedule(/:id)': 'schedule',
+      'search': 'search',
+      'extracurriculars': 'extracurriculars'
     },
 
     index: function() {
-      // Instantiates a new view which will render the header text to the page
-      new View();
-    },
-    login: function() {
-
-    },
-    logout: function() {
 
     },
 
+    schedule: function() {
+
+    },
+
+    search: function() {
+
+    },
+
+    extracurriculars: function() {
+      if (schedule.view instanceof schedule.ExtraCurricularMainView) {
+        schedule.extracurriculars.fetch();
+      } else if (app.view) {
+        app.view.remove();
+        app.view = new ExtraCurricularMainView();
+      } else {
+        app.view = new ExtraCurricularMainView();
+      }
+    }
   });
-
-  return MainRouter;
-});
+})();
