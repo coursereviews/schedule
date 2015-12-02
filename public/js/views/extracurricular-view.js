@@ -1,9 +1,10 @@
-var schedule = schedule || {};
+var app = app || {};
 
 (function() {
   'use strict';
 
-  schedule.ExtraCurricularView = Backbone.View.extend({
+  app.ExtraCurricularView = Backbone.View.extend({
+    template: _.template($('#extracurricular-template').html()),
 
     initialize: function() {
       this.listenTo(this.model, 'change', 'render');
