@@ -7,5 +7,5 @@ var app = app || {};
     model: app.ExtraCurricular
   });
 
-  app.collections.extracurriculars = new ExtraCurriculars();
+  app.extracurricularsCollection = new ExtraCurriculars();
 })();

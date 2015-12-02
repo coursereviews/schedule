@@ -3,16 +3,17 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.views.SearchView = Backbone.View.extend({
-
-    $el: '#search-view',
+  app.SearchView = Backbone.View.extend({
 
     initialize: function() {
-
+      this.render();
     },
+
     render: function() {
-
+      this.$el.html($("#search-template").html());
+      return this;
     },
+
     addOne: function() {
 
     },

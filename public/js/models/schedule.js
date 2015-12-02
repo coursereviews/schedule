@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.models.Schedule = Backbone.Model.extend({
+  var ScheduleModel = Backbone.Model.extend({
     defaults: {
       start_time: '',
       end_time: '',
@@ -12,5 +12,7 @@ var app = app || {};
       days: []
     }
   });
+
+  app.ScheduleModel = ScheduleModel;
 
 })();

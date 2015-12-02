@@ -3,21 +3,18 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.views.ScheduleView = Backbone.View.extend({
-
-    $el: '#schedule-view',
+  var ScheduleView = Backbone.View.extend({
 
     initialize: function() {
-
+      this.render();
+      console.log(app.ScheduleCollection);
     },
+
     render: function() {
-
+      this.$el.html($("#schedule-template").html());
+      return this;
     },
-    addOne: function() {
-
-    },
-    addAll: function() {
-
-    }
   });
+
+  return app.ScheduleView = ScheduleView;
 })();
