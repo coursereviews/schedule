@@ -1,4 +1,11 @@
-'use strict';
+(function() {
+  'use strict';
 
-// new AppView();
-// new Workspace();
+  window.app = {
+    models: {},
+    collections: {},
+    views: {},
+    router: {}
+  };
+
+})();

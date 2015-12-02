@@ -1,9 +1,9 @@
-var schedule = schedule || {};
+var app = app || {};
 
 (function() {
   'use strict';
 
-  schedule.ExtraCurricular = Backbone.Model.extend({
+  app.models.ExtraCurricular = Backbone.Model.extend({
     defaults: {
       start_time: '',
       end_time: '',

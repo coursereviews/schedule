@@ -1,9 +1,9 @@
-var schedule = schedule || {};
+var app = app || {};
 
 (function() {
   'use strict';
 
-  var ScheduleRouter = Backbone.Router.extend({
+  var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'schedule(/:id)': 'schedule',
@@ -12,11 +12,11 @@ var schedule = schedule || {};
     },
 
     index: function() {
-
+      console.log('index');
     },
 
-    schedule: function() {
-
+    schedule: function(id) {
+      new app.views.ScheduleView();
     },
 
     search: function() {
@@ -24,8 +24,8 @@ var schedule = schedule || {};
     },
 
     extracurriculars: function() {
-      if (schedule.view instanceof schedule.ExtraCurricularMainView) {
-        schedule.extracurriculars.fetch();
+      if (app.views instanceof app.views.ExtraCurricularMainView) {
+        app.collections.extracurriculars.fetch();
       } else if (app.view) {
         app.view.remove();
         app.view = new ExtraCurricularMainView();
@@ -34,4 +34,6 @@ var schedule = schedule || {};
       }
     }
   });
+
+  app.router.AppRouter = new AppRouter();
 })();

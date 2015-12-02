@@ -1,9 +1,9 @@
-var schedule = schedule || {};
+var app = app || {};
 
 (function() {
   'use strict';
 
-  schedule.Schedule = Backbone.Model.extend({
+  app.models.Schedule = Backbone.Model.extend({
     defaults: {
       start_time: '',
       end_time: '',
