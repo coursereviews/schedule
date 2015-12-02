@@ -19,6 +19,7 @@ define(['jquery',
       '': 'index',
       'login': 'login',
       'logout': 'logout',
+      'search': 'search',
     },
 
     index: function() {
