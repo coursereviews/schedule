@@ -12,6 +12,8 @@ var app = app || {};
 
     render: function() {
       this.$('a[href="#' + app.route + '"]').addClass('active');
+      
+      this.$('#main-app').append(app.view.render().el);
     }
   });
 })();

@@ -7,16 +7,21 @@ var app = app || {};
 
 		template: _.template($('#extracurriculars-template').html()),
 
+		events: {
+			'click .create-extracurricular': 'createExtracurriclar'
+		},
+
 		initialize: function() {
 			this.$extracurricularsList = this.$('.extracurriculars-list');
 
 			this.listenTo(app.extracurriculars, 'reset', this.addAll);
 
+			_.bindAll(this, 'renderSelect2');
+
 			app.extracurriculars.fetch();
-			this.render();
 		},
 		render: function() {
-			var el = this.$el.html(this.template());
+			this.$el.html(this.template());
 
 			this.$('.time').timepicker({
 				showDuration: true,
@@ -29,11 +34,21 @@ var app = app || {};
 				autoclose: true
 			});
 
+			// Hide the Select 2 days of the week field initially to avoid
+			// flash of unstyled content
+			this.$('.days').addClass('hidden');
+
+			// Rendering the Select 2 before it's in the DOM won't display
+			// the placeholder
+			_.defer(this.renderSelect2);
+
+			return this;
+		},
+		renderSelect2: function() {
 			this.$('.days').select2({
 				placeholder: 'Select multiple days'
-			});
-
-			$('#main-app').append(el);
+			})
+			.removeClass('hidden');
 		},
 		addOne: function(extracurricular) {
 			var view = new app.ExtraCurricularView({model: extracurricular});
@@ -42,6 +57,9 @@ var app = app || {};
 		addAll: function() {
 			this.$extracurricularsList.html('');
 			app.extracurriculars.each(this.addOne, this);
+		},
+		createExtracurriclar: function() {
+			console.log()
 		}
 	});
 })();
