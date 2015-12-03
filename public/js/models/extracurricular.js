@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  var ExtraCurricularModel = Backbone.Model.extend({
+  app.ExtraCurricular = Backbone.Model.extend({
     defaults: {
       start_time: '',
       end_time: '',
@@ -13,5 +13,4 @@ var app = app || {};
     }
   });
 
-  app.ExtraCurricularModel = ExtraCurricularModel;
 })();

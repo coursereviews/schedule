@@ -4,27 +4,17 @@
 
 body,
 html {
-  height: auto;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(252, 252, 252), rgb(219, 219, 219));
+  height: 100%;
+}
+
+.navbar-default {
+  background-color: #fff;
+  border-bottom-color: #3376b1;
 }
 
 .card-container.card {
   max-width: 350px;
   padding: 40px 40px;
-}
-
-.btn {
-  font-weight: 700;
-  height: 36px;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  cursor: default;
-}
-
-.btn:hover {
-  cursor: pointer;
 }
 
 .departments-list {

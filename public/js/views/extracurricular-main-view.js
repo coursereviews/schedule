@@ -5,7 +5,7 @@ var app = app || {};
 
 	app.ExtraCurricularMainView = Backbone.View.extend({
 
-		template: _.template($('#extracurriculars-main-template').html()),
+		template: _.template($('#extracurriculars-template').html()),
 
 		initialize: function() {
 			this.$extracurricularsList = this.$('.extracurriculars-list');
@@ -16,7 +16,24 @@ var app = app || {};
 			this.render();
 		},
 		render: function() {
-			$('main').append(this.template());
+			var el = this.$el.html(this.template());
+
+			this.$('.time').timepicker({
+				showDuration: true,
+				timeFormat: 'g:ia',
+				step: 5
+			});
+
+			this.$('.date').datepicker({
+				format: 'm/d/yyyy',
+				autoclose: true
+			});
+
+			this.$('.days').select2({
+				placeholder: 'Select multiple days'
+			});
+
+			$('#main-app').append(el);
 		},
 		addOne: function(extracurricular) {
 			var view = new app.ExtraCurricularView({model: extracurricular});

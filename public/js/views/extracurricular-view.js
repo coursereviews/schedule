@@ -4,7 +4,8 @@ var app = app || {};
   'use strict';
 
   app.ExtraCurricularView = Backbone.View.extend({
-    template: _.template($('#extracurricular-template').html()),
+
+    template: _.template(''),
 
     initialize: function() {
       this.listenTo(this.model, 'change', 'render');
