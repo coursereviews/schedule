@@ -1,4 +1,4 @@
-window.onload = function displayResults(){
+$(function() {
   //get qualifier lists
   var descripkey = document.getElementById("keysearch");
   var profkey = document.getElementById("profsearch");
@@ -38,7 +38,7 @@ window.onload = function displayResults(){
   //add event listener to all depts & reqs
   qualifsArr.forEach(function(elmnt){elmnt.addEventListener("click", function(){Click(elmnt);});});
   locslist.onchange = function(){Click(document.getElementsByTagName("option")[locslist.selectedIndex]);}
-};
+});
 
 var getData = function(url){
   var request = new XMLHttpRequest();
