@@ -5,8 +5,8 @@
 body,
 html {
   height: auto;
-  background-color: #F8F8F8;
   background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(252, 252, 252), rgb(219, 219, 219));
 }
 
 .card-container.card {
