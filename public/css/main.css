@@ -1,9 +1,12 @@
 /*
  * General styles
  */
-body {
-  background: linear-gradient(rgb(252, 252, 252), rgb(219, 219, 219));
-  background-size: cover !important;
+
+body,
+html {
+  height: auto;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(252, 252, 252), rgb(219, 219, 219));
 }
 
 .card-container.card {
@@ -202,4 +205,28 @@ body {
 .forgot-password:active,
 .forgot-password:focus {
   color: rgb(12, 97, 33);
+}
+
+.search-input {
+  margin: 20px;
+}
+
+.course-list {
+  list-style: none;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+}
+
+.course-item {
+  border-bottom: 1px solid #797979;
+  padding: 5px 10px;
+}
+
+.schedule-container {
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
 }

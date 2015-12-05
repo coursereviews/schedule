@@ -12,8 +12,7 @@ MOCHA_OPTS = --ui bdd -c
 
 SRC = ./*.js
 
-SRC_NODE    = $(shell find . \( -path './lib/*' -or -path './tests/*' \) \
- 								-not -path './lib/views/*')
+SRC_NODE    = $(shell find . \( -path './lib/*' -or -path './tests/*' \) -not -path './lib/views/*')
 SRC_BROWSER = $(shell find . -path './public/*' \( -name '*.js' -or -name '*.html' \))
 
 
@@ -21,15 +20,20 @@ SRC_BROWSER = $(shell find . -path './public/*' \( -name '*.js' -or -name '*.htm
 start:
 	$(NPM) start
 
+
 .PHONY: setup
-setup: setup-dependencies
+setup: setup-dependencies setup-migrations
+
+
+.PHONY: setup-migrations
+setup-migrations:
+	$(KNEX_CLI) migrate:latest --knexfile lib/settings/knexfile.js
 
 
 .PHONY: setup-dependencies
 setup-dependencies:
 	$(NPM) install
 	$(BOWER) install
-	$(KNEX_CLI) migrate:latest --knexfile lib/settings/knexfile.js
 
 
 .PHONY: clean
