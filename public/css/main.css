@@ -1,12 +1,9 @@
 /*
  * General styles
  */
-
-body,
-html {
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(252, 252, 252), rgb(219, 219, 219));
+body {
+  background: linear-gradient(rgb(252, 252, 252), rgb(219, 219, 219));
+  background-size: cover !important;
 }
 
 .card-container.card {
