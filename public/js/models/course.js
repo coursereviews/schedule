@@ -3,16 +3,19 @@ var app = app || {};
 (function() {
   'use strict';
 
-  var CourseModel = Backbone.Model.extend({
+  app.CourseModel = Backbone.Model.extend({
     defaults: {
-      start_time: '',
+      title: '',
+      code: '',
+      instructor: '',
+      department: '',
+      location: '',
+      requirements: [],
+      term: '',
+      type: '',
+      schedule: '',
       end_time: '',
-      start_date: '',
-      end_date: '',
-      days: []
     }
   });
-
-  app.CourseModel =  CourseModel;
 
 })();
