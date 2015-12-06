@@ -20,7 +20,6 @@ var app = app || {};
 
     doSearch: function(e) {
       var querystring = 'query?' +$(e.currentTarget).attr('id');
-      var courses;
       $.ajax({
         method: 'GET',
         url: '/api/catalog/'+querystring,
@@ -31,7 +30,22 @@ var app = app || {};
     },
 
     newCourseList: function(list){
-      var results = new app.CourseCollection(list);
+      var results = new app.CourseCollection();
+      list.forEach(function(elmt){
+        elmt = new app.CourseModel({
+          title: elmt.title,
+          code: elmt.code,
+          instructor: elmt.instructor,
+          department: elmt.department,
+          location: elmt.location,
+          requirements: elmt.requirements,
+          term: elmt.term,
+          type: elmt.type,
+          schedule: elmt.schedule
+        });
+        results.add(elmt);
+      });
+      //console.log(results.models);
     },
 
     addOne: function() {

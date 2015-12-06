@@ -13,8 +13,7 @@ var app = app || {};
       requirements: [],
       term: '',
       type: '',
-      schedule: '',
-      end_time: '',
+      schedule: ''
     }
   });
 

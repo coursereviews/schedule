@@ -19,7 +19,8 @@ var app = app || {};
       '': 'index',
       'schedule(/:id)': 'schedule',
       'search': 'search',
-      'extracurriculars': 'extracurriculars'
+      'extracurriculars': 'extracurriculars',
+      'courses': 'courses'
     },
     initialize: function() {
 
@@ -33,6 +34,10 @@ var app = app || {};
       ViewManager.showView(new app.ScheduleView({model: schedule}));
     },
     search: function() {
+      console.log('search');
+      ViewManager.showView(new app.SearchView());
+    },
+    courses: function() {
       console.log('search');
       ViewManager.showView(new app.SearchView());
     },
