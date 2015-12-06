@@ -23,13 +23,13 @@ var app = app || {};
 		render: function() {
 			this.$el.html(this.template());
 
-			this.$('.time').timepicker({
+			this.$('input.time').timepicker({
 				showDuration: true,
 				timeFormat: 'g:ia',
 				step: 5
 			});
 
-			this.$('.date').datepicker({
+			this.$('input.date').datepicker({
 				format: 'm/d/yyyy',
 				autoclose: true
 			});
@@ -58,8 +58,36 @@ var app = app || {};
 			this.$extracurricularsList.html('');
 			app.extracurriculars.each(this.addOne, this);
 		},
+		getInputs: function() {
+			return {
+				name: this.$('input.name'),
+				start_time: this.$('input.start.time'),
+				start_date: this.$('input.start.date'),
+				end_time: this.$('input.end.time'),
+				end_date: this.$('input.end.date'),
+				days: this.$('select.days')
+			};
+		},
+		clearAttributeFields: function() {
+			this.getInputs().each(function(input) {
+				input.val('');
+			});
+		},
 		createExtracurriclar: function() {
-			console.log()
-		}
+			var newAttributes = this.getInputs();
+
+			_.keys(newAttributes).map(function(key) {
+				var input = newAttributes[key];
+
+				if (input.hasClass('days')) {
+					newAttributes[key] = input.val() ? input.val().join(',') : '';
+				} else {
+					newAttributes[key] = input.val();
+				}
+			});
+
+			app.extracurriculars.create(newAttributes);
+		},
+
 	});
 })();
