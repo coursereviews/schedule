@@ -30,7 +30,6 @@ var app = app || {};
     },
 
     newCourseList: function(list){
-      var results = new app.CourseCollection();
       list.forEach(function(elmt){
         elmt = new app.CourseModel({
           title: elmt.title,
@@ -43,14 +42,16 @@ var app = app || {};
           type: elmt.type,
           schedule: elmt.schedule
         });
-        results.add(elmt);
+        addOne(elmt);
       });
-      //console.log(results.models);
     },
 
-    addOne: function() {
+    addOne: function(course) {
+			var view = new app.CourseView({model: course});
 
-    },
+			this.$('.results-list').append(view.render().el);
+		},
+
     addAll: function() {
 
     }
