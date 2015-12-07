@@ -29,7 +29,19 @@ var app = app || {};
       });
     },
 
+    addOne: function(course) {
+			var view = new app.CourseView({model: course});
+      var reslist = this.$('.results-list');
+      //console.log(reslist);
+			this.$('.results-list').append(view.render().el);
+		},
+
+    addAll: function() {
+
+    },
+
     newCourseList: function(list){
+      var self = this;
       list.forEach(function(elmt){
         elmt = new app.CourseModel({
           title: elmt.title,
@@ -42,18 +54,8 @@ var app = app || {};
           type: elmt.type,
           schedule: elmt.schedule
         });
-        addOne(elmt);
+        self.addOne(elmt);
       });
-    },
-
-    addOne: function(course) {
-			var view = new app.CourseView({model: course});
-
-			this.$('.results-list').append(view.render().el);
-		},
-
-    addAll: function() {
-
     }
   });
 })();

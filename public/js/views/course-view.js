@@ -8,6 +8,10 @@ var app = app || {};
 
     className: 'col-md-12',
 
+    attributes: {
+      'style': 'padding-top: .35cm'
+    },
+
     template: _.template($('#course-item-template').html()),
 
     initialize: function() {
