@@ -76,7 +76,7 @@ var app = app || {};
 
 		clearAttributeFields: function() {
 			this.clearErrors();
-			
+
 			_.values(this.getInputs()).forEach(function(input) {
 				input.hasClass('days') ? input.select2('val', '') : input.val('');
 			});
@@ -114,6 +114,8 @@ var app = app || {};
 			_.values(this.getInputs()).forEach(function(input) {
 				input.parent('.form-group').removeClass('has-error');
 			});
+
+			$('.select2-drop').removeClass('has-error');
 		},
 
 		handleErrors: function(errors) {
@@ -122,6 +124,10 @@ var app = app || {};
 			var inputs = this.getInputs();
 			errors.forEach(function(error) {
 				inputs[error.param].parent('.form-group').addClass('has-error');
+
+				if (inputs[error.param].hasClass('days')) {
+					$('.select2-drop').addClass('has-error');
+				}
 			});
 		}
 
