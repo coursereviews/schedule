@@ -14,6 +14,7 @@ var app = app || {};
 		initialize: function() {
 			this.listenTo(app.extracurriculars, 'reset', this.addAll);
 			this.listenTo(app.extracurriculars, 'add', this.addOne);
+			this.listenTo(app.extracurriculars, 'invalid:server', this.showErrors);
 
 			_.bindAll(this, 'renderSelect2');
 
@@ -43,21 +44,25 @@ var app = app || {};
 
 			return this;
 		},
+
 		renderSelect2: function() {
 			this.$('.days').select2({
 				placeholder: 'Select multiple days'
 			})
 			.removeClass('hidden');
 		},
+
 		addOne: function(extracurricular) {
 			var view = new app.ExtraCurricularView({model: extracurricular});
 
 			this.$('.extracurriculars-list').append(view.render().el);
 		},
+
 		addAll: function() {
 			this.$('.extracurriculars-list').html('');
 			app.extracurriculars.each(this.addOne, this);
 		},
+
 		getInputs: function() {
 			return {
 				name: this.$('input.name'),
@@ -68,12 +73,17 @@ var app = app || {};
 				days: this.$('select.days')
 			};
 		},
+
 		clearAttributeFields: function() {
+			this.clearErrors();
+			
 			_.values(this.getInputs()).forEach(function(input) {
 				input.hasClass('days') ? input.select2('val', '') : input.val('');
 			});
 		},
+
 		createExtracurriclar: function() {
+			var self = this;
 			var newAttributes = this.getInputs();
 
 			_.keys(newAttributes).map(function(key) {
@@ -86,9 +96,34 @@ var app = app || {};
 				}
 			});
 
-			app.extracurriculars.create(newAttributes);
-			this.clearAttributeFields();
+			app.extracurriculars.create(newAttributes, {
+				wait: true,
+				silent: true,
+				success: function(response, options) {
+					if (response.get('errors')) {
+						self.handleErrors(response.get('errors'));
+					} else {
+						self.clearAttributeFields();
+						app.extracurriculars.trigger('add', response, options);
+					}
+				}
+			});
 		},
+
+		clearErrors: function() {
+			_.values(this.getInputs()).forEach(function(input) {
+				input.parent('.form-group').removeClass('has-error');
+			});
+		},
+
+		handleErrors: function(errors) {
+			this.clearErrors();
+
+			var inputs = this.getInputs();
+			errors.forEach(function(error) {
+				inputs[error.param].parent('.form-group').addClass('has-error');
+			});
+		}
 
 	});
 })();
