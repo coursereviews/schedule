@@ -12,13 +12,11 @@ var app = app || {};
 		},
 
 		initialize: function() {
-			this.$extracurricularsList = this.$('.extracurriculars-list');
-
 			this.listenTo(app.extracurriculars, 'reset', this.addAll);
 
 			_.bindAll(this, 'renderSelect2');
 
-			app.extracurriculars.fetch();
+			app.extracurriculars.fetch({reset: true});
 		},
 		render: function() {
 			this.$el.html(this.template());
@@ -52,10 +50,11 @@ var app = app || {};
 		},
 		addOne: function(extracurricular) {
 			var view = new app.ExtraCurricularView({model: extracurricular});
-			this.$extracurricularsList.append(view.render().el);
+
+			this.$('.extracurriculars-list').append(view.render().el);
 		},
 		addAll: function() {
-			this.$extracurricularsList.html('');
+			this.$('.extracurriculars-list').html('');
 			app.extracurriculars.each(this.addOne, this);
 		},
 		getInputs: function() {
