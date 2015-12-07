@@ -13,6 +13,7 @@ var app = app || {};
 
 		initialize: function() {
 			this.listenTo(app.extracurriculars, 'reset', this.addAll);
+			this.listenTo(app.extracurriculars, 'add', this.addOne);
 
 			_.bindAll(this, 'renderSelect2');
 
@@ -68,8 +69,8 @@ var app = app || {};
 			};
 		},
 		clearAttributeFields: function() {
-			this.getInputs().each(function(input) {
-				input.val('');
+			_.values(this.getInputs()).forEach(function(input) {
+				input.hasClass('days') ? input.select2('val', '') : input.val('');
 			});
 		},
 		createExtracurriclar: function() {
@@ -86,6 +87,7 @@ var app = app || {};
 			});
 
 			app.extracurriculars.create(newAttributes);
+			this.clearAttributeFields();
 		},
 
 	});
