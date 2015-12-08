@@ -1,4 +1,3 @@
-const request = require('supertest');
 const app = require('../lib/server').app;
 const express = require('express');
 const favoriteAPI = require('../lib/routes/favorite/favorite.controller');
