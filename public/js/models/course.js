@@ -9,11 +9,14 @@ var app = app || {};
       code: '',
       instructor: '',
       department: '',
+      description: '',
       location: '',
       requirements: [],
       term: '',
       type: '',
-      schedule: ''
+      schedule: '',
+      crn: '',
+      href: ''
     }
   });
 

@@ -19,26 +19,29 @@ var app = app || {};
     },
 
     doSearch: function(e) {
-      var querystring = 'query?' +$(e.currentTarget).attr('id');
-      $.ajax({
-        method: 'GET',
-        url: '/api/catalog/'+querystring,
-        dataType: 'json',
-        context: this,
-        success: function(r){this.newCourseList(r);}
-      });
+      var querystring = 'query?';
+      $('.results-list').empty();
+
+      if ($(e.currentTarget).attr('class') == 'list-group-item'){
+        if ($('.clicked').length > 0) {$('.clicked').removeClass('clicked');}
+
+        $(e.currentTarget).addClass('clicked');
+        querystring += $(e.currentTarget).attr('id') +'=' +$(e.currentTarget).attr('value');
+
+        $.ajax({method: 'GET',
+                url: '/api/catalog/'+querystring,
+                dataType: 'json',
+                context: this,
+                success: function(r){this.newCourseList(r);}
+              });
+        } else {$(e.currentTarget).removeClass('clicked');}
     },
 
-    addOne: function(course) {
-			var view = new app.CourseView({model: course});
+    addList: function(course) {
       var reslist = this.$('.results-list');
-      //console.log(reslist);
+			var view = new app.CourseView({model: course});
 			this.$('.results-list').append(view.render().el);
 		},
-
-    addAll: function() {
-
-    },
 
     newCourseList: function(list){
       var self = this;
@@ -52,10 +55,14 @@ var app = app || {};
           requirements: elmt.requirements,
           term: elmt.term,
           type: elmt.type,
-          schedule: elmt.schedule
+          schedule: elmt.schedule,
+          description: elmt.description,
+          crn: elmt.crn,
+          href: elmt.href,
         });
-        self.addOne(elmt);
+        self.addList(elmt);
       });
     }
+
   });
 })();
