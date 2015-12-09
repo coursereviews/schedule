@@ -19,20 +19,31 @@ var app = app || {};
     },
 
     doSearch: function(e) {
-      var querystring = 'query?';
+      var querystring = 'query/';
       $('.results-list').empty();
 
       if ($(e.currentTarget).attr('class') == 'list-group-item'){
         if ($('.clicked').length > 0) {$('.clicked').removeClass('clicked');}
 
         $(e.currentTarget).addClass('clicked');
-        querystring += $(e.currentTarget).attr('id') +'=' +$(e.currentTarget).attr('value');
 
+        //querystring += $(e.currentTarget).attr('id') +'=' +$(e.currentTarget).attr('value');
+        var attribute = $(e.currentTarget).attr('id');
+        if (attribute == 'subject'){
+          querystring += 'department?code' + '=' +$(e.currentTarget).attr('value');
+        }
+
+        console.log(querystring)
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
                 dataType: 'json',
                 context: this,
-                success: function(r){this.newCourseList(r);}
+                success: function(r){
+                  if(attribute == 'subject'){
+                    this.departmentCourseList(r);
+                  }
+                  
+                  this.newCourseList(r);}
               });
         } else {$(e.currentTarget).removeClass('clicked');}
     },
@@ -62,7 +73,29 @@ var app = app || {};
         });
         self.addList(elmt);
       });
-    }
+    },
 
+    departmentCourseList: function(list){
+      var self = this;
+      var department = list[0].name;
+      list[0].courses.forEach(function(elmt){
+        elmt = new app.CourseModel({
+          title: elmt.title,
+          code: elmt.code,
+          instructor: elmt.instructor,
+          department: department,
+          location: elmt.location,
+          requirements: elmt.requirements,
+          term: elmt.term,
+          type: elmt.type,
+          schedule: elmt.schedule,
+          description: elmt.description,
+          crn: elmt.crn,
+          href: elmt.href,
+        });
+        self.addList(elmt);
+        console.log(self);
+      });
+    }
   });
 })();
