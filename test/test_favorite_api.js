@@ -1,3 +1,5 @@
+'use strict';
+
 const app = require('../lib/server').app;
 const express = require('express');
 const favoriteAPI = require('../lib/routes/favorite/favorite.controller');
@@ -10,23 +12,15 @@ const assert = require('assert');
  Additionally, this test code only works if the favorite table is already empty.
 
 */
-/*
-request(app)
-.post('/api/favorites')
-.field('email', 'jabillings@middlebury.edu')
-.field('password', 'julian')
-.end(function(err, res) {
-  if (err) console.log(err);
-  console.log(res.cookie);
-});
-*/
 
-runTests = function(email){
+
+var runFavoriteTests = function(email){
   return new Promise(function(resolve, reject) {
     var user;
-    var usr = new User(email).fetch()
+    var usr = new User({email: email}).fetch()
     .then(function(usr) {
       user = usr;
+      //console.log(user);
       return favoriteAPI.getAllFavoritesHelper(user);
     }).then(function(result) {
       assert.strictEqual(result.models.length, 0, "empty favorites DB not returning 0 results");
@@ -49,11 +43,11 @@ runTests = function(email){
 
 }
 
-runTests('jabillings@middlebury.edu')
+
+
+runFavoriteTests('jabillings@middlebury.edu')
 .then(function(result) {
-  if (result === true) {
-    console.log("Favorite Tests Passed!");
-  } else {
-    console.log("Tests Failed");
-  }
-})
+  console.log("Favorite Tests Passed!");
+}).catch(function(err) {
+  console.log("Tests Failed");
+});
