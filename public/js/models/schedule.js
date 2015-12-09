@@ -3,16 +3,18 @@ var app = app || {};
 (function() {
   'use strict';
 
-  var ScheduleModel = Backbone.Model.extend({
+  app.ScheduleModel = Backbone.Model.extend({
     defaults: {
       start_time: '',
       end_time: '',
       start_date: '',
       end_date: '',
       days: []
+    },
+    toJSON: function() {
+      var json = Backbone.Model.prototype.toJSON.call(this);
+      return json;
     }
   });
-
-  app.ScheduleModel = ScheduleModel;
 
 })();

@@ -5,14 +5,16 @@ var app = app || {};
 
   var ScheduleView = Backbone.View.extend({
 
+    template: _.template($('#schedule-template').html()),
+
     initialize: function() {
-      this.render();
-      console.log(app.ScheduleCollection);
+      this.listenTo(this.model, 'destroy', this.remove);
+      this.listenTo(this.model, 'change', this.render);
     },
 
     render: function() {
-      this.$el.html($("#schedule-template").html());
-      return this;
+      console.log(this.model);
+      this.$el.html(this.template());
     },
   });
 

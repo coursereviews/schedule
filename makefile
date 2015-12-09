@@ -3,7 +3,6 @@ SHELL := /bin/bash
 NPM = npm
 NODE = node
 BOWER = node_modules/.bin/bower
-KNEX_CLI = node_modules/.bin/knex
 JSCS = node_modules/.bin/jscs --esnext --config ./.jscsrc
 JSHINT_NODE = node_modules/.bin/jshint --extract=auto --config ./.jshintrc
 ISTANBUL = node --harmony node_modules/.bin/istanbul
@@ -27,7 +26,7 @@ setup: setup-dependencies setup-migrations
 
 .PHONY: setup-migrations
 setup-migrations:
-	$(KNEX_CLI) migrate:latest --knexfile lib/settings/knexfile.js
+	$(NPM) run migrate:latest
 
 
 .PHONY: setup-dependencies

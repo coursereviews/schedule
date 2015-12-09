@@ -10,7 +10,8 @@ var app = app || {};
         this.currentView.remove();
       }
       this.currentView = view;
-      return $('#main-app').html(this.currentView.render().el);
+      console.log(view.render());
+      return $('#main-app').html(this.currentView);
     }
   };
 
@@ -27,12 +28,10 @@ var app = app || {};
       console.log('index');
     },
     schedule: function(id) {
-      console.log('schedule');
-      var schedule = app.ScheduleCollection;
+      var schedule = app.ScheduleCollection.fetch();
       ViewManager.showView(new app.ScheduleView({model: schedule}));
     },
     search: function() {
-      console.log('search');
       ViewManager.showView(new app.SearchView());
     }
   });
