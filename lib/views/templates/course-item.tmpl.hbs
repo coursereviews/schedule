@@ -4,10 +4,11 @@
 
   <div class="course-panel-heading"><table><tr>
     <td style="width:650px"><h5 style="color: white"> <%= title %> </h5></td>
-    <td style="width:200px"><h6 style="color: white" align="right"> <%= code %> </h6></td>
+    <td style="width:200px" align="left"><h6 style="color: white" align="right"> <%= code %> </h6></td>
+    <td style="width:30px" align="right"><span class="glyphicon glyphicon-star-empty" style="font-size: 1.3em; color:white"></span></td>
   </tr></table></div>
 
-  <div class="course-panel-body"><div class="row"><div class="col-lg-12"><table class="table">
+  <div class="course-panel-body hidden"><div class="row"><div class="col-lg-12"><table class="table">
     <tr> <td colspan="2"> <%= instructor %> </td> </tr>
     <tr> <td colspan="2"> <%= description %> </td> </tr>
     <tr> <td>Location: <%= location %> </td> <td>Schedule: <%= schedule %> </td> </tr>

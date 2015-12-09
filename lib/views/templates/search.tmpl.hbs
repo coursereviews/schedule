@@ -6,17 +6,16 @@
 
     <div class="form-group">
 
-      <div class="row" style="padding-bottom:.5cm" id="keywordsearch">
-        <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
+      <div class="row" style="padding-bottom:.5cm">
+        <input type="text" placeholder="Search by keyword" class="form-control" id="description">
       </div>
 
       <div class="row" style="padding-bottom:.5cm">
-        <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
+        <input type="text" placeholder="Search by professor" class="form-control" id="instructor">
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <select class="form-control" name="location" id="loc_select">
+          <select class="form-control" id="loc_select">
             <option class="list-group-item" value="location" id="location">Any Location</option>
             <option class="list-group-item" value="ADK" id="location">Adirondack Coltrane Lounge</option>
             <option class="list-group-item" value="ATA" id="location">Atwater A</option>
@@ -47,7 +46,27 @@
             <option class="list-group-item" value="WNS" id="location">Warner</option>
             <option class="list-group-item" value="WTH" id="location">Wright Theatre</option>
           </select>
-        </div>
+      </div>
+
+      <div class="row" style="padding-bottom:.45cm">
+
+        <table><tr><div class="form-group" id="day_select">
+          <td width="90px"><input type="checkbox" id="schedule" value="Monday"> Monday </td>
+          <td width="90px"><input type="checkbox" id="schedule" value="Tuesday"> Tuesday </td>
+          <td width="110px"><input type="checkbox" id="schedule" value="Wednesday"> Wednesday </td>
+          <td width="95px"><input type="checkbox" id="schedule" value="Thursday"> Thursday </td>
+          <td width="90px"><input type="checkbox" id="schedule" value="Friday"> Friday </td>
+        </div></tr></table>
+
+        <table><tr><div class="form-group">
+          <td><select class="form-control" id="start_time">
+            <option class="list-group-item" value="12:30">12:20 a.m.</option>
+          </select> </td>
+          <td width="30px" align="center">to</td>
+          <td> <select class="form-control" id="end_time">
+            <option class="list-group-item" value="12:30">12:20 a.m.</option>
+          </select></td>
+        </tr></div></table>
       </div>
 
       <div class="row" id="body">
@@ -101,6 +120,7 @@
             </tr>
           </table>
         </div>
+
         <div class="results-list" id="courses" style="height: 925px; width:875px"></div>
       </div>
     </div>
