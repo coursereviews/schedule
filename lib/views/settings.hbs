@@ -1,0 +1,44 @@
+<div id="settings" class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Settings</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="#profile" class="list-group-item">Profile</a>
+        <a href="#extracurriculars" class="list-group-item">Extracurricular Activities</a>
+        <a href="#favorites" class="list-group-item">Favorites</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div id="main-app"></div>
+    </div>
+  </div>
+</div>
+
+{{> extracurriculars.tmpl}}
+{{> extracurricular-list-item.tmpl}}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+<script src="bower_components/jt.timepicker/jquery.timepicker.js"></script>
+<script src="bower_components/datepair.js/dist/jquery.datepair.js"></script>
+<script src="bower_components/select2/select2.js"></script>
+
+<!-- models -->
+<script src="js/models/extracurricular.js"></script>
+
+<!-- collections -->
+<script src="js/collections/extracurriculars.js"></script>
+
+<!-- views -->
+<script src="js/views/settings-view.js"></script>
+<script src="js/views/extracurricular-main-view.js"></script>
+<script src="js/views/extracurricular-view.js"></script>
+
+<script src="js/routers/settings-router.js"></script>
+<script src="js/settings-app.js"></script>
