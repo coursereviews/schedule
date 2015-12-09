@@ -15,7 +15,8 @@ var app = app || {};
     },
 
     events: {
-      "click .list-group-item": "doSearch"
+      "click .list-group-item": "doSearch",
+      "change .form-control": "doSearch"
     },
 
     doSearch: function(e) {
@@ -42,10 +43,34 @@ var app = app || {};
                   if(attribute == 'subject'){
                     this.departmentCourseList(r);
                   }
-                  
+
                   this.newCourseList(r);}
               });
-        } else {$(e.currentTarget).removeClass('clicked');}
+        }
+        else if ($(e.currentTarget).attr('class') == 'form-control input-md') {
+          // $(e.currentTarget).removeClass('clicked'); //???
+          console.log("in else if");
+          $('.clicked').removeClass('clicked'); //???
+          var attribute2 = $(e.currentTarget).attr('name');
+          if (attribute2 == "description") {
+            querystring += 'course?title=' + document.getElementById('keyword').value.replace(' ','_');
+          }
+
+          $.ajax({method: 'GET',
+                  url: '/api/catalog/'+querystring,
+                  dataType: 'json',
+                  context: this,
+                  success: function(r){
+                    if(attribute2 == 'subject'){
+                      this.descriptionCourseList(r);
+                    }
+
+                    this.newCourseList(r);}
+                });
+        }
+
+
+        else {$(e.currentTarget).removeClass('clicked');}
     },
 
     addList: function(course) {
@@ -96,6 +121,48 @@ var app = app || {};
         self.addList(elmt);
         console.log(self);
       });
+    },
+
+    descriptionCourseList: function(list){
+      console.log("in description f(x)");
+      var self = this;
+
+      list.forEach(function(elmt){
+        var description = elmt.description;
+        var title = elmt.title;
+        var type = elmt.type;
+        var code = elmt.code;
+        var department_id = elmt.department_id;
+        var department = elmt.department;
+
+        elmt.courseOfferings.forEach(function(item){
+
+          item = new app.CourseModel({
+            title: title,
+            code: code,
+            instructor: elmt.instructor,//undefined
+            department: department,
+            location: elmt.location,//undefined
+            requirements: elmt.requirements,//undefined
+            term: elmt.term,//undefined
+            type: type,
+            schedule: elmt.schedule, //undefined
+            description: description,
+            crn: item.crn,
+            href: item.href,
+          });
+          self.addList(item);
+
+        });
+
+
+
+        console.log(self);
+      });
     }
+
+
+
+
   });
 })();
