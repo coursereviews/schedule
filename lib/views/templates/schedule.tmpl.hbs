@@ -2,10 +2,48 @@
   <div class="schedule container">
     <div class="row">
       <div class="col-md-3">
+        <h4>My Courses</h4>
         <div class="list-group favorites">
         </div>
       </div>
       <div class="col-md-9 schedule">
+        <h4 class="name">Click to name your schedule
+          <span class="glyphicon glyphicon-edit"></span>
+        </h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="day monday">
+              {{#times 18}}
+              <div class="block-30-mins">
+              </div>
+              {{/times}}
+            </div>
+            <div class="day tuesday">
+              {{#times 18}}
+              <div class="block-30-mins">
+              </div>
+              {{/times}}
+            </div>
+            <div class="day wednesday">
+              {{#times 18}}
+              <div class="block-30-mins">
+              </div>
+              {{/times}}
+            </div>
+            <div class="day thursday">
+              {{#times 18}}
+              <div class="block-30-mins">
+              </div>
+              {{/times}}
+            </div>
+            <div class="day friday">
+              {{#times 18}}
+              <div class="block-30-mins">
+              </div>
+              {{/times}}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

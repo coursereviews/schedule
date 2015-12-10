@@ -1,0 +1,38 @@
+.schedule .panel-body {
+  padding: 0;
+}
+
+.schedule .day {
+  width: 20%;
+  float: left;
+  position: relative;
+}
+
+.schedule .day:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.schedule .name .glyphicon-edit {
+  font-size: 14px;
+  color: #999;
+  display: none;
+}
+
+.schedule .name:hover .glyphicon-edit {
+  display: inline-block;
+}
+
+.schedule .course-offering {
+  position: absolute;
+  top: 120px;
+  padding: 15px;
+  border: 1px solid steelblue;
+}
+
+.schedule .block-30-mins {
+  height: 30px;
+}
+
+.schedule .block-30-mins:not(:last-child) {
+  border-bottom: 1px dashed #eee;
+}

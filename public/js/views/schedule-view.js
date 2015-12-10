@@ -19,6 +19,9 @@ var app = app || {};
     render: function() {
       this.$el.html(this.template());
 
+      var scheduleHeight = 30 * 18;
+      this.$('.schedule .panel-body').css('height', scheduleHeight);
+
       return this;
     },
 
