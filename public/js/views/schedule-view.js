@@ -13,7 +13,7 @@ var app = app || {};
 
       this.listenTo(app.favorites, 'reset', this.addAllFavorites);
 
-      app.favorites.fetch();
+      app.favorites.fetch({reset: true});
     },
 
     render: function() {
@@ -24,7 +24,7 @@ var app = app || {};
 
     addOneFavorite: function(model) {
       var view = new app.CourseListItemView({model: model});
-      this.$('.favorites').append(view.render.el());
+      this.$('.favorites').append(view.render().el);
     },
 
     addAllFavorites: function() {

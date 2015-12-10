@@ -8,7 +8,7 @@ var app = app || {};
 
     className: 'list-group-item',
 
-    template: _.template($('#course-list-item-template')),
+    template: _.template($('#course-list-item-template').html()),
 
     initialize: function() {
 
@@ -16,6 +16,12 @@ var app = app || {};
 
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
+      this.$el.prop('href', '#schedule');
+      console.log(this.model.get('favorited'))
+      this.$('.glyphicon').toggleClass('glyphicon-star', this.model.get('favorited'));
+      this.$('.glyphicon').toggleClass('glyphicon-star-empty', !this.model.get('favorited'));
+
+      return this;
     }
   });
 

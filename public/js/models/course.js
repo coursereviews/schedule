@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.CourseModel = Backbone.Model.extend({
+  var CourseModel = Backbone.Model.extend({
     defaults: {
       title: '',
       code: '',
@@ -17,5 +17,7 @@ var app = app || {};
       end_time: '',
     }
   });
+
+  app.CourseModel = CourseModel;
 
 })();
