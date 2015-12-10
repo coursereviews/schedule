@@ -10,10 +10,6 @@ var app = app || {};
       start_date: '',
       end_date: '',
       days: []
-    },
-    toJSON: function() {
-      var json = Backbone.Model.prototype.toJSON.call(this);
-      return json;
     }
   });
 
