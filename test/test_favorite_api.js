@@ -5,7 +5,7 @@ const express = require('express');
 const favoriteAPI = require('../lib/routes/favorite/favorite.controller');
 const User = require('../lib/models/user');
 const assert = require('assert');
-const request = require('supertest');
+// const request = require('supertest');
 const mocha = require('mocha');
 
 /*
@@ -70,7 +70,7 @@ usr.get('http://localhost:8000/api/catalog/query/courseoffering?crn=91423')
   console.log(res.body);
 });*/
 
-
+/*
   var agent = request.agent(app);
   agent
   .get('/login', function(req, res) {
@@ -90,3 +90,4 @@ usr.get('http://localhost:8000/api/catalog/query/courseoffering?crn=91423')
     console.log(res.status);
     console.log(res.headers['set-cookie']);
   });
+*/
