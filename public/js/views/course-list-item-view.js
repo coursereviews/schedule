@@ -17,7 +17,8 @@ var app = app || {};
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       this.$el.prop('href', '#schedule');
-      console.log(this.model.get('favorited'))
+
+      // toggle the star to the favorited state
       this.$('.glyphicon').toggleClass('glyphicon-star', this.model.get('favorited'));
       this.$('.glyphicon').toggleClass('glyphicon-star-empty', !this.model.get('favorited'));
 
