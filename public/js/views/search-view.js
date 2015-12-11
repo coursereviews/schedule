@@ -40,8 +40,10 @@ var app = app || {};
           querystring += 'department?code' + '=' +$(e.currentTarget).attr('value');
         }
         else if (attribute == 'description') {
-        //  console.log($(e.currentTarget).attr('value'));
           querystring += 'course?description=' + $(e.currentTarget).attr('value').replace(' ','_');
+        }
+        else if (attribute == 'instructor') {
+          querystring += 'professor?name=' + $(e.currentTarget).attr('value').replace(' ','_');
         }
 
         $.ajax({method: 'GET',
@@ -55,6 +57,7 @@ var app = app || {};
                   else if(attribute == 'description') {
                     this.descriptionCourseList(r);
                   }
+                  
                   else {
                     this.newCourseList(r);
                   }
