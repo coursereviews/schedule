@@ -45,6 +45,9 @@ var app = app || {};
         else if (attribute == 'instructor') {
           querystring += 'professor?name=' + $(e.currentTarget).attr('value').replace(' ','_');
         }
+        else if (attribute == 'requirements') {
+          querystring += 'requirement?code=' + $(e.currentTarget).attr('value');
+        }
 
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
@@ -57,7 +60,7 @@ var app = app || {};
                   else if(attribute == 'description') {
                     this.descriptionCourseList(r);
                   }
-                  
+
                   else {
                     this.newCourseList(r);
                   }
