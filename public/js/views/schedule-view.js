@@ -12,8 +12,10 @@ var app = app || {};
       this.listenTo(this.model, 'change', this.render);
 
       this.listenTo(app.favorites, 'reset', this.addAllFavorites);
+      this.listenTo(app.schedule, 'reset', this.addSchedule);
 
       app.favorites.fetch({reset: true});
+      app.schedule.fetch({reset: true});
     },
 
     render: function() {
@@ -23,6 +25,11 @@ var app = app || {};
       this.$('.schedule .panel-body').css('height', scheduleHeight);
 
       return this;
+    },
+
+    addSchedule: function(model) {
+      var view = new app.ScheduleCourseView({model: model});
+      this.$('.schedule').append(view.render().el);
     },
 
     addOneFavorite: function(model) {

@@ -4,20 +4,21 @@ var app = app || {};
   var CourseView = Backbone.View.extend({
 
     events: {
-      "click":"clickHeader"
+      "click": "clickHeader"
     },
 
-    clickHeader: function(header){
-      if(header.className !== 'col-md-12 open'){
+    clickHeader: function(header) {
+      if (header.className !== 'col-md-12 open') {
         header.className = 'col-md-12 open';
         header.innerHTML = header.innerHTML;
         // + course-body
-      }else{
+      } else {
         header.innerHTML = header.innerHTML;
-        header.className = 'col-md-12';}
+        header.className = 'col-md-12';
+      }
     },
 
-    render: function(){
+    render: function() {
       var courseTemplate = this.template(this.model.toJSON());
       this.$el.html(courseTemplate);
       return this;
