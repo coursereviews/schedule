@@ -27,13 +27,23 @@ var app = app || {};
 
         $(e.currentTarget).addClass('clicked');
 
-        //querystring += $(e.currentTarget).attr('id') +'=' +$(e.currentTarget).attr('value');
+
         var attribute = $(e.currentTarget).attr('id');
         if (attribute == 'subject'){
           querystring += 'department?code' + '=' +$(e.currentTarget).attr('value');
+          console.log(querystring);
+        }else if (attribute == 'requirements'){
+          querystring += 'requirement?name' + '=' +$(e.currentTarget).attr('value');
+          console.log(querystring);
         }
+        //added by Amanuel starting here
 
-        console.log(querystring)
+        else if (attribute == 'start_time'){
+          querystring += 'meeting?start' + '=' +$(e.currentTarget).attr('value');
+          console.log(querystring);
+        }
+        //  Amanuel's code ends here
+
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
                 dataType: 'json',
@@ -42,7 +52,7 @@ var app = app || {};
                   if(attribute == 'subject'){
                     this.departmentCourseList(r);
                   }
-                  
+
                   this.newCourseList(r);}
               });
         } else {$(e.currentTarget).removeClass('clicked');}
@@ -62,13 +72,13 @@ var app = app || {};
           code: elmt.code,
           instructor: elmt.instructor,
           department: elmt.department,
-          location: elmt.location,
-          requirements: elmt.requirements,
+          location: elmt.location, //needed
+          requirements: elmt.requirements, //needed
           term: elmt.term,
           type: elmt.type,
-          schedule: elmt.schedule,
+          schedule: elmt.schedule, //needed
           description: elmt.description,
-          crn: elmt.crn,
+          crn: elmt.crn,  //needed
           href: elmt.href,
         });
         self.addList(elmt);
@@ -94,7 +104,6 @@ var app = app || {};
           href: elmt.href,
         });
         self.addList(elmt);
-        console.log(self);
       });
     }
   });
