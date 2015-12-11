@@ -49,11 +49,10 @@ var app = app || {};
         }
         else if ($(e.currentTarget).attr('class') == 'form-control input-md') {
           // $(e.currentTarget).removeClass('clicked'); //???
-          console.log("in else if");
           $('.clicked').removeClass('clicked'); //???
-          var attribute2 = $(e.currentTarget).attr('name');
-          if (attribute2 == "description") {
-            querystring += 'course?title=' + document.getElementById('keyword').value.replace(' ','_');
+          var attributeName = $(e.currentTarget).attr('name');
+          if (attributeName == "description") {
+            querystring += 'course?description=' + document.getElementById('keyword').value.replace(' ','_');
           }
 
           $.ajax({method: 'GET',
@@ -61,7 +60,7 @@ var app = app || {};
                   dataType: 'json',
                   context: this,
                   success: function(r){
-                    if(attribute2 == 'subject'){
+                    if(attributeName == 'subject'){
                       this.descriptionCourseList(r);
                     }
 
