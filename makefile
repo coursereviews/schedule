@@ -21,7 +21,7 @@ start:
 
 
 .PHONY: setup
-setup: setup-dependencies setup-migrations
+setup: setup-dependencies setup-migrations setup-catalog
 
 
 .PHONY: setup-migrations
@@ -34,6 +34,11 @@ setup-dependencies:
 	$(NPM) install
 	$(BOWER) install
 
+
+.PHONY: setup-catalog
+setup-catalog:
+	@echo 'scraping catalog for Spring (201620)'
+	$(NODE) --harmony ./lib/scripts/scrape_catalog.js 201620
 
 .PHONY: clean
 clean:
