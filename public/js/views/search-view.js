@@ -34,18 +34,8 @@ var app = app || {};
           querystring += 'department?code' + '=' +$(e.currentTarget).attr('value');
         }
 
-        console.log(querystring)
-        $.ajax({method: 'GET',
-                url: '/api/catalog/'+querystring,
-                dataType: 'json',
-                context: this,
-                success: function(r){
-                  if(attribute == 'subject'){
-                    this.departmentCourseList(r);
-                  }
+        // console.log(querystring)
 
-                  this.newCourseList(r);}
-              });
         }
         else if ($(e.currentTarget).attr('class') == 'form-control input-md') {
           // $(e.currentTarget).removeClass('clicked'); //???
@@ -55,21 +45,29 @@ var app = app || {};
             querystring += 'course?description=' + document.getElementById('keyword').value.replace(' ','_');
           }
 
+        }
+
+        else {$(e.currentTarget).removeClass('clicked');}
+
+        if (querystring !== "query/") {
           $.ajax({method: 'GET',
                   url: '/api/catalog/'+querystring,
                   dataType: 'json',
                   context: this,
                   success: function(r){
-                    if(attributeName == 'subject'){
+                    if(attribute == 'subject'){
+                      this.departmentCourseList(r);
+                    }
+                    else if(attributeName == 'description') {
                       this.descriptionCourseList(r);
                     }
-
-                    this.newCourseList(r);}
+                    else {
+                      this.newCourseList(r);
+                    }
+                  }
                 });
         }
 
-
-        else {$(e.currentTarget).removeClass('clicked');}
     },
 
     addList: function(course) {
