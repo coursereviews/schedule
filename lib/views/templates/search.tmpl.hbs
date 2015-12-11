@@ -2,19 +2,25 @@
 
 
   <div class="container">
-    <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">Search</h1>
+
+    <div class="row">
+      <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">search</h1>
+    </div>
 
     <div class="form-group">
 
-      <div class="row" style="padding-bottom:.5cm">
-        <input type="text" placeholder="Search by keyword" class="form-control" id="description">
-      </div>
-
-      <div class="row" style="padding-bottom:.5cm">
-        <input type="text" placeholder="Search by professor" class="form-control" id="instructor">
+      <div class="row" style="padding-bottom:.35cm">
+        <div class="container col-md-6">
+          <input type="text" placeholder="Search by keyword" class="form-control input-md" id="description">
+        </div>
+        <div class="container col-md-6">
+          <input type="text" placeholder="Search by professor" class="form-control input-md" id="instructor">
+        </div>
       </div>
 
       <div class="row">
+
+        <div class="container col-md-6" style="padding-bottom:.35cm">
           <select class="form-control" id="loc_select">
             <option class="list-group-item" value="location" id="location">Any Location</option>
             <option class="list-group-item" value="ADK" id="location">Adirondack Coltrane Lounge</option>
@@ -46,83 +52,92 @@
             <option class="list-group-item" value="WNS" id="location">Warner</option>
             <option class="list-group-item" value="WTH" id="location">Wright Theatre</option>
           </select>
+        </div>
+
+        <div class="container col-md-6">
+          <select class="form-control" id="loc_select">
+            <option class="list-group-item" value="AMST" id="subject">American Studies</a>
+            <option class="list-group-item" value="ARBC" id="subject">Arabic</a></td>
+            <option class="list-group-item" value="ART" id="subject">Arts Division</a></td>
+            <option class="list-group-item" value="BIOL" id="subject">Biology</a></td>
+            <option class="list-group-item" value="CHEM" id="subject">Chemistry and Biochemistry</a></td>
+            <option class="list-group-item" value="CHNS" id="subject">Chinese</a></td>
+            <option class="list-group-item" value="CLAS" id="subject">Classics</a></td>
+            <option class="list-group-item" value="CMLT" id="subject">Comparative Literature</a></td>
+            <option class="list-group-item" value="CSCI" id="subject">Computer Science</a></td>
+            <option class="list-group-item" value="CRWR" id="subject">Creative Writing</a></td>
+            <option class="list-group-item" value="DANC" id="subject">Dance</a></td>
+            <option class="list-group-item" value="ECON" id="subject">Economics</a></td>
+            <option class="list-group-item" value="EDST" id="subject">Education Studies</a></td>
+            <option class="list-group-item" value="ENAM" id="subject">English and American Literatures</a></td>
+            <option class="list-group-item" value="ENVS" id="subject">Environmental Studies</a></td>
+            <option class="list-group-item" value="FMMC" id="subject">Film and Media Culture</a></td>
+            <option class="list-group-item" value="FYSE" id="subject">First Year Seminar</a></td>
+            <option class="list-group-item" value="FREN" id="subject">French</a></td>
+            <option class="list-group-item" value="GSFS" id="subject">Gender, Sexuality, and Feminist Studies</a></td>
+            <option class="list-group-item" value="GEOG" id="subject">Geography</a></td>
+            <option class="list-group-item" value="GEOL" id="subject">Geology</a></td>
+            <option class="list-group-item" value="GRMN" id="subject">German</a></td>
+            <option class="list-group-item" value="GREK" id="subject">Greek</a></td>
+          </select>
+        </div>
+
       </div>
 
-      <div class="row" style="padding-bottom:.45cm">
+      <div class="row">
 
-        <table><tr><div class="form-group" id="day_select">
-          <td width="90px"><input type="checkbox" id="schedule" value="Monday"> Monday </td>
-          <td width="90px"><input type="checkbox" id="schedule" value="Tuesday"> Tuesday </td>
-          <td width="110px"><input type="checkbox" id="schedule" value="Wednesday"> Wednesday </td>
-          <td width="95px"><input type="checkbox" id="schedule" value="Thursday"> Thursday </td>
-          <td width="90px"><input type="checkbox" id="schedule" value="Friday"> Friday </td>
-        </div></tr></table>
+        <div class="col-md-3"><h5>Start time</h5><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <input type="text" class="start time form-control" placeholder="4:30pm">
+          </div></div>
+        </div></div>
 
-        <table><tr><div class="form-group">
-          <td><select class="form-control" id="start_time">
-            <option class="list-group-item" value="12:30">12:20 a.m.</option>
-          </select> </td>
-          <td width="30px" align="center">to</td>
-          <td> <select class="form-control" id="end_time">
-            <option class="list-group-item" value="12:30">12:20 a.m.</option>
-          </select></td>
-        </tr></div></table>
+        <div class="col-md-3"><h5>End time</h5><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <input type="text" class="end time form-control" placeholder="6:30pm">
+          </div></div>
+        </div></div>
+
+        <div class="col-md-4"><h5>Days</h5><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <select class="days form-control" multiple="multiple">
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+            </select>
+          </div></div>
+        </div></div>
+
+        <div class="col-md-2"><h5>Requirements</h5><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <select class="days form-control" multiple="multiple">
+              <option value="AAL" id="requirements">AAL</td>
+              <option value="EUR" id="requirements">EUR</td>
+              <option value="WTR" id="requirements">WTR</td>
+              <option value="ART" id="requirements">ART</td>
+              <option value="HIS" id="requirements">HIS</td>
+              <option value="PE" id="requirements">PE</td>
+              <option value="CMP" id="requirements">CMP</td>
+              <option value="LIT" id="requirements">LIT</td>
+              <option value="PHL" id="requirements">PHL</td>
+              <option value="CW" id="requirements">CW</td>
+              <option value="LNG" id="requirements">LNG</td>
+              <option value="SCI" id="requirements">SCI</td>
+              <option value="DED" id="requirements">DED</td>
+              <option value="NOR" id="requirements">NOR</td>
+              <option value="SOC" id="requirements">SOC</td>
+            </select>
+          </div></div>
+        </div></div>
+
       </div>
 
       <div class="row" id="body">
-
-        <div class="col-sm-3">
-          <div class="list-group departments-list" id="dept_list">
-            <a class="list-group-item" value="AMST" id="subject">American Studies</a>
-            <a class="list-group-item" value="ARBC" id="subject">Arabic</a></td>
-            <a class="list-group-item" value="ART" id="subject">Arts Division</a></td>
-            <a class="list-group-item" value="BIOL" id="subject">Biology</a></td>
-            <a class="list-group-item" value="CHEM" id="subject">Chemistry and Biochemistry</a></td>
-            <a class="list-group-item" value="CHNS" id="subject">Chinese</a></td>
-            <a class="list-group-item" value="CLAS" id="subject">Classics</a></td>
-            <a class="list-group-item" value="CMLT" id="subject">Comparative Literature</a></td>
-            <a class="list-group-item" value="CSCI" id="subject">Computer Science</a></td>
-            <a class="list-group-item" value="CRWR" id="subject">Creative Writing</a></td>
-            <a class="list-group-item" value="DANC" id="subject">Dance</a></td>
-            <a class="list-group-item" value="ECON" id="subject">Economics</a></td>
-            <a class="list-group-item" value="EDST" id="subject">Education Studies</a></td>
-            <a class="list-group-item" value="ENAM" id="subject">English and American Literatures</a></td>
-            <a class="list-group-item" value="ENVS" id="subject">Environmental Studies</a></td>
-            <a class="list-group-item" value="FMMC" id="subject">Film and Media Culture</a></td>
-            <a class="list-group-item" value="FYSE" id="subject">First Year Seminar</a></td>
-            <a class="list-group-item" value="FREN" id="subject">French</a></td>
-            <a class="list-group-item" value="GSFS" id="subject">Gender, Sexuality, and Feminist Studies</a></td>
-            <a class="list-group-item" value="GEOG" id="subject">Geography</a></td>
-            <a class="list-group-item" value="GEOL" id="subject">Geology</a></td>
-            <a class="list-group-item" value="GRMN" id="subject">German</a></td>
-            <a class="list-group-item" value="GREK" id="subject">Greek</a></td>
-          </div>
-        </div>
-
-        <div class=col-md-9>
-          <table class=list-group-horizontal align="center">
-            <tr id=req_list>
-              <td class="list-group-item" value="AAL" align="center" id="requirements">AAL</td>
-              <td class="list-group-item" value="EUR" align="center" id="requirements">EUR</td>
-              <td class="list-group-item" value="WTR" align="center" id="requirements">WTR</td>
-              <td class="list-group-item" value="ART" align="center" id="requirements">ART</td>
-              <td class="list-group-item" value="HIS" align="center" id="requirements">HIS</td>
-              <td class="list-group-item" value="PE" align="center" id="requirements">PE</td>
-              <td class="list-group-item" value="CMP" align="center" id="requirements">CMP</td>
-              <td class="list-group-item" value="LIT" align="center" id="requirements">LIT</td>
-              <td class="list-group-item" value="PHL" align="center" id="requirements">PHL</td>
-              <td class="list-group-item" value="CW" align="center" id="requirements">CW</td>
-              <td class="list-group-item" value="LNG" align="center" id="requirements">LNG</td>
-              <td class="list-group-item" value="SCI" align="center" id="requirements">SCI</td>
-              <td class="list-group-item" value="DED" align="center" id="requirements">DED</td>
-              <td class="list-group-item" value="NOR" align="center" id="requirements">NOR</td>
-              <td class="list-group-item" value="SOC" align="center" id="requirements">SOC</td>
-            </tr>
-          </table>
-        </div>
-
         <div class="results-list" id="courses" style="height: 925px; width:875px"></div>
       </div>
+
     </div>
   </div>
 </script>

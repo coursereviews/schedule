@@ -11,6 +11,7 @@ var app = app || {};
 
     render: function() {
       this.$el.html($("#search-template").html());
+
       return this;
     },
 
