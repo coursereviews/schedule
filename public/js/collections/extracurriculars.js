@@ -4,8 +4,10 @@ var app = app || {};
   'use strict';
 
   var ExtraCurriculars = Backbone.Collection.extend({
+    url: '/api/extracurricular',
+
     model: app.ExtraCurricular
   });
 
-  app.extracurricularsCollection = new ExtraCurriculars();
+  app.extracurriculars = new ExtraCurriculars();
 })();

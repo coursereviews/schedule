@@ -32,7 +32,6 @@ var app = app || {};
       $('.results-list').empty();
 
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
-
         if ($('.active').length > 0) {$('.active').removeClass('active');}
 
         changed.addClass('active');
