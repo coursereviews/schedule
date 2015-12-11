@@ -15,70 +15,82 @@ var app = app || {};
     },
 
     events: {
-      "click .list-group-item": "doSearch"
+      "click .list-group-item": "doSearch",
+      "change .form-group": "doSearch",
+      "change .form-control": "doSearch"
     },
 
     doSearch: function(e) {
+
+      var changed = $(e.currentTarget);
+
+      if (changed.prop("tagName") === "SELECT") { changed = changed.find(":selected"); }
+      else if (changed.attr("class") === "form-group") { changed = changed.find("input:checked")}
+      else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
+
       var querystring = 'query/';
       $('.results-list').empty();
 
-      if ($(e.currentTarget).attr('class') == 'list-group-item'){
-        if ($('.clicked').length > 0) {$('.clicked').removeClass('clicked');}
+      if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
-        $(e.currentTarget).addClass('clicked');
-
+        if ($('.active').length > 0) {$('.active').removeClass('active');}
 
         var attribute = $(e.currentTarget).attr('id');
         if (attribute == 'subject'){
           querystring += 'department?code' + '=' +$(e.currentTarget).attr('value');
-          console.log(querystring);
-        }else if (attribute == 'requirements'){
-          querystring += 'requirement?name' + '=' +$(e.currentTarget).attr('value');
-          console.log(querystring);
         }
-        //added by Amanuel starting here
-
-        else if (attribute == 'start_time'){
-          querystring += 'meeting?start' + '=' +$(e.currentTarget).attr('value');
-          console.log(querystring);
+        else if (attribute == 'description') {
+          querystring += 'course?description=' + $(e.currentTarget).attr('value').replace(' ','_');
         }
-        //  Amanuel's code ends here
+        else if (attribute == 'instructor') {
+          querystring += 'professor?name=' + $(e.currentTarget).attr('value').replace(' ','_');
+        }
+        else if (attribute == 'requirements') {
+          querystring += 'requirement?code=' + $(e.currentTarget).attr('value');
+        }
 
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
                 dataType: 'json',
                 context: this,
-                success: function(r){
+                success: function(r) {
                   if(attribute == 'subject'){
                     this.departmentCourseList(r);
                   }
+                  else if(attribute == 'description') {
+                    this.descriptionCourseList(r);
+                  }
 
-                  this.newCourseList(r);}
+                  else {
+                    this.newCourseList(r);
+                  }
+                }
               });
-        } else {$(e.currentTarget).removeClass('clicked');}
+        } else { changed.removeClass('active'); }
+
     },
 
     addList: function(course) {
       var reslist = this.$('.results-list');
-			var view = new app.CourseView({model: course});
+			var view = new app.CourseView( {model: course} );
 			this.$('.results-list').append(view.render().el);
 		},
 
-    newCourseList: function(list){
+    newCourseList: function(list) {
       var self = this;
-      list.forEach(function(elmt){
+      list.forEach(function(elmt) {
         elmt = new app.CourseModel({
           title: elmt.title,
           code: elmt.code,
           instructor: elmt.instructor,
           department: elmt.department,
-          location: elmt.location, //needed
-          requirements: elmt.requirements, //needed
+          location: elmt.location,
+          requirements: elmt.requirements,
           term: elmt.term,
           type: elmt.type,
-          schedule: elmt.schedule, //needed
+          schedule: elmt.schedule,
           description: elmt.description,
-          crn: elmt.crn,  //needed
+          crn: elmt.crn,
           href: elmt.href,
         });
         self.addList(elmt);
@@ -104,7 +116,50 @@ var app = app || {};
           href: elmt.href,
         });
         self.addList(elmt);
+        console.log(self);
+      });
+    },
+
+    descriptionCourseList: function(list){
+      console.log("in description f(x)");
+      var self = this;
+
+      list.forEach(function(elmt){
+        var description = elmt.description;
+        var title = elmt.title;
+        var type = elmt.type;
+        var code = elmt.code;
+        var department_id = elmt.department_id;
+        var department = elmt.department;
+
+        elmt.courseOfferings.forEach(function(item){
+
+          item = new app.CourseModel({
+            title: title,
+            code: code,
+            instructor: elmt.instructor,//undefined
+            department: department,
+            location: elmt.location,//undefined
+            requirements: elmt.requirements,//undefined
+            term: elmt.term,//undefined
+            type: type,
+            schedule: elmt.schedule, //undefined
+            description: description,
+            crn: item.crn,
+            href: item.href,
+          });
+          self.addList(item);
+
+        });
+
+
+
+        console.log(self);
       });
     }
+
+
+
+
   });
 })();

@@ -14,6 +14,21 @@ var app = app || {};
 
     template: _.template($('#course-item-template').html()),
 
+    events: {
+      "click .course-panel-heading": "showDetailView"
+    },
+
+    showDetailView: function(e){
+      var hiddenDetails = $(e.currentTarget).parent().children(".course-panel-body.hidden");
+      var shownDetails = $(e.currentTarget).parent().children(".course-panel-body");
+      if (hiddenDetails.length !== 0) {
+        hiddenDetails.removeClass("hidden");
+        hiddenDetails.show();
+      } else {
+        shownDetails.addClass("hidden");
+        shownDetails.hide();}
+    },
+
     initialize: function() {
       this.listenTo(this.model, 'destroy', this.remove);
       this.listenTo(this.model, 'change', this.render);
