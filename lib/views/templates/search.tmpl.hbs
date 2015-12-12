@@ -1,6 +1,5 @@
 <script type="text/template" id="search-template">
 
-
   <div class="container">
 
     <div class="row">
@@ -9,11 +8,11 @@
 
     <div class="form-group">
 
-      <div class="row" style="padding-bottom:.35cm">
-        <div class="container col-md-6">
+      <div class="row">
+        <div class="container col-md-6" style="padding-bottom:.35cm">
           <input type="text" placeholder="Search by keyword" class="form-control input-md" id="description">
         </div>
-        <div class="container col-md-6">
+        <div class="container col-md-6" style="padding-bottom:.35cm">
           <input type="text" placeholder="Search by professor" class="form-control input-md" id="instructor">
         </div>
       </div>
@@ -22,7 +21,7 @@
 
         <div class="container col-md-6" style="padding-bottom:.35cm">
           <select class="form-control" id="loc_select">
-            <option class="list-group-item" value="location" id="location">Any Location</option>
+            <option class="list-group-item" value="" id="location">Any Location</option>
             <option class="list-group-item" value="ADK" id="location">Adirondack Coltrane Lounge</option>
             <option class="list-group-item" value="ATA" id="location">Atwater A</option>
             <option class="list-group-item" value="ATD" id="location">Atwater Dining</option>
@@ -54,8 +53,9 @@
           </select>
         </div>
 
-        <div class="container col-md-6">
-          <select class="form-control" id="loc_select">
+        <div class="container col-md-6" style="padding-bottom:.35cm">
+          <select class="form-control" id="dept_select">
+            <option class="list-group-item" value="" id="subject">Any Department</a>
             <option class="list-group-item" value="AMST" id="subject">American Studies</a>
             <option class="list-group-item" value="ARBC" id="subject">Arabic</a></td>
             <option class="list-group-item" value="ART" id="subject">Arts Division</a></td>
@@ -86,33 +86,33 @@
 
       <div class="row">
 
-        <div class="col-md-3"><h5>Start time</h5><div class="form-horizontal">
+        <div class="col-md-3"><div class="form-horizontal">
           <div class="col-sm-12"><div class="form-group">
-            <input type="text" class="start time form-control" placeholder="4:30pm">
+            <input type="text" class="start time form-control" id="schedule" placeholder="Start time: 4:30pm">
           </div></div>
         </div></div>
 
-        <div class="col-md-3"><h5>End time</h5><div class="form-horizontal">
+        <div class="col-md-3"><div class="form-horizontal">
           <div class="col-sm-12"><div class="form-group">
-            <input type="text" class="end time form-control" placeholder="6:30pm">
+            <input type="text" class="end time form-control" id="schedule" placeholder="End time: 6:30pm">
           </div></div>
         </div></div>
 
-        <div class="col-md-4"><h5>Days</h5><div class="form-horizontal">
+        <div class="col-md-3"><div class="form-horizontal">
           <div class="col-sm-12"><div class="form-group">
             <select class="days form-control" multiple="multiple">
-              <option value="Monday">Monday</option>
-              <option value="Tuesday">Tuesday</option>
-              <option value="Wednesday">Wednesday</option>
-              <option value="Thursday">Thursday</option>
-              <option value="Friday">Friday</option>
+              <option value="Monday" id="schedule">Monday</option>
+              <option value="Tuesday" id="schedule">Tuesday</option>
+              <option value="Wednesday" id="schedule">Wednesday</option>
+              <option value="Thursday" id="schedule">Thursday</option>
+              <option value="Friday" id="schedule">Friday</option>
             </select>
           </div></div>
         </div></div>
 
-        <div class="col-md-2"><h5>Requirements</h5><div class="form-horizontal">
+        <div class="col-md-3"><div class="form-horizontal">
           <div class="col-sm-12"><div class="form-group">
-            <select class="days form-control" multiple="multiple">
+            <select class="reqs form-control" multiple="multiple">
               <option value="AAL" id="requirements">AAL</td>
               <option value="EUR" id="requirements">EUR</td>
               <option value="WTR" id="requirements">WTR</td>
@@ -134,10 +134,11 @@
 
       </div>
 
-      <div class="row" id="body">
-        <div class="results-list" id="courses" style="height: 925px; width:875px"></div>
+      <div class="row">
+        <div class="results-list col-md-12" id="courses" style="height: 700px"></div>
       </div>
 
     </div>
   </div>
+
 </script>

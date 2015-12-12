@@ -53,6 +53,16 @@ html {
   padding: 5px;
 }
 
+.fav-star {
+  font-size: 1.3em;
+  color: white;
+}
+
+.fav-star:hover {
+  font-weight: bold;
+  color: white;
+}
+
 #loc_select .list-group-item:hover {
   cursor: pointer;
   color: #333;

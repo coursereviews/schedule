@@ -6,13 +6,35 @@ var app = app || {};
   app.SearchView = Backbone.View.extend({
 
     initialize: function() {
-      this.render();
+      _.bindAll(this, 'renderSelect2');
     },
 
     render: function() {
       this.$el.html($("#search-template").html());
 
+      this.$('input.time').timepicker({
+        showDuration: true,
+        timeFormat: 'g:ia',
+        step: 5,
+        id: "schedule"
+      });
+
+      this.$('.days').addClass('hidden');
+
+      _.defer(this.renderSelect2);
+
       return this;
+    },
+
+    renderSelect2: function() {
+      this.$('.days').select2({
+        placeholder: 'Select multiple days'
+      })
+      .removeClass('hidden');
+      this.$('.reqs').select2({
+        placeholder: 'Select multiple requirements'
+      })
+      .removeClass('hidden');
     },
 
     events: {
@@ -25,11 +47,10 @@ var app = app || {};
       var changed = $(e.currentTarget);
 
       if (changed.prop("tagName") === "SELECT") { changed = changed.find(":selected"); }
-      else if (changed.attr("class") === "form-group") { changed = changed.find("input:checked")}
       else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
 
       var querystring = 'query?';
-      $('.results-list').empty();
+      this.clearAll(changed);
 
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
         if ($('.active').length > 0) {$('.active').removeClass('active');}
@@ -71,6 +92,21 @@ var app = app || {};
         });
         self.addList(elmt);
       });
+    },
+
+    clearAll: function(elmt) {
+      $('.results-list').empty();
+      var inputs = Array.from($('input'));
+      var selects = Array.from($('select[class="form-control"]'));
+      var all = inputs.concat(selects);
+      console.log(all.length);
+      elmt = $('#' +elmt.attr('id'))[0];
+      inputs.forEach(function(inp){
+        if (inp !== elmt) {
+          console.log(inp);
+          //inp.value = "";
+        }
+      })
     }
 
   });

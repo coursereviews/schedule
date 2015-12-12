@@ -8,13 +8,10 @@ var app = app || {};
       title: '',
       code: '',
       instructor: '',
-      department: '',
       description: '',
       location: '',
-      requirements: [],
-      term: '',
-      type: '',
       schedule: '',
+      requirements: [],
       crn: '',
       href: ''
     }
