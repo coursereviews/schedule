@@ -136,27 +136,40 @@ var app = app || {};
     instructorCourseList: function(list){
       var self = this;
       list.forEach(function(elmt) {
-        elmt = new app.CourseModel({
-          title: elmt.title,
-          code: elmt.code,
-          instructor: elmt.instructor,
-          department: elmt.department,
-          location: elmt.location,
-          requirements: elmt.requirements,
-          term: elmt.term,
-          type: elmt.type,
-          schedule: elmt.schedule,
-          description: elmt.description,
-          crn: elmt.crn,
-          href: elmt.href,
+        var professor = elmt.name;
+        elmt.courseOfferings.forEach(function(item){
+          var location = [];
+          item.meetings.forEach(function(m){
+            location.push(m.building+' '+m.room);
+          });
+          var requirements = [];
+          item.requirements.forEach(function(req){
+            requirements.push(req.name);
+          });
+          var schedule = [];
+          item.meetings.forEach(function(meet){
+            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          });
+          elmt = new app.CourseModel({
+            title: item.course.title,
+            code: item.course.code,
+            instructor: professor,
+            department: elmt.department, //undefined
+            location: location,
+            requirements: requirements,
+            term: item.term.code,
+            type: item.course.type,
+            schedule: schedule,
+            description: item.course.description,
+            crn: item.crn,
+            href: item.href,
+          });
+          self.addList(elmt);
         });
-        self.addList(elmt);
       });
     },
     descriptionCourseList: function(list){
-      console.log("in description f(x)");
       var self = this;
-
       list.forEach(function(elmt){
         var description = elmt.description;
         var title = elmt.title;
@@ -171,19 +184,19 @@ var app = app || {};
           var professor = [];
           item.professors.forEach(function(p){
             professor.push(p.name);
-          })
+          });
           var location = [];
           item.meetings.forEach(function(m){
             location.push(m.building+' '+m.room);
-          })
+          });
           var requirements = [];
           item.requirements.forEach(function(req){
             requirements.push(req.name);
-          })
+          });
           var schedule = [];
           item.meetings.forEach(function(meet){
             schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
-          })
+          });
 
           item = new app.CourseModel({
             title: title,
