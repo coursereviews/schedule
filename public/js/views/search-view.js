@@ -38,11 +38,10 @@ var app = app || {};
     },
 
     events: {
-      "click .list-group-item": "doSearch",
-      "change .form-group": "doSearch",
       "change .form-control": "doSearch"
     },
 
+// query w/ new inputs & get data
     doSearch: function(e) {
       var changed = $(e.currentTarget);
 
@@ -67,14 +66,10 @@ var app = app || {};
         } else { changed.removeClass('active'); }
     },
 
-    addList: function(course) {
-      var reslist = this.$('.results-list');
-			var view = new app.CourseView( {model: course} );
-			this.$('.results-list').append(view.render().el);
-		},
-
+// create new coursemodels from returned data
     newCourseList: function(list) {
       var self = this;
+
       list.forEach(function(elmt) {
         elmt = new app.CourseModel({
           title: elmt.title,
@@ -90,23 +85,29 @@ var app = app || {};
           crn: elmt.crn,
           href: elmt.href,
         });
-        self.addList(elmt);
+
+        self.showList(elmt);
       });
     },
 
-    clearAll: function(elmt) {
+// display new results list
+    showList: function(course) {
+      var reslist = this.$('.results-list');
+			var view = new app.CourseView( {model: course} );
+			this.$('.results-list').append(view.render().el);
+		},
+
+// clear all inputs in between searches ** can be deleted when search by multiple filters is implemented **
+    clearAll: function(newInp) {
+      var currInputs = [$("#description"), $("#instructor"), $("#location"), $("#subject"), $('input[id="schedule"]')];
+      currInputs.forEach(function(currInp) {
+        if (newInp.attr('id') !== currInp.attr('id')) {
+          currInp.val("");
+          currInp.parent().prop('selectedIndex',0);
+          if (newInp.parent().attr('class') !== "days form-control") {$('select[class="days form-control"]').select2('val', '');}
+          if (newInp.parent().attr('class') !== "reqs form-control") {$('select[class="reqs form-control"]').select2('val', '');}
+        }});
       $('.results-list').empty();
-      var inputs = Array.from($('input'));
-      var selects = Array.from($('select[class="form-control"]'));
-      var all = inputs.concat(selects);
-      console.log(all.length);
-      elmt = $('#' +elmt.attr('id'))[0];
-      inputs.forEach(function(inp){
-        if (inp !== elmt) {
-          console.log(inp);
-          //inp.value = "";
-        }
-      })
     }
 
   });
