@@ -129,21 +129,39 @@ var app = app || {};
         var title = elmt.title;
         var type = elmt.type;
         var code = elmt.code;
-        var department_id = elmt.department_id;
+        //var department_id = elmt.department_id;
         var department = elmt.department;
 
+
         elmt.courseOfferings.forEach(function(item){
+
+          var professor = [];
+          item.professors.forEach(function(p){
+            professor.push(p.name);
+          })
+          var location = [];
+          item.meetings.forEach(function(m){
+            location.push(m.building+' '+m.room);
+          })
+          var requirements = [];
+          item.requirements.forEach(function(req){
+            requirements.push(req.name);
+          })
+          var schedule = [];
+          item.meetings.forEach(function(meet){
+            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          })
 
           item = new app.CourseModel({
             title: title,
             code: code,
-            instructor: elmt.instructor,//undefined
+            instructor: professor,//undefined
             department: department,
-            location: elmt.location,//undefined
-            requirements: elmt.requirements,//undefined
-            term: elmt.term,//undefined
+            location: location,//undefined
+            requirements: requirements,//undefined
+            term: item.term.code,//undefined
             type: type,
-            schedule: elmt.schedule, //undefined
+            schedule: schedule, //undefined
             description: description,
             crn: item.crn,
             href: item.href,
@@ -151,9 +169,6 @@ var app = app || {};
           self.addList(item);
 
         });
-
-
-
         console.log(self);
       });
     }
