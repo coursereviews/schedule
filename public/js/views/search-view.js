@@ -67,6 +67,9 @@ var app = app || {};
                   else if(attribute == 'instructor') {
                     this.instructorCourseList(r);
                   }
+                  else if(attribute == 'requirements'){
+                    this.reqCourseList(r);
+                  }
 
                   else {
                     this.newCourseList(r);
@@ -181,7 +184,7 @@ var app = app || {};
 
         elmt.courseOfferings.forEach(function(item){
 
-          var professor = [];
+          var professors = [];
           item.professors.forEach(function(p){
             professor.push(p.name);
           });
@@ -201,7 +204,7 @@ var app = app || {};
           item = new app.CourseModel({
             title: title,
             code: code,
-            instructor: professor,//undefined
+            instructor: professors,//undefined
             department: department,
             location: location,//undefined
             requirements: requirements,//undefined
@@ -215,7 +218,43 @@ var app = app || {};
           self.addList(item);
 
         });
-        console.log(self);
+
+      });
+    },
+    reqCourseList: function(list){
+      var self = this;
+      list.forEach(function(elmt) {
+        var requirement = elmt.name;
+        elmt.courseOfferings.forEach(function(item){
+          var location = [];
+          item.meetings.forEach(function(m){
+            location.push(m.building+' '+m.room);
+          });
+          var professors = [];
+          item.professors.forEach(function(p){
+            professors.push(p.name);
+          });
+
+          var schedule = [];
+          item.meetings.forEach(function(meet){
+            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          });
+          elmt = new app.CourseModel({
+            title: item.course.title,
+            code: item.course.code,
+            instructor: professors,
+            department: elmt.department, //undefined
+            location: location,
+            requirements: requirement,
+            term: item.term.code,
+            type: item.course.type,
+            schedule: schedule,
+            description: item.course.description,
+            crn: item.crn,
+            href: item.href,
+          });
+          self.addList(elmt);
+        });
       });
     }
 
