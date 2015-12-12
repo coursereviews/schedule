@@ -48,6 +48,10 @@ var app = app || {};
         else if (attribute == 'requirements') {
           querystring += 'requirement?code=' + $(e.currentTarget).attr('value');
         }
+        else if (attribute == 'schedule') {
+          querystring += 'meeting?code=' + $(e.currentTarget).attr('value');
+          console.log(querystring);
+        }
 
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
@@ -59,6 +63,9 @@ var app = app || {};
                   }
                   else if(attribute == 'description') {
                     this.descriptionCourseList(r);
+                  }
+                  else if(attribute == 'instructor') {
+                    this.instructorCourseList(r);
                   }
 
                   else {
@@ -75,6 +82,12 @@ var app = app || {};
 			var view = new app.CourseView( {model: course} );
 			this.$('.results-list').append(view.render().el);
 		},
+
+    offeringDetail: function(offeringObj){
+      //var items = Object.keys(offeringObj)
+
+
+    },
 
     newCourseList: function(list) {
       var self = this;
@@ -120,6 +133,26 @@ var app = app || {};
       });
     },
 
+    instructorCourseList: function(list){
+      var self = this;
+      list.forEach(function(elmt) {
+        elmt = new app.CourseModel({
+          title: elmt.title,
+          code: elmt.code,
+          instructor: elmt.instructor,
+          department: elmt.department,
+          location: elmt.location,
+          requirements: elmt.requirements,
+          term: elmt.term,
+          type: elmt.type,
+          schedule: elmt.schedule,
+          description: elmt.description,
+          crn: elmt.crn,
+          href: elmt.href,
+        });
+        self.addList(elmt);
+      });
+    },
     descriptionCourseList: function(list){
       console.log("in description f(x)");
       var self = this;
