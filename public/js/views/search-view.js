@@ -115,24 +115,45 @@ var app = app || {};
 
     departmentCourseList: function(list){
       var self = this;
+      var professor;
+      var crn;
+      var schedule = [];
+      var location = [];
+      var requirements = [];
       var department = list[0].name;
       list[0].courses.forEach(function(elmt){
-        elmt = new app.CourseModel({
-          title: elmt.title,
-          code: elmt.code,
-          instructor: elmt.instructor,
-          department: department,
-          location: elmt.location,
-          requirements: elmt.requirements,
-          term: elmt.term,
-          type: elmt.type,
-          schedule: elmt.schedule,
-          description: elmt.description,
-          crn: elmt.crn,
-          href: elmt.href,
+        elmt.courseOfferings.forEach(function(item){
+          professor = item.professors[0]['name'];
+
+          item.meetings.forEach(function(m){
+            location.push(m.building+' '+m.room);
+          });
+
+          item.meetings.forEach(function(meet){
+            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          });
+          //requirements = item.requirements[0].name;
+
+          item.requirements.forEach(function(req){
+            requirements.push(req.name);
+          });
+          elmt = new app.CourseModel({
+            title: elmt.title,
+            code: elmt.code,
+            instructor: professor,
+            department: department,
+            location: location,
+            requirements: requirements,
+            term: elmt.term,
+            type: elmt.type,
+            schedule: schedule,
+            description: elmt.description,
+            crn: item.crn,
+            href: elmt.href,
+          });
+          self.addList(elmt);
         });
-        self.addList(elmt);
-        console.log(self);
+
       });
     },
 
