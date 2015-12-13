@@ -186,7 +186,7 @@ var app = app || {};
 
           var professors = [];
           item.professors.forEach(function(p){
-            professor.push(p.name);
+            professors.push(p.name);
           });
           var location = [];
           item.meetings.forEach(function(m){
