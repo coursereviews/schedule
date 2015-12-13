@@ -49,7 +49,7 @@ var app = app || {};
       else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
 
       var querystring = 'query/';
-      $('.results-list').empty();
+      this.clearAll(changed);
 
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
@@ -272,6 +272,22 @@ var app = app || {};
           self.addList(elmt);
         });
       });
+    },
+
+    clearAll: function(newInp){
+      var allinps = [$("#description"), $("#instructor"), $("#loc_select"), $("#dept_select"),
+                     $("[name='start_time']"), $("[name='end_time']"), ];
+      allinps.forEach(function(inp) {
+        if (newInp.attr('id') == 'meeting'){
+          if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') { inp.val(''); }
+          $('select[class="reqs form-control"]').select2('val', '');
+        } else {
+          if (inp.attr('id') !== newInp.attr('id')) { inp.val(''); }
+          if (newInp.attr('id') !== 'requirements') { $('select[class="reqs form-control"]').select2('val', ''); }
+          $('select[class="days form-control"]').select2('val', '');
+        }
+      });
+      $('.results-list').empty();
     }
 
   });
