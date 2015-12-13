@@ -7,6 +7,12 @@ const User = require('../lib/models/user');
 const assert = require('assert');
 // const request = require('supertest');
 const mocha = require('mocha');
+const child_process = require('child_process');
+const exec = child_process.exec;
+const execFile = child_process.execFile;
+const spawn = child_process.spawn;
+const termNo = '201590';
+
 
 /*
  NOTE: This test should work with the current Fall 2015 catalog that gets scraped.
@@ -47,49 +53,89 @@ var runFavoriteTests = function(email) {
 
 }
 
-
-
-runFavoriteTests('jabillings@middlebury.edu')
-  .then(function(result) {
-    console.log("Favorite Tests Passed!");
-  }).catch(function(err) {
-    console.log("Tests Failed");
+// function clears database if it exists
+var clearDB = function() {
+  return new Promise(function (resolve, reject) {
+    exec('rm db/schedule.db', function(err, stdout, stderr) {
+      if (err){
+        reject(err);
+      }
+      console.log(stdout);
+      console.log('deleted');
+      resolve(true);
+    });
+  }).catch(function(error) {
+    console.log(error);
   });
+};
 
-//console.log(Object.keys(request(app)));
-/*
-var usr = agent.agent();
+var changePermissions = function() {
+  return new Promise(function (resolve, reject) {
+    exec('chmod 744 lib/scripts/scrape_catalog.js', function(err, stdout, stderr) {
+      // idea for permission change from jansmolders86's reply to 'Running node (express)
+      // on linux produces Error: spawn EACCES' hosted at:
+      // http://stackoverflow.com/questions/19009778/ (cont.)
+      // running-node-express-on-linux-produces-error-spawn-eacces
 
-usr.post('http://localhost:8000/login')
-.send({email: 'jabillings@middlebury.edu', password: 'julian'})
-.end(function(err, res) {
-  //console.log(res);
-  //console.log(res);
+      if (err){
+        reject(err);
+      }
+      resolve(true);
+    });
+  });
+};
+
+var makeMigrations = function() {
+  return new Promise(function (resolve, reject) {
+    exec('npm run migrate:latest', function(err, stdout, stderr) {
+      // idea for permission change from jansmolders86's reply to 'Running node (express)
+      // on linux produces Error: spawn EACCES' hosted at:
+      // http://stackoverflow.com/questions/19009778/ (cont.)
+      // running-node-express-on-linux-produces-error-spawn-eacces
+
+      if (err){
+        reject(err);
+      }
+      resolve(true);
+    });
+  });
+};
+
+var scrapeData = function() {
+  return new Promise(function(resolve, reject) {
+    var command = 'node lib/scripts/scrape_catalog.js '+ termNo;
+    exec(command, function(e, stdout, stderr) {
+      if (e){
+        console.log(e);
+        reject(e);
+      }
+      console.log('created');
+      resolve(true);
+    });
+  });
+}
+
+// function populates db if it exists
+var populateDB = function() {
+  return new Promise(function (resolve, reject) {
+    changePermissions()
+    .then(function() {
+      return makeMigrations();
+    }).then(function() {
+      return scrapeData();
+    }).then(function(){
+      resolve(true);
+    }).catch(function(error) {
+      reject(err);
+    });
+  });
+};
+
+clearDB()
+.then(function(onFulfillment, onRejection) {
+  return populateDB();
+}).then(function(fulfill) {
+  console.log('Success!');
+}).catch(function(err) {
+  console.log(err);
 });
-
-usr.get('http://localhost:8000/api/catalog/query/courseoffering?crn=91423')
-.end(function(err, res) {
-  console.log(res.body);
-});*/
-
-/*
-  var agent = request.agent(app);
-  agent
-  .get('/login', function(req, res) {
-    console.log(res.status);
-    res.on('data', function(data){
-      console.log('here');
-    })
-    res.cookie('cookie', 'hey');
-    res.send();
-  });
-
-  agent
-  .post('/login')
-  .field('email', 'jabillings@middlebury.edu')
-  .field('password', 'julian')
-  .end(function (err, res) {
-    console.log(res.status);
-    console.log(res.headers['set-cookie']);
-  });
-*/
