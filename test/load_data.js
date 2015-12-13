@@ -6,19 +6,24 @@ const child_process = require('child_process');
 const exec = child_process.exec;
 const spawn = child_process.spawn;
 const termNo = '201590';
-const catalog = require('./routes/catalog');
-const base = require('./routes/base');
+const fs = require('fs');
 
 // function clears database if it exists
 var clearDB = function() {
   return new Promise(function (resolve, reject) {
-    exec('rm db/schedule.db', function(err, stdout, stderr) {
-      if (err){
-        reject(err);
+    fs.stat('db/schedule.db', function (err, stats) {
+      if (err) {
+        // if schedule.db doesn't exist
+        resolve(true);
+      } else {
+        exec('rm db/schedule.db', function(err, stdout, stderr) {
+          if (err){
+            reject(err);
+          }
+          console.log('DB removed');
+          resolve(true);
+        });
       }
-      console.log(stdout);
-      console.log('deleted');
-      resolve(true);
     });
   }).catch(function(error) {
     console.log(error);
@@ -60,7 +65,6 @@ var scrapeData = function() {
         console.log(e);
         reject(e);
       }
-      console.log('created');
       resolve(true);
     });
   });
@@ -82,12 +86,19 @@ var populateDB = function() {
   });
 };
 
-clearDB()
-.then(function(onFulfillment, onRejection) {
-  return populateDB();
-}).then(function(fulfill) {
-  console.log('Success!');
-  catalog.runTests();
-}).catch(function(err) {
-  console.log(err);
-});
+function main(){
+  return new Promise(function(resolve, reject) {
+    clearDB()
+    .then(function(onFulfillment, onRejection) {
+      return populateDB();
+    }).then(function(fulfill) {
+      console.log('DB population complete');
+      resolve(true);
+    }).catch(function(err) {
+      console.log(err);
+      reject(err);
+    });
+  });
+}
+
+exports.main = main;
