@@ -5,11 +5,14 @@ var app = app || {};
 
   var ScheduleMainView = Backbone.View.extend({
 
-    template: _.template($('#schedule-template').html()),
+    template: _.template($('#schedule-main-template').html()),
 
     initialize: function() {
-      this.listenTo(this.model, 'destroy', this.remove);
-      this.listenTo(this.model, 'change', this.render);
+      if (app.scheduleId) {
+        this.scheduleView = new app.ScheduleView();
+      } else {
+        this.scheduleView = new app.ScheduleListView();
+      }
 
       this.listenTo(app.favorites, 'reset', this.addAllFavorites);
 
@@ -18,9 +21,7 @@ var app = app || {};
 
     render: function() {
       this.$el.html(this.template());
-
-      // var scheduleHeight = 30 * 18;
-      // this.$('.schedule .panel-body').css('height', scheduleHeight);
+      this.$('.schedule-container').append(this.scheduleView.render().el);
 
       return this;
     },
@@ -31,7 +32,7 @@ var app = app || {};
     },
 
     addAllFavorites: function() {
-      this.$('.favorites').html();
+      this.$('.favorites').html('');
       app.favorites.each(this.addOneFavorite, this);
     }
   });

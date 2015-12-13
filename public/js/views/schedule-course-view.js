@@ -11,7 +11,7 @@ var app = app || {};
     template: _.template($('#schedule-course-item-template').html()),
 
     initialize: function() {
-
+      
     },
 
     render: function() {

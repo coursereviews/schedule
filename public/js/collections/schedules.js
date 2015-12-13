@@ -9,5 +9,5 @@ var app = app || {};
     url: '/api/schedule'
   });
 
-  app.schedule = new ScheduleCollection();
+  app.schedules = new ScheduleCollection();
 })();

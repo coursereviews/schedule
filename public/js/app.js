@@ -3,6 +3,6 @@ var app = app || {};
 $(function() {
   'use strict';
 
-  new app.AppRouter();
+  app.router = new app.AppRouter();
   Backbone.history.start();
 });
