@@ -275,13 +275,14 @@ var app = app || {};
     },
 
     clearAll: function(newInp){
-      var allinps = [$("#description"), $("#instructor"), $("#loc_select"), $("#dept_select"),
+      var allinps = [$("#description"), $("#instructor"), $("#loc_select"), $("#subject"),
                      $("[name='start_time']"), $("[name='end_time']"), ];
       allinps.forEach(function(inp) {
         if (newInp.attr('id') == 'meeting'){
           if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') { inp.val(''); }
           $('select[class="reqs form-control"]').select2('val', '');
         } else {
+          console.log(inp.attr('id') +' ' +newInp.attr('id'));
           if (inp.attr('id') !== newInp.attr('id')) { inp.val(''); }
           if (newInp.attr('id') !== 'requirements') { $('select[class="reqs form-control"]').select2('val', ''); }
           $('select[class="days form-control"]').select2('val', '');
