@@ -67,8 +67,8 @@ var app = app || {};
           querystring += 'requirement?code=' + changed.attr('value');
         } else if (attribute == 'meeting') {
           var meetInputs = [$("#loc_select"), $("[name='start_time']"), $("[name='end_time']"), $("[name='days']")];
+          querystring += "meeting?";
           meetInputs.forEach(function(inp) {
-            console.log(inp.attr('name'));
             if (inp.val() !== '' &&  inp.val() !== null) {
             querystring += '&' +inp.attr('name') +'=' +inp.val();} });
         }
