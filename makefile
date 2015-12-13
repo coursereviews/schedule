@@ -6,13 +6,13 @@ BOWER = node_modules/.bin/bower
 JSCS = node_modules/.bin/jscs --esnext --config ./.jscsrc
 JSHINT_NODE = node_modules/.bin/jshint --extract=auto --config ./.jshintrc
 ISTANBUL = node --harmony node_modules/.bin/istanbul
-MOCHA = node_modules/.bin/mocha
-MOCHA_OPTS = --ui bdd -c
+MOCHA = node --harmony node_modules/.bin/_mocha
 
 SRC = ./*.js
 
 SRC_NODE    = $(shell find . \( -path './lib/*' -or -path './tests/*' \) -not -path './lib/views/*')
 SRC_BROWSER = $(shell find . -path './public/*' \( -name '*.js' -or -name '*.html' \))
+SRC_TEST = $(shell find test -name '*.js')
 
 
 .PHONY: start
@@ -21,7 +21,7 @@ start:
 
 
 .PHONY: setup
-setup: setup-dependencies setup-migrations
+setup: setup-dependencies setup-migrations setup-catalog
 
 
 .PHONY: setup-migrations
@@ -34,6 +34,11 @@ setup-dependencies:
 	$(NPM) install
 	$(BOWER) install
 
+
+.PHONY: setup-catalog
+setup-catalog:
+	@echo 'scraping catalog for Spring (201620)'
+	$(NODE) --harmony ./lib/scripts/scrape_catalog.js 201620
 
 .PHONY: clean
 clean:
@@ -48,5 +53,4 @@ lint:
 
 .PHONY: test
 test:
-	$(ISTANBUL) cover node_modules/.bin/_mocha --recursive
-	#$(ISTANBUL) check-coverage --branches 100
+	$(MOCHA) $(SRC_TEST)
