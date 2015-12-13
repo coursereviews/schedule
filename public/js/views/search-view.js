@@ -66,14 +66,11 @@ var app = app || {};
         } else if (attribute == 'requirements') {
           querystring += 'requirement?code=' + changed.attr('value');
         } else if (attribute == 'meeting') {
-          var days;
-          if ($("[name='days']").parent().val() == null) {days = "";}
-          else {days = $("[name='days']").parent().val()}
-          querystring += 'meeting?'
-                       + 'building=' +$("#loc_select").val()
-                       + '&start_time=' +$("[name='start_time']").val()
-                       + '&end_time=' +$("[name='end_time']").val()
-                       + '&days=' +days;
+          var meetInputs = [$("#loc_select"), $("[name='start_time']"), $("[name='end_time']"), $("[name='days']")];
+          meetInputs.forEach(function(inp) {
+            console.log(inp.attr('name'));
+            if (inp.val() !== '' &&  inp.val() !== null) {
+            querystring += '&' +inp.attr('name') +'=' +inp.val();} });
         }
 
         console.log(querystring);
