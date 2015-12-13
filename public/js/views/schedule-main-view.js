@@ -21,6 +21,7 @@ var app = app || {};
 
     render: function() {
       this.$el.html(this.template());
+
       this.$('.schedule-container').append(this.scheduleView.render().el);
 
       return this;
@@ -34,6 +35,11 @@ var app = app || {};
     addAllFavorites: function() {
       this.$('.favorites').html('');
       app.favorites.each(this.addOneFavorite, this);
+    },
+
+    remove: function() {
+      this.scheduleView.remove();
+      Backbone.View.prototype.remove.call(this);
     }
   });
 

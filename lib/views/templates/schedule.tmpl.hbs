@@ -1,21 +1,19 @@
 <script type="text/template" id="schedule-template">
-  <div class="col-md-9 schedule">
-    <h4 class="name">Click to name your schedule
-      <span class="glyphicon glyphicon-edit"></span>
-    </h4>
-    <button class="btn btn-link pull-right">
-      <span class="glyphicon glyphicon-pencil"></span>
-    </button>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        {{#each days}}
-          <div class="day {{this}}">
-            {{#times 18}}
-              <div class="block-30-mins"></div>
-            {{/times}}
-          </div>
-        {{/each}}
-      </div>
+  <h4 class="name">Click to name your schedule
+    <span class="glyphicon glyphicon-edit"></span>
+  </h4>
+  <button class="btn btn-link pull-right">
+    <span class="glyphicon glyphicon-pencil"></span>
+  </button>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      {{#each days}}
+        <div class="day {{this}}">
+          {{#times 18}}
+            <div class="block-30-mins"></div>
+          {{/times}}
+        </div>
+      {{/each}}
     </div>
   </div>
 </script>
