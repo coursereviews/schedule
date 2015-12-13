@@ -1,6 +1,55 @@
 <script type="text/template" id="extracurriculars-template">
-  <div class="container">
-    <ul id="extracurriculars-list">
-    </ul>
+  <ul class="list-group extracurriculars-list">
+  </ul>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <h4>Name</h4>
+            <input type="text" class="form-control name" placeholder="Enter a name for your new extracurricular">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Start time</h4>
+          <div class="form-horizontal">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <input type="text" class="start time form-control" placeholder="4:30pm">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h4>End time</h4>
+          <div class="form-horizontal">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <input type="text" class="end time form-control" placeholder="6:30pm">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h4>Days</h4>
+          <div class="form-horizontal">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <select class="days form-control" multiple="multiple">
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="button" class="btn btn-primary create-extracurricular">Add Extracurricular</button>
+    </div>
   </div>
 </script>

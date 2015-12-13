@@ -19,7 +19,6 @@ var app = app || {};
       '': 'index',
       'schedule(/:id)': 'schedule',
       'search': 'search',
-      'extracurriculars': 'extracurriculars'
     },
     initialize: function() {
 
@@ -35,16 +34,6 @@ var app = app || {};
     search: function() {
       console.log('search');
       ViewManager.showView(new app.SearchView());
-    },
-    extracurriculars: function() {
-      if (app.views instanceof app.views.ExtraCurricularMainView) {
-        app.collections.extracurriculars.fetch();
-      } else if (app.view) {
-        app.view.remove();
-        app.view = new ExtraCurricularMainView();
-      } else {
-        app.view = new ExtraCurricularMainView();
-      }
     }
   });
 })();
