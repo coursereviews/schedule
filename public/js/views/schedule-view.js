@@ -114,7 +114,7 @@ var app = app || {};
     },
 
     typeName: function(event) {
-      if (event.keyCode >= 37 && event.keyCode <= 40) {
+      if (event.keyCode >= 37 && event.keyCode <= 40 || event.keyCode === 8) {
         // Arrow keys
         return;
       } else if (event.keyCode === 13) {
