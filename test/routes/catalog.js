@@ -10,7 +10,7 @@ var agent, app, superAgent;
 
 var authedAgent;
 
-describe('api/catalog GET request tests', function(){
+describe('api/catalog GET request tests', function() {
 
   before('fill database, add user profile', function(done) {
 

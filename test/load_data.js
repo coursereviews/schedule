@@ -17,7 +17,7 @@ var clearDB = function() {
         resolve(true);
       } else {
         exec('rm db/schedule.db', function(err, stdout, stderr) {
-          if (err){
+          if (err) {
             reject(err);
           }
           console.log('DB removed');
@@ -38,7 +38,7 @@ var changePermissions = function() {
       // http://stackoverflow.com/questions/19009778/ (cont.)
       // running-node-express-on-linux-produces-error-spawn-eacces
 
-      if (err){
+      if (err) {
         reject(err);
       }
       resolve(true);
@@ -49,7 +49,7 @@ var changePermissions = function() {
 var makeMigrations = function() {
   return new Promise(function (resolve, reject) {
     exec('npm run migrate:latest', function(err, stdout, stderr) {
-      if (err){
+      if (err) {
         reject(err);
       }
       resolve(true);
@@ -61,7 +61,7 @@ var scrapeData = function() {
   return new Promise(function(resolve, reject) {
     var command = 'node lib/scripts/scrape_catalog.js '+ termNo;
     exec(command, function(e, stdout, stderr) {
-      if (e){
+      if (e) {
         console.log(e);
         reject(e);
       }
@@ -78,7 +78,7 @@ var populateDB = function() {
       return makeMigrations();
     }).then(function() {
       return scrapeData();
-    }).then(function(){
+    }).then(function() {
       resolve(true);
     }).catch(function(error) {
       reject(err);
@@ -86,7 +86,7 @@ var populateDB = function() {
   });
 };
 
-function main(){
+function main() {
   return new Promise(function(resolve, reject) {
     clearDB()
     .then(function(onFulfillment, onRejection) {
