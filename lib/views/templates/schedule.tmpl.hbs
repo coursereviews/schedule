@@ -10,38 +10,18 @@
         <h4 class="name">Click to name your schedule
           <span class="glyphicon glyphicon-edit"></span>
         </h4>
+        <button class="btn btn-link pull-right">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
         <div class="panel panel-default">
           <div class="panel-body">
-            <div class="day monday">
-              {{#times 18}}
-              <div class="block-30-mins">
+            {{#each days}}
+              <div class="day {{this}}">
+                {{#times 18}}
+                  <div class="block-30-mins"></div>
+                {{/times}}
               </div>
-              {{/times}}
-            </div>
-            <div class="day tuesday">
-              {{#times 18}}
-              <div class="block-30-mins">
-              </div>
-              {{/times}}
-            </div>
-            <div class="day wednesday">
-              {{#times 18}}
-              <div class="block-30-mins">
-              </div>
-              {{/times}}
-            </div>
-            <div class="day thursday">
-              {{#times 18}}
-              <div class="block-30-mins">
-              </div>
-              {{/times}}
-            </div>
-            <div class="day friday">
-              {{#times 18}}
-              <div class="block-30-mins">
-              </div>
-              {{/times}}
-            </div>
+            {{/each}}
           </div>
         </div>
       </div>

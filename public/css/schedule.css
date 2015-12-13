@@ -12,6 +12,11 @@
   border-right: 1px solid #ddd;
 }
 
+.schedule .name {
+  display: inline-block;
+  cursor: pointer;
+}
+
 .schedule .name .glyphicon-edit {
   font-size: 14px;
   color: #999;

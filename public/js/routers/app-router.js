@@ -27,7 +27,7 @@ var app = app || {};
       console.log('index');
     },
     schedule: function(id) {
-      ViewManager.showView(new app.ScheduleView());
+      ViewManager.showView(new app.ScheduleMainView());
     },
     search: function() {
       ViewManager.showView(new app.SearchView());
