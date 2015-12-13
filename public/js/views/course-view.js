@@ -15,7 +15,19 @@ var app = app || {};
     template: _.template($('#course-item-template').html()),
 
     events: {
-      "click .course-panel-heading": "showDetailView"
+      "click .course-panel-heading": "showDetailView",
+      "click #favstar": "favorite"
+    },
+
+    favorite: function(e) {
+      var star = $(e.currentTarget)
+      if (star.attr('class') == 'glyphicon glyphicon-star-empty fav-star'){
+        star.attr('class', 'glyphicon glyphicon-star fav-star');
+      } else {
+        star.attr('class', 'glyphicon glyphicon-star-empty fav-star');
+      } star.closest('div').trigger("click");
+      
+      // CODE FOR POST NEW FAVORITE ----->
     },
 
     showDetailView: function(e){
