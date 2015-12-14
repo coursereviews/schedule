@@ -11,7 +11,7 @@ var authedAgent;
 
 describe('/api/schedule', function() {
 
-  before(Promise.coroutine(function*(done) {
+  before(Promise.coroutine(function(done) {
     authedAgent = yield agent;
   }));
 

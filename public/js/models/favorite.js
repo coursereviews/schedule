@@ -10,10 +10,11 @@ var app = app || {};
     var favorite = Backbone.Model.extend({
         //todo: consider id as well
         //todo: incorrect key for the values. Don't think the data have something like course_title
+        initialize: function() {},
         defaults: {
-            time: '',
-            professor_name: '',
-            course_title: ''
+            code: '',
+            department_id: '',
+            type: ''
         }
     });
 

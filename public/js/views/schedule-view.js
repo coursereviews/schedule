@@ -18,3 +18,4 @@ var app = app || {};
 
   return app.ScheduleView = ScheduleView;
 })();
+

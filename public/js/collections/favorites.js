@@ -4,13 +4,14 @@
 
 var app = app || {};
 
+
+
 (function() {
     'use strict';
 
     var favorites = Backbone.Collection.extend({
-        initialize: function(){},
         model: app.FavoriteModel,
-        url: '/api/favorite'
+        url: '/api/favorite/'
     });
 
     app.favoritesCollection = new favorites();
