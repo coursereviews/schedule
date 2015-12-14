@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.ExtraCurricularMainView = Backbone.View.extend({
+  var ExtraCurricularMainView = Backbone.View.extend({
 
     template: _.template($('#extracurriculars-template').html()),
 
@@ -20,6 +20,7 @@ var app = app || {};
 
       app.extracurriculars.fetch({reset: true});
     },
+
     render: function() {
       this.$el.html(this.template());
 
@@ -132,4 +133,6 @@ var app = app || {};
     }
 
   });
+
+  app.ExtraCurricularMainView = ExtraCurricularMainView;
 })();

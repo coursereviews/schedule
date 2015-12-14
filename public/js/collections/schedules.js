@@ -5,8 +5,9 @@ var app = app || {};
 
   var ScheduleCollection = Backbone.Collection.extend({
     model: app.ScheduleModel,
-    url: '/api/schedule/'
+
+    url: '/api/schedule'
   });
 
-  app.ScheduleCollection = new ScheduleCollection();
+  app.schedules = new ScheduleCollection();
 })();

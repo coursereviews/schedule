@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.SettingsRouter = Backbone.Router.extend({
+  var SettingsRouter = Backbone.Router.extend({
     routes: {
       '': 'extracurriculars',
       'extracurriculars': 'extracurriculars'
@@ -11,6 +11,12 @@ var app = app || {};
 
     extracurriculars: function() {
       app.route = 'extracurriculars';
+
+      var $el = $('#navbar-settings');
+      if ($el.hasClass('active') === false) {
+        $('#navbar li.active').removeClass('active');
+      }
+      $el.addClass('active');
 
       if (app.view instanceof app.ExtraCurricularMainView) {
         app.extracurriculars.fetch();
@@ -23,4 +29,5 @@ var app = app || {};
     }
   });
 
+  app.SettingsRouter = SettingsRouter;
 })();

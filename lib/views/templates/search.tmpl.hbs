@@ -1,108 +1,153 @@
 <script type="text/template" id="search-template">
 
+  <div class="container">
 
-  <div class=container>
-    <h1 class="pull-left" style="color:#333; font-weight:300; padding-bottom:.25cm">Search</h1>
+    <div class="row">
+      <div class="col-md-12">
+        <h1 style="font-weight:300; padding-bottom:.25cm">Search Courses</h1>
+      </div>
+    </div>
 
     <div class="form-group">
 
-      <div class="row" style="padding-bottom:.5cm" id="keywordsearch">
-        <input type="text" placeholder="Search by keyword" class="form-control input-md" name="description">
-      </div>
-
-      <div class="row" style="padding-bottom:.5cm">
-        <input type="text" placeholder="Search by professor" class="form-control input-md" name="instructor">
+      <div class="row">
+        <div class="container col-md-6" style="padding-bottom:.35cm">
+          <input type="text" placeholder="Search by keyword" class="form-control input-md" id="description">
+        </div>
+        <div class="container col-md-6" style="padding-bottom:.35cm">
+          <input type="text" placeholder="Search by professor" class="form-control input-md" id="instructor">
+        </div>
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <select class="form-control" name="location" id="loc_select">
-            <option class="list-group-item" value="location" id=&location=>Any Location</option>
-            <option class="list-group-item" value="location" id=&location=ADK>Adirondack Coltrane Lounge</option>
-            <option class="list-group-item" value="location" id=&location=ATA>Atwater A</option>
-            <option class="list-group-item" value="location" id=&location=ATD>Atwater Dining</option>
-            <option class="list-group-item" value="location" id=&location=AXN>Axinn Center</option>
-            <option class="list-group-item" value="location" id=&location=AXT>Twilight Hall</option>
-            <option class="list-group-item" value="location" id=&location=BR_LOAF>Bread Loaf</option>
-            <option class="list-group-item" value="location" id=&location=CHT>Chateau</option>
-            <option class="list-group-item" value="location" id=&location=LIB>Davis Family Library</option>
-            <option class="list-group-item" value="location" id=&location=FIC>Freeman International Center</option>
-            <option class="list-group-item" value="location" id=&location=GFD>Gifford</option>
-            <option class="list-group-item" value="location" id=&location=HLD>Franklin Environmental Center</option>
-            <option class="list-group-item" value="location" id=&location=HPB>Hepburn Hall</option>
-            <option class="list-group-item" value="location" id=&location=JHN>Johnson</option>
-            <option class="list-group-item" value="location" id=&location=KYN>Peterson Family Athletic Complex</option>
-            <option class="list-group-item" value="location" id=&location=LAF>LaForce</option>
-            <option class="list-group-item" value="location" id=&location=GFD>Gifford</option>
-            <option class="list-group-item" value="location" id=&location=MBH>McCardell Bicentennial Hall</option>
-            <option class="list-group-item" value="location" id=&location=MCA>Mahaney Center for the Arts</option>
-            <option class="list-group-item" value="location" id=&location=MFH>Memorial Field House</option>
-            <option class="list-group-item" value="location" id=&location=MNR>Munroe</option>
-            <option class="list-group-item" value="location" id=&location=OCH>Old Chapel</option>
-            <option class="list-group-item" value="location" id=&location=PRS>Pearsons</option>
-            <option class="list-group-item" value="location" id=&location=RAJ>Robert A. Jones</option>
-            <option class="list-group-item" value="location" id=&location=RCD>Ross Seminar Room</option>
-            <option class="list-group-item" value="location" id=&location=SDL>Sunderland</option>
-            <option class="list-group-item" value="location" id=&location=VFH>Virtue Field House</option>
-            <option class="list-group-item" value="location" id=&location=WNS>Warner</option>
-            <option class="list-group-item" value="location" id=&location=WTH>Wright Theatre</option>
+
+        <div class="container col-md-6" style="padding-bottom:.35cm">
+          <select class="form-control" id="loc_select" name="building">
+            <option class="list-group-item" value="" id="meeting" name="building">Select a location</option>
+            <option class="list-group-item" value="ADK" id="meeting" name="building">Adirondack Coltrane Lounge</option>
+            <option class="list-group-item" value="ATA" id="meeting" name="building">Atwater A</option>
+            <option class="list-group-item" value="ATD" id="meeting" name="building">Atwater Dining</option>
+            <option class="list-group-item" value="AXN" id="meeting" name="building">Axinn Center</option>
+            <option class="list-group-item" value="AXT" id="meeting" name="building">Twilight Hall</option>
+            <option class="list-group-item" value="BR_LOAF" id="meeting" name="building">Bread Loaf</option>
+            <option class="list-group-item" value="CHT" id="meeting" name="building">Chateau</option>
+            <option class="list-group-item" value="LIB" id="meeting" name="building">Davis Family Library</option>
+            <option class="list-group-item" value="FIC" id="meeting" name="building">Freeman International Center</option>
+            <option class="list-group-item" value="GFD" id="meeting" name="building">Gifford</option>
+            <option class="list-group-item" value="HLD" id="meeting" name="building">Franklin Environmental Center</option>
+            <option class="list-group-item" value="HPB" id="meeting" name="building">Hepburn Hall</option>
+            <option class="list-group-item" value="JHN" id="meeting" name="building">Johnson</option>
+            <option class="list-group-item" value="KYN" id="meeting" name="building">Peterson Family Athletic Complex</option>
+            <option class="list-group-item" value="LAF" id="meeting" name="building">LaForce</option>
+            <option class="list-group-item" value="GFD" id="meeting" name="building">Gifford</option>
+            <option class="list-group-item" value="MBH" id="meeting" name="building">McCardell Bicentennial Hall</option>
+            <option class="list-group-item" value="MCA" id="meeting" name="building">Mahaney Center for the Arts</option>
+            <option class="list-group-item" value="MFH" id="meeting" name="building">Memorial Field House</option>
+            <option class="list-group-item" value="MNR" id="meeting" name="building">Munroe</option>
+            <option class="list-group-item" value="OCH" id="meeting" name="building">Old Chapel</option>
+            <option class="list-group-item" value="PRS" id="meeting" name="building">Pearsons</option>
+            <option class="list-group-item" value="RAJ" id="meeting" name="building">Robert A. Jones</option>
+            <option class="list-group-item" value="RCS" id="meeting" name="building">Ross Seminar Room</option>
+            <option class="list-group-item" value="SDL" id="meeting" name="building">Sunderland</option>
+            <option class="list-group-item" value="VFH" id="meeting" name="building">Virtue Field House</option>
+            <option class="list-group-item" value="WNS" id="meeting" name="building">Warner</option>
+            <option class="list-group-item" value="WTH" id="meeting" name="building">Wright Theatre</option>
           </select>
         </div>
-      </div>
 
-      <div class=row id=body>
-
-        <div class="col-sm-3">
-          <div class="list-group departments-list" id=dept_list>
-            <a class="list-group-item" value="department" id=&subject=AMST>American Studies</a>
-            <a class="list-group-item" value="department" id=&subject=ARBC>Arabic</a></td>
-            <a class="list-group-item" value="department" id=&subject=ART>Arts Division</a></td>
-            <a class="list-group-item" value="department" id=&subject=BIOL>Biology</a></td>
-            <a class="list-group-item" value="department" id=&subject=CHEM>Chemistry and Biochemistry</a></td>
-            <a class="list-group-item" value="department" id=&subject=CHNS>Chinese</a></td>
-            <a class="list-group-item" value="department" id=&subject=CLAS>Classics</a></td>
-            <a class="list-group-item" value="department" id=&subject=CMLT>Comparative Literature</a></td>
-            <a class="list-group-item" value="department" id=&subject=CSCI>Computer Science</a></td>
-            <a class="list-group-item" value="department" id=&subject=CRWR>Creative Writing</a></td>
-            <a class="list-group-item" value="department" id=&subject=DANC>Dance</a></td>
-            <a class="list-group-item" value="department" id=&subject=ECON>Economics</a></td>
-            <a class="list-group-item" value="department" id=&subject=EDST>Education Studies</a></td>
-            <a class="list-group-item" value="department" id=&subject=ENAM>English and American Literatures</a></td>
-            <a class="list-group-item" value="department" id=&subject=ENVS>Environmental Studies</a></td>
-            <a class="list-group-item" value="department" id=&subject=FMMC>Film and Media Culture</a></td>
-            <a class="list-group-item" value="department" id=&subject=FYSE>First Year Seminar</a></td>
-            <a class="list-group-item" value="department" id=&subject=FREN>French</a></td>
-            <a class="list-group-item" value="department" id=&subject=GSFS>Gender, Sexuality, and Feminist Studies</a></td>
-            <a class="list-group-item" value="department" id=&subject=GEOG>Geography</a></td>
-            <a class="list-group-item" value="department" id=&subject=GEOL>Geology</a></td>
-            <a class="list-group-item" value="department" id=&subject=GRMN>German</a></td>
-            <a class="list-group-item" value="department" id=&subject=GREK>Greek</a></td>
-          </div>
+        <div class="container col-md-6" style="padding-bottom:.35cm">
+          <select class="form-control" id="subject">
+            <option class="list-group-item" value="" id="subject">Select a department</a>
+            <option class="list-group-item" value="AMST" id="subject">American Studies</a>
+            <option class="list-group-item" value="ART" id="subject">Arts Division</a></td>
+            <option class="list-group-item" value="CHNS" id="subject">Chinese</a></td>
+            <option class="list-group-item" value="CLAS" id="subject">Classics</a></td>
+            <option class="list-group-item" value="CMLT" id="subject">Comparative Literature</a></td>
+            <option class="list-group-item" value="CSCI" id="subject">Computer Science</a></td>
+            <option class="list-group-item" value="ECON" id="subject">Economics</a></td>
+            <option class="list-group-item" value="EDST" id="subject">Education Studies</a></td>
+            <option class="list-group-item" value="ENAM" id="subject">English and American Literatures</a></td>
+            <option class="list-group-item" value="ENVS" id="subject">Environmental Studies</a></td>
+            <option class="list-group-item" value="FMMC" id="subject">Film and Media Culture</a></td>
+            <option class="list-group-item" value="FYSE" id="subject">First Year Seminar</a></td>
+            <option class="list-group-item" value="GSFS" id="subject">Gender, Sexuality, and Feminist Studies</a></td>
+            <option class="list-group-item" value="GEOG" id="subject">Geography</a></td>
+            <option class="list-group-item" value="GRMN" id="subject">German</a></td>
+            <option class="list-group-item" value="HARC" id="subject">History of Art &amp; Architecture</a>
+            <option class="list-group-item" value="HIST" id="subject">History</a></td>
+            <option class="list-group-item" value="IGST" id="subject">International &amp; Global Studies</a></td>
+            <option class="list-group-item" value="INTD" id="subject">Interdepartmental</a></td>
+            <option class="list-group-item" value="ITAL" id="subject">Italian</a></td>
+            <option class="list-group-item" value="LITS" id="subject">Program in Literary Studies</a></td>
+            <option class="list-group-item" value="LNGT" id="subject">Linguistics</a></td>
+            <option class="list-group-item" value="MUSC" id="subject">Music</a></td>
+            <option class="list-group-item" value="NSCI" id="subject">Program in Neuroscience</a></td>
+            <option class="list-group-item" value="PHIL" id="subject">Philosophy</a></td>
+            <option class="list-group-item" value="PHYS" id="subject">Physics</a></td>
+            <option class="list-group-item" value="PSCI" id="subject">Political Science</a></td>
+            <option class="list-group-item" value="PSYC" id="subject">Psychology</a></td>
+            <option class="list-group-item" value="RELI" id="subject">Religion</a></td>
+            <option class="list-group-item" value="RUSS" id="subject">Russian</a></td>
+            <option class="list-group-item" value="SOAN" id="subject">Sociology/Anthropology</a></td>
+            <option class="list-group-item" value="SPAN" id="subject">Spanish &amp; Portuguese</a></td>
+            <option class="list-group-item" value="THEA" id="subject">Theatre &amp; Dance</a></td>
+          </select>
         </div>
 
-        <div class=col-md-9>
-          <table class=list-group-horizontal align=center>
-            <tr id=req_list>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=AAL>AAL</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=EUR>EUR</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=WTR>WTR</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=ART>ART</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=HIS>HIS</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=PE>PE</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=CMP>CMP</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=LIT>LIT</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=PHL>PHL</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=CW>CW</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=LNG>LNG</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=SCI>SCI</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=DED>DED</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=NOR>NOR</td>
-              <td class="list-group-item" value="requirement" align=center id=&requirements=SOC>SOC</td>
-            </tr>
-          </table>
-        </div>
-        <div class=results-list id=courses style="height: 925px; width:875px"></div>
       </div>
+
+      <div class="row">
+
+        <div class="col-md-3"><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <input type="text" class="start time form-control" id="meeting" name="start_time" placeholder="Start time: 4:30pm">
+          </div></div>
+        </div></div>
+
+        <div class="col-md-3"><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <input type="text" class="end time form-control" id="meeting" name="end_time" placeholder="End time: 6:30pm">
+          </div></div>
+        </div></div>
+
+        <div class="col-md-3"><div class="form-horizontal">
+          <div class="col-sm-12"><div class="form-group">
+            <select class="days form-control" multiple="multiple" name="days">
+              <option value="Monday" id="meeting">Monday</option>
+              <option value="Tuesday" id="meeting">Tuesday</option>
+              <option value="Wednesday" id="meeting">Wednesday</option>
+              <option value="Thursday" id="meeting">Thursday</option>
+              <option value="Friday" id="meeting">Friday</option>
+            </select>
+          </div></div>
+        </div></div>
+
+        <div class="col-md-3" style="padding-bottom:.35cm">
+            <select class="form-control" id="requirements">
+              <option value="" id="requirements">Select a requirement</td>
+              <option value="AAL" id="requirements">AAL</td>
+              <option value="EUR" id="requirements">EUR</td>
+              <option value="ART" id="requirements">ART</td>
+              <option value="HIS" id="requirements">HIS</td>
+              <option value="CMP" id="requirements">CMP</td>
+              <option value="LIT" id="requirements">LIT</td>
+              <option value="PHL" id="requirements">PHL</td>
+              <option value="CW" id="requirements">CW</td>
+              <option value="LNG" id="requirements">LNG</td>
+              <option value="SCI" id="requirements">SCI</td>
+              <option value="DED" id="requirements">DED</td>
+              <option value="NOR" id="requirements">NOR</td>
+              <option value="SOC" id="requirements">SOC</td>
+            </select>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="results-list" id="courses" style="height: 700px"></div>
+      </div>
+
     </div>
   </div>
+
 </script>
