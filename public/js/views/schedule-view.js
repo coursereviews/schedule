@@ -81,11 +81,10 @@ var app = app || {};
       var courseModel = this.model.get('courseOfferings');
       courseModel.forEach(function(model) {
         var view = new app.ScheduleCourseItemView({model: model});
-        console.log(view);
         scheduleContainer.append(view.render().el);
       });
     },
-    
+
     renderTerms: _.after(2, function() {
       var input = this.$('.schedule-term');
 
@@ -115,6 +114,7 @@ var app = app || {};
     },
 
     addAllCourseOfferings: function() {
+      console.log(this.model.get('courseOfferings'));
       // console.log(this.model.get('courseOfferings'));
     },
 

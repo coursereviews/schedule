@@ -27,8 +27,22 @@
   font-style: italic;
 }
 
+.schedule .time-container {
+  width: 15%;
+  left: 0;
+  top: 52px;
+  position: absolute;
+  padding-left: 19px;
+}
+
+.schedule .time-container > .time-block {
+  color: #B2B2B2;
+  font-size: 12px;
+  height: 30px;
+}
+
 .schedule .day {
-  width: 20%;
+  width: calc(100% / 5);
   float: left;
   position: relative;
 }
