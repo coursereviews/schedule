@@ -1,3 +1,7 @@
+.schedule .favorites {
+  overflow: scroll;
+}
+
 .schedule .panel-heading {
   padding: 0;
   width: 100%;

@@ -35,14 +35,13 @@ var app = app || {};
       block.css('height', (this.timeOffset(meeting.end_time) - this.timeOffset(meeting.start_time)));
       block.css('left', this.dayOffset(day));
 
-      var colors = ['#ff7f00', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928',
-                    '#e31a1c', '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c',
-                    '#fb9a99', '#fdbf6f'];
+      var colors = ['#fb9a99', '#a6cee3', '#66AFE0', '#ffff99', '#b15928',
+                    '#e31a1c', '#cab2d6', '#9263C4', '#b2df8a', '#33a02c',
+                    '#FFB237', '#fdbf6f'];
 
       this.color = colors[app.courseOfferings.indexOf(this.model) % 12];
 
       block.css('background-color', this.color);
-
       return block;
     },
 
@@ -54,7 +53,6 @@ var app = app || {};
 
     dayOffset: function(day) {
       var dayWidth = $('.schedule-container .panel-body').width() / 5;
-      console.log(dayWidth);
 
       return ['Monday', 'Tuesday', 'Wednesday',
               'Thursday', 'Friday'].indexOf(day) * dayWidth;

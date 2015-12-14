@@ -22,9 +22,7 @@ var app = app || {};
     render: function() {
       this.$el.html(this.template());
 
-      this.$('favorites')
-        .css('height', $(window).height() - 101 - 50)
-        .css('overflow-y', 'scroll');
+      this.$('.favorites').css('height', $(window).height() - 101 - 100);
 
       this.$('.schedule-container').append(this.scheduleView.render().el);
 
