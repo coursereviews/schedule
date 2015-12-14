@@ -31,10 +31,11 @@ var app = app || {};
         placeholder: 'Select multiple days'
       })
       .removeClass('hidden');
-      this.$('.reqs').select2({
-        placeholder: 'Select a requirement'
-      })
-      .removeClass('hidden');
+      // Once search by mult requirements is implemented this will be useful
+      // this.$('.reqs').select2({
+        // placeholder: 'Select a requirement'
+      // })
+      // .removeClass('hidden');
     },
 
     events: {
@@ -73,7 +74,7 @@ var app = app || {};
             querystring += '&' +inp.attr('name') +'=' +inp.val();} });
         }
 
-        console.log(querystring);
+        console.log('/api/catalog/' +querystring);
 
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
@@ -276,15 +277,13 @@ var app = app || {};
 
     clearAll: function(newInp){
       var allinps = [$("#description"), $("#instructor"), $("#loc_select"), $("#subject"),
-                     $("[name='start_time']"), $("[name='end_time']"), ];
+                     $("[name='start_time']"), $("[name='end_time']"), $("#requirements")];
       allinps.forEach(function(inp) {
         if (newInp.attr('id') == 'meeting'){
           if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') { inp.val(''); }
-          $('select[class="reqs form-control"]').select2('val', '');
         } else {
           console.log(inp.attr('id') +' ' +newInp.attr('id'));
           if (inp.attr('id') !== newInp.attr('id')) { inp.val(''); }
-          if (newInp.attr('id') !== 'requirements') { $('select[class="reqs form-control"]').select2('val', ''); }
           $('select[class="days form-control"]').select2('val', '');
         }
       });
