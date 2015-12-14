@@ -25,6 +25,8 @@
 .schedule .panel-body {
   padding: 0;
   position: relative;
+  overflow-y: scroll;
+  width: 100%;
 }
 
 .schedule-name {

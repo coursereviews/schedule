@@ -35,10 +35,9 @@ var app = app || {};
       block.css('height', (this.timeOffset(meeting.end_time) - this.timeOffset(meeting.start_time)));
       block.css('left', this.dayOffset(day));
 
-      var colors = [
-         '#ff7f00', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928', '#e31a1c',
-         '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c', '#fb9a99', '#fdbf6f'
-      ];
+      var colors = ['#ff7f00', '#cab2d6', '#6a3d9a', '#ffff99', '#b15928',
+                    '#e31a1c', '#a6cee3', '#1f78b4', '#b2df8a', '#33a02c',
+                    '#fb9a99', '#fdbf6f'];
 
       this.color = colors[app.courseOfferings.indexOf(this.model) % 12];
 
@@ -55,6 +54,7 @@ var app = app || {};
 
     dayOffset: function(day) {
       var dayWidth = $('.schedule-container .panel-body').width() / 5;
+      console.log(dayWidth);
 
       return ['Monday', 'Tuesday', 'Wednesday',
               'Thursday', 'Friday'].indexOf(day) * dayWidth;
@@ -88,28 +88,28 @@ var app = app || {};
       var usePound = true;
 
       if (col[0] == "#") {
-          col = col.slice(1);
-          usePound = true;
+        col = col.slice(1);
+        usePound = true;
       }
 
-      var num = parseInt(col,16);
+      var num = parseInt(col, 16);
 
       var r = (num >> 16) + amt;
 
       if (r > 255) r = 255;
-      else if  (r < 0) r = 0;
+      else if (r < 0) r = 0;
 
       var b = ((num >> 8) & 0x00FF) + amt;
 
       if (b > 255) b = 255;
-      else if  (b < 0) b = 0;
+      else if (b < 0) b = 0;
 
       var g = (num & 0x0000FF) + amt;
 
       if (g > 255) g = 255;
       else if (g < 0) g = 0;
 
-      return (usePound?"#":"") + (g | (b << 8) | (r << 16)).toString(16);
+      return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
     }
 
   });
