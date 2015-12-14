@@ -163,6 +163,15 @@ var app = app || {};
       this.model.save({
         term_id: this.$('.schedule-term').select2('val')
       }, {patch: true});
+    },
+
+    remove: function() {
+      if (app.schedule) {
+        app.schedule.clear();
+        app.schedule = null;
+      }
+
+      Backbone.View.prototype.remove.call(this);
     }
   });
 
