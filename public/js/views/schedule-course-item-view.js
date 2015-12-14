@@ -11,9 +11,9 @@ var app = app || {};
     template: _.template($('#schedule-course-block-template').html()),
 
     scheduleStartTime: '7:30am',
-    scheduleEndTime: '10:30pm',
+    scheduleEndTime: '10:00pm',
 
-    timeFormat: 'hh:mma',
+    timeFormat: 'h:mma',
 
     events: {
       'mouseover .schedule-course-block': 'mouseoverBlock',
@@ -31,9 +31,9 @@ var app = app || {};
         meeting: meeting
       }));
 
-      block.css('top', this.timeOffset(meeting.start_time) + 1 /* border */);
-      block.css('height', (this.timeOffset(meeting.end_time) - this.timeOffset(meeting.start_time)) * 2);
-      block.css('left', this.dayOffset(day) + 1 /* border */);
+      block.css('top', this.timeOffset(meeting.start_time));
+      block.css('height', (this.timeOffset(meeting.end_time) - this.timeOffset(meeting.start_time)));
+      block.css('left', this.dayOffset(day));
 
       return block;
     },
@@ -45,18 +45,19 @@ var app = app || {};
     },
 
     dayOffset: function(day) {
-      var dayWidth = $('.schedule-container').width() / 5;
+      var dayWidth = $('.schedule-container .panel-body').width() / 5;
 
       return ['Monday', 'Tuesday', 'Wednesday',
               'Thursday', 'Friday'].indexOf(day) * dayWidth;
     },
 
     timeOffset: function(time) {
-      var totalHeight = $('.schedule-container').height();
+      var totalHeight = $('.schedule-container .day.friday').innerHeight();
       var scheduleStartTime = moment(this.scheduleStartTime, this.timeFormat);
       var scheduleEndTime = moment(this.scheduleEndTime, this.timeFormat);
       var totalScheduleTime = scheduleEndTime - scheduleStartTime;
       var normalizedTime = moment(time, this.timeFormat) - scheduleStartTime;
+
 
       return (normalizedTime / totalScheduleTime) * totalHeight;
     },
