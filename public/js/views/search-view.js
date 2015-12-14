@@ -138,6 +138,7 @@ var app = app || {};
       var location = [];
       var requirements = [];
       var department = list[0].name;
+      var courseList = [];
       list[0].courses.forEach(function(elmt){
         elmt.courseOfferings.forEach(function(item){
           professor = item.professors[0]['name'];
@@ -154,7 +155,8 @@ var app = app || {};
           item.requirements.forEach(function(req){
             requirements.push(req.name);
           });
-          elmt = new app.CourseModel({
+
+          var courseObj = {
             title: elmt.title,
             code: elmt.code,
             instructor: professor,
@@ -167,14 +169,17 @@ var app = app || {};
             description: elmt.description,
             crn: item.crn,
             href: elmt.href,
+          };
+
+          courseList.push(courseObj);
           });
-          self.addList(elmt);
         });
-      });
+      return courseList;
     },
 
     instructorCourseList: function(list){
       var self = this;
+      var courseList = [];
       list.forEach(function(elmt) {
         var professor = elmt.name;
         elmt.courseOfferings.forEach(function(item){
@@ -190,7 +195,7 @@ var app = app || {};
           item.meetings.forEach(function(meet){
             schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
           });
-          elmt = new app.CourseModel({
+          var courseObj = {
             title: item.course.title,
             code: item.course.code,
             instructor: professor,
@@ -203,14 +208,16 @@ var app = app || {};
             description: item.course.description,
             crn: item.crn,
             href: item.href,
-          });
-          self.addList(elmt);
+          };
+          courseList.push(courseObj);
         });
       });
+      return courseList;
     },
 
     descriptionCourseList: function(list){
       var self = this;
+      var courseList;
       list.forEach(function(elmt){
         var description = elmt.description;
         var title = elmt.title;
@@ -238,7 +245,7 @@ var app = app || {};
             schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
           });
 
-          item = new app.CourseModel({
+          var courseObj = {
             title: title,
             code: code,
             instructor: professors,//undefined
@@ -251,16 +258,18 @@ var app = app || {};
             description: description,
             crn: item.crn,
             href: item.href,
-          });
-          self.addList(item);
+          };
+          courseList.push(courseObj);
 
         });
 
       });
+      return courseList;
     },
 
     reqCourseList: function(list){
       var self = this;
+      var courseList = [];
       list.forEach(function(elmt) {
         var requirement = elmt.name;
         elmt.courseOfferings.forEach(function(item){
@@ -277,7 +286,7 @@ var app = app || {};
           item.meetings.forEach(function(meet){
             schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
           });
-          elmt = new app.CourseModel({
+          var courseObj = {
             title: item.course.title,
             code: item.course.code,
             instructor: professors,
@@ -290,10 +299,11 @@ var app = app || {};
             description: item.course.description,
             crn: item.crn,
             href: item.href,
-          });
-          self.addList(elmt);
+          };
+          courseList.push(courseObj);
         });
       });
+      return courseList;
     },
 
     clearAll: function(newInp){
