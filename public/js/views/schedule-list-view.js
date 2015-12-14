@@ -14,7 +14,7 @@ var app = app || {};
 
     render: function() {
       this.$el.html(this.template());
-
+      this.$('h4').css('display', 'inline-block');
       return this;
     },
 
