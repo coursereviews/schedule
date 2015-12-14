@@ -8,13 +8,12 @@ var app = app || {};
       title: '',
       code: '',
       instructor: '',
-      department: '',
+      description: '',
       location: '',
-      requirements: [],
-      term: '',
-      type: '',
       schedule: '',
-      end_time: '',
+      requirements: [],
+      crn: '',
+      href: ''
     }
   });
 
