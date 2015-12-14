@@ -7,10 +7,13 @@ var app = app || {};
 
     template: _.template($('#schedule-template').html()),
 
+    termTemplate: _.template('<option value="<%- id %>"><%- season %> <%- year %></option>'),
+
     events: {
-      'focus .name': 'focusName',
-      'blur .name': 'blurName',
-      'keydown .name': 'typeName'
+      'focus .schedule-name': 'focusName',
+      'blur .schedule-name': 'blurName',
+      'keydown .schedule-name': 'typeName',
+      'change .schedule-term': 'changeTerm'
     },
 
     namePlaceholder: 'Click to name your schedule',
@@ -28,20 +31,24 @@ var app = app || {};
       // So we can handle a 404 nicely.
       this.listenTo(this.model, 'error', this.handleScheduleNotFound);
 
-      // this.listenTo(this.model, 'change sync', this.renderSchedule);
+      this.listenTo(app.terms, 'reset', this.renderTerms);
 
-      _.bindAll(this, 'autosizeInput');
+      _.bindAll(this, 'autosizeInput', 'renderSelect2');
 
       if (!this.model.isNew()) {
         // If we're not creating a new schedule, fetch it.
         this.model.fetch({success: function() {
           this.renderSchedule();
+          this.renderTerms();
           this.addAllCourseOfferings();
         }.bind(this)});
       } else {
         // Nothing to fetch so we can render the schedule now.
         this.renderSchedule();
+        this.renderTerms();
       }
+
+      app.terms.fetch({reset: true, parse: true});
     },
 
     render: function() {
@@ -56,25 +63,39 @@ var app = app || {};
 
       // Hide the name until we have time to style it.
       // Defer autosizing until it's been inserted into the DOM.
-      this.$('.name').hide();
+      this.$('.schedule-name').hide();
       _.defer(this.autosizeInput);
 
-      this.$('.name').val(this.model.get('name') || this.namePlaceholder);
+      this.$('.schedule-name').val(this.model.get('name') || this.namePlaceholder);
       if (this.model.get('name')) {
-        this.$('.name').removeClass('not-replaced');
+        this.$('.schedule-name').removeClass('not-replaced');
       }
 
       return this;
     },
 
+    renderTerms: _.after(2, function() {
+      var input = this.$('.schedule-term');
+
+      app.terms.each(function(term) {
+        input.append(this.termTemplate(term.toJSON()));
+      }.bind(this));
+
+      _.defer(this.renderSelect2);
+    }),
+
     autosizeInput: function() {
-      var input = this.$('.name')
+      var input = this.$('.schedule-name');
 
       if (input.data('autosized') === undefined) {
         input.autosizeInput({space: 10}).show();
       }
 
       input.data('autosized', true);
+    },
+
+    renderSelect2: function() {
+      this.$('.schedule-term').select2();
     },
 
     addOneCourseOffering: function() {
@@ -97,11 +118,11 @@ var app = app || {};
     },
 
     focusName: function() {
-      this.$('.name').select();
+      this.$('.schedule-name').select();
     },
 
     blurName: function() {
-      var input = this.$('.name');
+      var input = this.$('.schedule-name');
 
       if (input.val().trim() === '') {
         // Have to use keyup to trigger the autosize. We listen to keydown.
@@ -109,7 +130,10 @@ var app = app || {};
       } else if (!input.hasClass('not-replaced')) {
         // As long as something was typed, we'll save it.
 
-        this.model.save({'name': input.val()}, {patch: true});
+        this.model.save({
+          'name': input.val(),
+          'term_id': this.$('.schedule-term').select2('val')
+        }, {patch: true});
       }
     },
 
@@ -119,10 +143,16 @@ var app = app || {};
         return;
       } else if (event.keyCode === 13) {
         // Enter
-        this.$('.name').blur();
+        this.$('.schedule-name').blur();
       } else {
-        this.$('.name').removeClass('not-replaced');
+        this.$('.schedule-name').removeClass('not-replaced');
       }
+    },
+
+    changeTerm: function() {
+      this.model.save({
+        term_id: this.$('.schedule-term').select2('val')
+      }, {patch: true});
     }
   });
 
