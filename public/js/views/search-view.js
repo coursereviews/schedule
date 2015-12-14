@@ -52,6 +52,8 @@ var app = app || {};
       if (changed.prop("tagName") === "SELECT") { changed = changed.find(":selected"); }
       else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
 
+      self.clearAll(changed);
+
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
         if ($('.active').length > 0) {$('.active').removeClass('active');}
@@ -402,7 +404,30 @@ var app = app || {};
         if($.inArray(el, uniqueQueries) === -1) uniqueQueries.push(el);
       });
       return uniqueQueries;
-    }
+    },
+
+    clearAll: function(newInp) {
+        var allinps = [$('#description'),
+                       $('#instructor'),
+                       $('#loc_select'),
+                       $('#subject'),
+                       $('[name="start_time"]'),
+                       $('[name="end_time"]'),
+                       $('#requirements')];
+        allinps.forEach(function(inp) {
+          if (newInp.attr('id') === 'meeting') {
+            if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') {
+              inp.val('');
+            }
+          } else {
+            if (inp.attr('id') === 'meeting') {
+              inp.val('');
+            }
+            $('select[class="days form-control"]').select2('val', '');
+          }
+        });
+        $('.results-list').empty();
+      }
 
   });
 
