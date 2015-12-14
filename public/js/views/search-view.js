@@ -6,7 +6,8 @@ var app = app || {};
   app.SearchView = Backbone.View.extend({
 
     events: {
-      'keydown .form-control': 'doSearch'
+      'keydown .form-control': 'doSearch',
+      'change .form-control': 'doSearch'
     },
 
     initialize: function() {
