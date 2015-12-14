@@ -36,10 +36,12 @@ var app = app || {};
         // If we're not creating a new schedule, fetch it.
         this.model.fetch({success: function() {
           this.renderSchedule();
+          this.renderScheduleCourses();
           this.addAllCourseOfferings();
         }.bind(this)});
       } else {
         // Nothing to fetch so we can render the schedule now.
+        this.renderScheduleCourses();
         this.renderSchedule();
       }
     },
@@ -67,6 +69,16 @@ var app = app || {};
       return this;
     },
 
+    renderScheduleCourses: function() {
+      var scheduleContainer = this.$('.schedule-container');
+      var courseModel = this.model.get('courseOfferings');
+      courseModel.forEach(function(model) {
+        var view = new app.ScheduleCourseItemView({model: model});
+        console.log(view);
+        scheduleContainer.append(view.render().el);
+      });
+    },
+
     autosizeInput: function() {
       var input = this.$('.name')
 
@@ -82,7 +94,7 @@ var app = app || {};
     },
 
     addAllCourseOfferings: function() {
-      console.log(this.model.get('courseOfferings'));
+      // console.log(this.model.get('courseOfferings'));
     },
 
     handleScheduleNotFound: function(model, error) {
