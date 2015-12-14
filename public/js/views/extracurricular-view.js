@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.ExtraCurricularView = Backbone.View.extend({
+  var ExtraCurricularView = Backbone.View.extend({
     tagName: 'li',
 
     className: 'extracurricular-list-item list-group-item',
@@ -30,4 +30,5 @@ var app = app || {};
     }
   });
 
+  app.ExtraCurricularView = ExtraCurricularView;
 })();

@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.SettingsRouter = Backbone.Router.extend({
+  var SettingsRouter = Backbone.Router.extend({
     routes: {
       '': 'extracurriculars',
       'extracurriculars': 'extracurriculars'
@@ -29,4 +29,5 @@ var app = app || {};
     }
   });
 
+  app.SettingsRouter = SettingsRouter;
 })();

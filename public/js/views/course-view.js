@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.CourseView = Backbone.View.extend({
+  var CourseView = Backbone.View.extend({
     tagName: 'div',
 
     className: 'col-md-12',
@@ -53,5 +53,7 @@ var app = app || {};
       }
     }
   });
+
+  app.CourseView = CourseView;
 
 })();

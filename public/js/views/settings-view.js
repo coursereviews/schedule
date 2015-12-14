@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.SettingsView = Backbone.View.extend({
+  var SettingsView = Backbone.View.extend({
     el: '#settings',
 
     initialize: function() {
@@ -12,8 +12,11 @@ var app = app || {};
 
     render: function() {
       this.$('a[href="#' + app.route + '"]').addClass('active');
-
       this.$('#main-app').append(app.view.render().el);
+
+      return this;
     }
   });
+
+  app.SettingsView = SettingsView;
 })();
