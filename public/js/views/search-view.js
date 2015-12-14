@@ -6,7 +6,7 @@ var app = app || {};
   var SearchView = Backbone.View.extend({
 
     events: {
-      'keydown .form-control': 'doSearch',
+      'keyup .form-control': 'doSearch',
       'change .form-control': 'doSearch'
     },
 
@@ -46,19 +46,15 @@ var app = app || {};
     doSearch: function(e) {
 
       var self = this;
+
       var changed = $(e.currentTarget);
 
-      if (changed.prop('tagName') === 'SELECT') {
-        changed = changed.find(':selected');
-      } else if (changed.prop('tagName') === 'INPUT') {
-        changed.attr('value', changed.val());
-      }
+      if (changed.prop("tagName") === "SELECT") { changed = changed.find(":selected"); }
+      else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
 
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
-        if ($('.active').length > 0) {
-          $('.active').removeClass('active');
-        }
+        if ($('.active').length > 0) {$('.active').removeClass('active');}
 
         var queries = this.getQueryStrings();
         var courselists = [];
@@ -68,11 +64,10 @@ var app = app || {};
           var newq = [];
           $.ajax({
             method: 'GET',
-            url: '/api/catalog/' + querystring,
+            url: '/api/catalog/' + query[1],
             dataType: 'json',
-            context: this,
             success: function(r) {
-              switch (attribute) {
+              switch (query[0]) {
                 case 'subject':
                   pushtolist(self.departmentCourseList(r));
                   break;
@@ -86,21 +81,23 @@ var app = app || {};
                   pushtolist(self.reqCourseList(r));
                   break;
                 case 'meeting':
-                  this.daysCourseList(r);
+                  self.daysCourseList(r);
                   break;
               }
             }
           });
         });
+
         function pushtolist(resp) {
           courselists.push(resp);
-          if (queries.length == courselists.length) {self.matchAll(courselists);}
+          if (queries.length == courselists.length && queries.length > 0) {
+            self.matchAll(courselists);}
         }
-      } else {
-        changed.removeClass('active');
-      }
+
+        } else { changed.removeClass('active'); }
 
     },
+
 
     matchAll: function(courselists) {
       var self = this;
@@ -134,6 +131,7 @@ var app = app || {};
     },
 
     addList: function(course) {
+      console.log("displaying something");
       var reslist = this.$('.results-list');
       var newcourse = new app.CourseModel({
           title: course.title,
@@ -151,10 +149,11 @@ var app = app || {};
         });
 			var view = new app.CourseView( {model: newcourse} );
 			this.$('.results-list').append(view.render().el);
-    },
+		},
 
     departmentCourseList: function(list) {
       var self = this;
+      var professor;
       var crn;
       var schedule = [];
       var location = [];
@@ -284,6 +283,7 @@ var app = app || {};
         var title = elmt.title;
         var type = elmt.type;
         var code = elmt.code;
+        // var department_id = elmt.department_id;
         var department = elmt.department;
 
         elmt.courseOfferings.forEach(function(item) {
@@ -395,7 +395,9 @@ var app = app || {};
         if($.inArray(el, uniqueQueries) === -1) uniqueQueries.push(el);
       });
       return uniqueQueries;
-    },
+    }
+
+  });
 
   app.SearchView = SearchView;
 })();
