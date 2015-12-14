@@ -95,7 +95,6 @@
 .schedule-course-block {
   position: absolute;
   width: calc(20%);
-  background-color: rgba(118, 180, 232, 0.7);
   border: 2px solid transparent;
   color: #333;
   font-weight: 500;
@@ -105,7 +104,6 @@
 
 .schedule-course-block.hover {
   cursor: pointer;
-  border-color: #2484d4;
 }
 
 .schedule-course-block-times {
