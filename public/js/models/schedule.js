@@ -3,7 +3,7 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.ScheduleModel = Backbone.Model.extend({
+  var ScheduleModel = Backbone.Model.extend({
     url: function() {
       return '/api/schedule/' + (this.get('id') || '');
     },
@@ -36,5 +36,7 @@ var app = app || {};
       return json;
     }
   });
+
+  app.ScheduleModel = ScheduleModel;
 
 })();

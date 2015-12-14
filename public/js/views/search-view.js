@@ -3,10 +3,11 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.SearchView = Backbone.View.extend({
+  var SearchView = Backbone.View.extend({
 
     events: {
-      'keydown .form-control': 'doSearch'
+      'keydown .form-control': 'doSearch',
+      'change .form-control': 'doSearch'
     },
 
     initialize: function() {
@@ -384,4 +385,6 @@ var app = app || {};
     }
 
   });
+
+  app.SearchView = SearchView;
 })();

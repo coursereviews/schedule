@@ -14,7 +14,7 @@ var app = app || {};
 
       response.season = seasons[response.code.slice(4)];
       response.year = response.code.slice(0, 4);
-      
+
       return response;
     }
   });

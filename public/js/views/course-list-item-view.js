@@ -10,10 +10,6 @@ var app = app || {};
 
     template: _.template($('#course-list-item-template').html()),
 
-    initialize: function() {
-
-    },
-
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
 
