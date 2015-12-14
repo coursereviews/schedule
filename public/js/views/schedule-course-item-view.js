@@ -20,6 +20,10 @@ var app = app || {};
       'mouseout .schedule-course-block': 'mouseoutBlock'
     },
 
+    initialize: function() {
+      this.listenTo(this.model, 'remove', this.remove);
+    },
+
     render: function() {
       this.model.get('meetings').forEach(this.renderOneCourseMeeting, this);
       return this;
@@ -27,7 +31,7 @@ var app = app || {};
 
     renderOneCourseBlock: function(meeting, day) {
       var block = $(this.template({
-        title: this.model.get('course').code,
+        title: this.model.get('course_code').slice(0, 8),
         meeting: meeting
       }));
 
