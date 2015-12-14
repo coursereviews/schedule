@@ -20,18 +20,19 @@ var app = app || {};
       'schedule(/:id)': 'schedule',
       'search': 'search',
     },
-    initialize: function() {
 
-    },
     index: function() {
-      console.log('index');
+      this.navigate('search', {trigger: true, replace: true});
     },
+
     schedule: function(id) {
       app.scheduleId = id;
 
       ViewManager.showView(new app.ScheduleMainView());
     },
+
     search: function() {
+      console.log('triggasd');
       ViewManager.showView(new app.SearchView());
     }
   });
