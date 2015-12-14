@@ -182,43 +182,63 @@ var app = app || {};
 
     departmentCourseList: function(list){
       var self = this;
-      var professor;
-      var crn;
-      var schedule = [];
-      var location = [];
-      var requirements = [];
+      //var professor;
+      //var crn;
+      // var schedule = [];
+      // var location = [];
+      // var requirements = [];
       var department = list[0].name;
       var courseList = [];
       list[0].courses.forEach(function(elmt){
-        elmt.courseOfferings.forEach(function(item){
-          professor = item.professors[0]['name'];
+        //var department = elmt.name;
 
+        elmt.courseOfferings.forEach(function(item){
+
+          var location = [];
           item.meetings.forEach(function(m){
             location.push(m.building+' '+m.room);
           });
-
-          item.meetings.forEach(function(meet){
-            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
-          });
-          // requirements = item.requirements[0].name;
-
+          var requirements = [];
           item.requirements.forEach(function(req){
             requirements.push(req.name);
           });
+          var schedule = [];
+          item.meetings.forEach(function(meet){
+            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          });
+          var professors = [];
+          item.professors.forEach(function(p){
+            professors.push(p.name);
+          });
+
+          // professor = item.professors[0]['name'];
+          //
+          // item.meetings.forEach(function(m){
+          //   location.push(m.building+' '+m.room);
+          // });
+
+          // item.meetings.forEach(function(meet){
+          //   schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          // });
+          // requirements = item.requirements[0].name;
+          //
+          // item.requirements.forEach(function(req){
+          //   requirements.push(req.name);
+          // });
 
           var courseObj = {
             title: elmt.title,
             code: elmt.code,
-            instructor: professor,
+            instructor: professors,
             department: department,
             location: location,
             requirements: requirements,
-            term: elmt.term,
+            term: item.term.code,
             type: elmt.type,
             schedule: schedule,
             description: elmt.description,
             crn: item.crn,
-            href: elmt.href,
+            href: item.href,
           };
 
           courseList.push(courseObj);
