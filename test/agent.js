@@ -9,8 +9,8 @@ var agent = supertest.agent(app);
 
 // should be replaced
 var fixtureAccount = {
-  'email': 'paolo.enrico.bernasconi@gmail.com',
-  'password': 'password'
+  'email': 'jabillings@middlebury.edu',
+  'password': 'julian'
 };
 
 module.exports = new Promise(function(resolve, reject) {
