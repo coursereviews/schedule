@@ -55,7 +55,7 @@ html {
 
 .course-panel-heading {
   padding: 2px 15px;
-  background-color: rgb(66, 100, 150);
+  background-color: #3076B3;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -70,6 +70,16 @@ html {
 .course-panel-body {
   background-color: white;
   padding: 5px;
+}
+
+.fav-star {
+  font-size: 1.3em;
+  color: white;
+}
+
+.fav-star:hover {
+  font-weight: bold;
+  color: white;
 }
 
 #loc_select .list-group-item:hover {
