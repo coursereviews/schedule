@@ -366,7 +366,7 @@ describe('api/catalog GET request tests', function() {
 
     it('should return correct department with multiple params', function(done) {
       authedAgent
-       .get('/api/catalog/query/department?name=International_&_Global_Studies&code=HIST')
+       .get('/api/catalog/query/department?name=International_%26_Global_Studies&code=IGST')
        .expect(200)
        .expect(function(res) {
          if (res.body.length !== 1) {
@@ -374,7 +374,7 @@ describe('api/catalog GET request tests', function() {
          }
        })
        .expect(function(res) {
-         if (res.body[0].id !== 17) {
+         if (res.body[0].id !== 18) {
            throw new Error("Incorrect course returned");
          }
        })

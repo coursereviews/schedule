@@ -7,6 +7,18 @@ const supertest = require('supertest');
 const app = require('../../lib/server');
 const agent = supertest(app);
 
+describe('POST /signup', function() {
+
+  it('should create new user', function(done) {
+    agent
+      .post('/signup')
+      .send({name: 'julian', email: 'jabillings@middlebury.edu', password: 'julian'})
+      .expect(302)
+      .expect('Location', '/')
+      .end(done);
+  });
+});
+
 
 describe('POST /login', function() {
 
@@ -28,19 +40,6 @@ describe('POST /login', function() {
     agent
       .post('/login')
       .send({email: 'jabillings@middlebury.edu', password: 'julian'})
-      .expect(302)
-      .expect('Location', '/login')
-      .end(done);
-  });
-});
-
-
-describe('POST /signup', function() {
-
-  it('should create new user', function(done) {
-    agent
-      .post('/signup')
-      .send({name: 'julian', email: 'jabillings@middlebury.edu', password: 'julian'})
       .expect(302)
       .expect('Location', '/')
       .end(done);
