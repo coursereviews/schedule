@@ -13,7 +13,7 @@ var app = app || {};
       'focus .schedule-name': 'focusName',
       'blur .schedule-name': 'blurName',
       'keydown .schedule-name': 'typeName',
-      'change .schedule-term': 'changeTerm'
+      'change select.schedule-term': 'changeTerm'
     },
 
     namePlaceholder: 'Click to name your schedule',
@@ -35,7 +35,7 @@ var app = app || {};
 
       this.listenTo(this.model.get('courseOfferings'), 'add', this.addOneCourseOffering);
 
-      _.bindAll(this, 'autosizeInput', 'renderSelect2');
+      _.bindAll(this, 'autosizeInput', 'renderSelect2', 'changeTerm');
 
       if (!this.model.isNew()) {
         // If we're not creating a new schedule, fetch it.
@@ -64,6 +64,8 @@ var app = app || {};
       this.$el.html(this.template());
       this.$('.panel-body').css('height', $(window).height() - 101 - 90);
 
+      this.$('select.schedule-term').addClass('hidden');
+
       // Hide the name until we have time to style it.
       // Defer autosizing until it's been inserted into the DOM.
       this.$('.schedule-name').hide();
@@ -78,7 +80,8 @@ var app = app || {};
     },
 
     renderTerms: _.after(2, function() {
-      var input = this.$('.schedule-term');
+      var input = this.$('select.schedule-term');
+      input.html('<option></option>');
 
       app.terms.each(function(term) {
         input.append(this.termTemplate(term.toJSON()));
@@ -98,7 +101,10 @@ var app = app || {};
     },
 
     renderSelect2: function() {
-      this.$('.schedule-term').select2();
+      this.$('select.schedule-term').select2({
+        placeholder: 'Term'
+      })
+      .removeClass('hidden');
     },
 
     addOneCourseOffering: function(model) {

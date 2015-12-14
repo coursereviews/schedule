@@ -13,7 +13,7 @@ var app = app || {};
     },
 
     renderOnChangedTerm: function() {
-      if (_.has(app.schedule.changedAttributes(), 'term')) {
+      if (_.has(app.schedule.changedAttributes(), 'term_id')) {
         return this.render();
       }
     },
