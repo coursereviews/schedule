@@ -81,7 +81,6 @@ var app = app || {};
 
     renderTerms: _.after(2, function() {
       var input = this.$('select.schedule-term');
-      input.html('<option></option>');
 
       app.terms.each(function(term) {
         input.append(this.termTemplate(term.toJSON()));
@@ -169,4 +168,3 @@ var app = app || {};
 
   app.ScheduleView = ScheduleView;
 })();
-
