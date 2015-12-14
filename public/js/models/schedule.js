@@ -9,21 +9,18 @@ var app = app || {};
     },
 
     initialize: function() {
-      this.assignCollections();
+      this.set('extraCurriculars', app.extracurriculars);
+      this.set('courseOfferings', app.courseOfferings);
     },
 
     parse: function(response, options) {
-      this.assignCollections();
+      app.extracurriculars.reset(response.extraCurriculars);
+      response.extraCurriculars = app.extracurriculars;
 
-      this.get('extraCurriculars').set(response.extraCurriculars);
-      this.get('courseOfferings').set(response.courseOfferings);
+      app.courseOfferings.reset(response.courseOfferings);
+      response.courseOfferings = app.courseOfferings;
 
       return response;
-    },
-
-    assignCollections: function() {
-      this.set('extraCurriculars', app.extracurriculars);
-      this.set('courseOfferings', app.courseOfferings);
     },
 
     toJSON: function() {

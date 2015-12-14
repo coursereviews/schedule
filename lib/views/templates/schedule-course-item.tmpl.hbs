@@ -1,4 +1,6 @@
-<script type="text/template" id="schedule-course-item-template">
-  <h4 class="list-group-item-heading"><%- course.title %></h4>
-  <p class="list-group-item-text"><%- course.type %></p>
+<script type="text/template" id="schedule-course-block-template">
+  <div class="schedule-course-block">
+    <div class="schedule-course-block-title"><%- title %></div>
+    <div class="schedule-course-block-times"><%- meeting.start_time %> to <%- meeting.end_time %></div>
+  </div>
 </script>

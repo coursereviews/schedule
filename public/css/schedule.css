@@ -1,5 +1,6 @@
 .schedule .panel-body {
   padding: 0;
+  position: relative;
 }
 
 .schedule-name {
@@ -33,8 +34,8 @@
   position: relative;
 }
 
-.schedule .day:not(:last-child) {
-  border-right: 1px solid #ddd;
+.schedule .day:not(:first-child) {
+  border-left: 1px solid #ddd;
 }
 
 .schedule .course-offering {
@@ -50,4 +51,33 @@
 
 .schedule .block-30-mins:not(:last-child) {
   border-bottom: 1px dashed #eee;
+}
+
+.schedule-course-items {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.schedule-course-block {
+  position: absolute;
+  width: calc(20% - 2px);
+  background-color: rgba(118, 180, 232, 0.7);
+  border: 2px solid transparent;
+  color: #333;
+  font-weight: 500;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.schedule-course-block.hover {
+  cursor: pointer;
+  border-color: #2484d4;
+}
+
+.schedule-course-block-times {
+  font-weight: 400;
+  font-size: 12px;
 }
