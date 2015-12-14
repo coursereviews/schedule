@@ -23,10 +23,19 @@ var app = app || {};
       var star = $(e.currentTarget)
       if (star.attr('class') == 'glyphicon glyphicon-star-empty fav-star'){
         star.attr('class', 'glyphicon glyphicon-star fav-star');
+
+        var fav = new app.CourseFavoriteModel({courseId:this.model.get('id')});
+        fav.save();
+
       } else {
         star.attr('class', 'glyphicon glyphicon-star-empty fav-star');
+
+        var fav = new app.CourseFavoriteModel({id:this.model.get('id')});
+        fav.destroy();
+
       } star.closest('div').trigger("click");
-      
+
+
       // CODE FOR POST NEW FAVORITE ----->
     },
 

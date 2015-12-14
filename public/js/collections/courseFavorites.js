@@ -10,9 +10,12 @@ var app = app || {};
     'use strict';
 
     var favorites = Backbone.Collection.extend({
-        model: app.FavoriteModel,
+        model: app.CourseFavoriteModel,
         url: '/api/favorite/'
+
     });
 
-    app.favoritesCollection = new favorites();
+
+    app.CourseFavoritesCollection = new favorites();
+
 })();

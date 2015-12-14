@@ -124,6 +124,7 @@ var app = app || {};
           description: elmt.description,
           crn: elmt.crn,
           href: elmt.href,
+          id: elmt.id
         });
         self.addList(elmt);
       });
@@ -171,6 +172,7 @@ var app = app || {};
            description: description,
            crn: item.crn,
            href: href,
+           id: elmt.id,
          });
          self.addList(elmt);
        });
@@ -207,6 +209,7 @@ var app = app || {};
             description: item.course.description,
             crn: item.crn,
             href: item.href,
+            id: elmt.id,
           });
           self.addList(elmt);
         });
@@ -255,6 +258,7 @@ var app = app || {};
             description: description,
             crn: item.crn,
             href: item.href,
+            id: elmt.id,
           });
           self.addList(item);
 
@@ -294,6 +298,7 @@ var app = app || {};
             description: item.course.description,
             crn: item.crn,
             href: item.href,
+            id: elmt.id,
           });
           self.addList(elmt);
         });

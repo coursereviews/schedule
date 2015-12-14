@@ -47,5 +47,5 @@ var app = app || {};
         },
     });
 
-    return app.FavoriteView = favView;
+    return app.CourseFavoriteView = favView;
 })();

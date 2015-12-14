@@ -31,11 +31,11 @@ var app = app || {};
       var schedule = app.ScheduleCollection;
       ViewManager.showView(new app.ScheduleView({model: schedule}));
 
-      var favorite = app.favoritesCollection;
-      app.favoritesCollection.fetch({
+      var favorite = app.CourseFavoritesCollection;
+      app.CourseFavoritesCollection.fetch({
         success: function(collection,response){
           console.log('Collection fetch success', response);
-          $("#favorite_courses").html((new app.FavoriteView({collecti:collection})));
+          $("#favorite_courses").html((new app.CourseFavoriteView({collecti:collection})));
         },
         fetchError: function (collection, response) {
           throw new Error("collection fetch error");
@@ -47,7 +47,6 @@ var app = app || {};
     search: function() {
       console.log('search');
       ViewManager.showView(new app.SearchView());
-
     }
   });
 })();
