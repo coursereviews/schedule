@@ -35,7 +35,6 @@ var app = app || {};
       app.favoritesCollection.fetch({
         success: function(collection,response){
           console.log('Collection fetch success', response);
-          //console.log('Collection models: ', collection.models);
           $("#favorite_courses").html((new app.FavoriteView({collecti:collection})));
         },
         fetchError: function (collection, response) {
