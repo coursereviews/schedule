@@ -50,6 +50,7 @@ var app = app || {};
         if ($('.active').length > 0) {$('.active').removeClass('active');}
 
         var queries = this.getQueryStrings();
+        console.log("queries");
         var courselists = [];
         if (queries.length == 0) { $('.results-list').empty(); }
 
@@ -178,21 +179,16 @@ var app = app || {};
         };
         courseList.push(courseObj);
       });
+      console.log("courseList");
       console.log(courseList);
       return courseList;
     },
 
     departmentCourseList: function(list){
       var self = this;
-      //var professor;
-      //var crn;
-      // var schedule = [];
-      // var location = [];
-      // var requirements = [];
       var department = list[0].name;
       var courseList = [];
       list[0].courses.forEach(function(elmt){
-        //var department = elmt.name;
 
         elmt.courseOfferings.forEach(function(item){
 
@@ -212,21 +208,6 @@ var app = app || {};
           item.professors.forEach(function(p){
             professors.push(p.name);
           });
-
-          // professor = item.professors[0]['name'];
-          //
-          // item.meetings.forEach(function(m){
-          //   location.push(m.building+' '+m.room);
-          // });
-
-          // item.meetings.forEach(function(meet){
-          //   schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
-          // });
-          // requirements = item.requirements[0].name;
-          //
-          // item.requirements.forEach(function(req){
-          //   requirements.push(req.name);
-          // });
 
           var courseObj = {
             title: elmt.title,
@@ -381,7 +362,7 @@ var app = app || {};
     getQueryStrings: function(){
       var queries = [];
       var allinps = [$("#description"), $("#instructor"), $("#loc_select").children(":first"), $("#subject"),
-                     $("[name='start_time']"), $("[name='end_time']"), $("#requirements")];
+                     $("[name='start_time']"), $("[name='end_time']"), $("[name = 'days']"), $("#requirements")];
       allinps.forEach(function(inp) {
         var querystring = 'query/';
         if (inp.val() !== '') {
@@ -400,6 +381,7 @@ var app = app || {};
               if (inp.val() !== '' &&  inp.val() !== null) {
               querystring += '&' +inp.attr('name') +'=' +inp.val();} });
           }
+          console.log(querystring);
           queries.push([inp.attr('id'), querystring]);
         }
       });
