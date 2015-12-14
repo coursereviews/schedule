@@ -8,16 +8,24 @@ var app = app || {};
       return '/api/schedule/' + (this.get('id') || '');
     },
 
+    sync: function(method, model, options) {
+      if (method === 'update') {
+        method = 'patch';
+      }
+
+      return Backbone.sync.apply(this, [method, model, options]);
+    },
+
     initialize: function() {
       this.set('extraCurriculars', app.extracurriculars);
       this.set('courseOfferings', app.courseOfferings);
     },
 
     parse: function(response, options) {
-      app.extracurriculars.reset(response.extraCurriculars);
+      app.extracurriculars.set(response.extraCurriculars);
       response.extraCurriculars = app.extracurriculars;
 
-      app.courseOfferings.reset(response.courseOfferings);
+      app.courseOfferings.set(response.courseOfferings);
       response.courseOfferings = app.courseOfferings;
 
       return response;
@@ -33,7 +41,7 @@ var app = app || {};
         });
       });
 
-      return json;
+      return _.omit(json, 'user');
     }
   });
 

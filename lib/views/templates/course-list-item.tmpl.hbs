@@ -1,5 +1,20 @@
 <script type="text/template" id="course-list-item-template">
-  <span class="glyphicon pull-right"></span>
-  <h4 class="list-group-item-heading"><%- title %></h4>
-  <p class="list-group-item-text"><%- type %></p>
+  <li class="list-group-item">
+    <span class="glyphicon pull-right"></span>
+    <h4 class="list-group-item-heading"><%- title %></h4>
+    <p class="list-group-item-text"><%- type %></p>
+  </li>
+</script>
+
+<script type="text/template" id="courseoffering-list-item-template">
+  <p class="list-group-item-text">
+    <%- term.season %> <%- term.year %> with
+    <% function toSentence(a, b, i, array) {
+          return a + (i + 1 == array.length
+            ? (array.length == 2 ? '' : ',') + ' and '
+            : ', ') + b;
+        }
+       var profs = professors.map(function(prof) { return prof.name; });
+       print(profs.reduce(toSentence)); %>
+  </p>
 </script>
