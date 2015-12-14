@@ -1,0 +1,127 @@
+.schedule .favorites {
+  overflow: scroll;
+}
+
+.schedule .panel-heading {
+  padding: 0;
+  width: 100%;
+  height: 40px;
+  background: #FFF;
+}
+
+.schedule .day-title {
+  font-size: 15px;
+  display: inline-block;
+  width: calc(100% / 5);
+  position: relative;
+  float: left;
+  height: 40px;
+  padding: 10px;
+  text-transform: capitalize;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule .day-title:last-child {
+  border-right: 0px solid transparent;
+}
+
+.schedule .panel-body {
+  padding: 0;
+  position: relative;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.schedule-name {
+  padding: 4px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  outline: none;
+  max-width: 500px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: #FAFAFB;
+}
+
+.schedule-name:hover,
+.schedule-name:focus {
+  border-color: #eee;
+  background-color: #FFF;
+}
+
+.schedule-name:focus {
+  box-shadow: inset 0 0 1px #e5e5e5;
+}
+
+.schedule-name.not-replaced {
+  color: #999;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.schedule .time-container {
+  width: 15%;
+  left: 0;
+  top: 13px;
+  position: absolute;
+  padding-left: 5px;
+}
+
+.schedule .time-container > .time-block {
+  color: #B2B2B2;
+  font-size: 12px;
+  height: 30px;
+}
+
+.schedule .day {
+  width: calc(100% / 5);
+  float: left;
+  position: relative;
+}
+
+.schedule .day:not(:nth-last-child(2)) {
+  border-right: 1px solid #eee;
+}
+
+.schedule .course-offering {
+  position: absolute;
+  top: 120px;
+  padding: 15px;
+  border: 1px solid steelblue;
+}
+
+.schedule .block-30-mins {
+  height: 30px;
+}
+
+.schedule .block-30-mins:not(:last-child) {
+  border-bottom: 1px dashed #eee;
+}
+
+.schedule-course-items {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.schedule-course-block {
+  position: absolute;
+  width: calc(20%);
+  border: 2px solid transparent;
+  color: #333;
+  font-weight: 500;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.schedule-course-block.hover {
+  cursor: pointer;
+}
+
+.schedule-course-block-times {
+  font-weight: 400;
+  font-size: 12px;
+}
