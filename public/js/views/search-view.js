@@ -131,6 +131,7 @@ var app = app || {};
     },
 
     newCourseList: function(list) {
+      console.log(list);
       list.forEach(function(elmt) {
         elmt = new app.CourseModel({
           title: elmt.title,
@@ -152,8 +153,9 @@ var app = app || {};
     },
 
     departmentCourseList: function(list) {
+
       var self = this;
-      var professor, description, title, code, term, type, href;
+      var professor, description, title, code, term, type, href, faved;
       var schedule = [];
       var location = [];
       var requirements = [];
@@ -165,7 +167,7 @@ var app = app || {};
         term = elmt.term;
         type = elmt.type;
         href = elmt.href;
-
+        faved = elmt.favorited;
         elmt.courseOfferings.forEach(function(item) {
           professor = item.professors[0].name;
 
@@ -180,7 +182,8 @@ var app = app || {};
          item.requirements.forEach(function(req){
            requirements.push(req.name);
          });
-         elmt = new app.CourseModel({
+
+          elmt = new app.CourseModel({
            title: title,
            code: code,
            instructor: professor,
@@ -194,6 +197,7 @@ var app = app || {};
            crn: item.crn,
            href: href,
            id: elmt.id,
+            favorite:faved,
          });
          self.addList(elmt);
        });
@@ -286,7 +290,7 @@ var app = app || {};
         var type = elmt.type;
         var code = elmt.code;
         var department = elmt.department;
-
+        var faved =elmt.favorited;
         elmt.courseOfferings.forEach(function(item) {
 
           var professors = [];
@@ -320,6 +324,7 @@ var app = app || {};
             crn: item.crn,
             href: item.href,
             id: elmt.id,
+            favorite: faved,
           });
           self.addList(item);
 

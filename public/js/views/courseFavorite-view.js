@@ -2,10 +2,6 @@ var app = app || {};
 
 
 var app = app || {};
-//var $ = require('jquery');
-//var _ = require('underscore');
-//var Backbone = require('backbone');
-
 (function() {
     'use strict';
 
@@ -24,8 +20,6 @@ var app = app || {};
         },
 
         render: function() {
-            //TODO: the data is in apps.favorite collection...?
-            //TODO: I am assuming courses is where favorites are placed
             var favorites_list = $("#courses");
             console.log(this.collection);
             var that = this;
@@ -34,12 +28,6 @@ var app = app || {};
                    model:favorite
                 });
                 that.$el.append(favorite1.render().el);
-
-                //favorites_list.appendChild(template(
-                //    //TODO:takes some object so maybe we could get
-                //    //TODO:{course_title: favorite.SOMETHING}
-                //    favorite
-                //));
             });
 
 

@@ -25,6 +25,11 @@ var app = app || {};
     },
 
     render: function() {
+      if(this.model.get('favorite')===true){
+        this.model.set({starClass:'glyphicon glyphicon-star fav-star'});
+      }else{
+        this.model.set({starClass:'glyphicon glyphicon-star-empty fav-star'});
+      }
       this.$el.html(this.template(this.model.toJSON()));
       return this;
     },
@@ -44,9 +49,6 @@ var app = app || {};
         fav.destroy();
 
       } star.closest('div').trigger("click");
-
-
-      // CODE FOR POST NEW FAVORITE ----->
     },
 
     showDetailView: function(e) {
