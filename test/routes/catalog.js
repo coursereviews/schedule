@@ -346,7 +346,7 @@ describe('api/catalog GET request tests', function() {
        .end(done);
     });
 
-    //NOTE/TODO: names with '&' in them don't work right now
+    // NOTE/TODO: names with '&' in them don't work right now
     it('should return correct department with one name param', function(done) {
       authedAgent
        .get('/api/catalog/query/department?name=Prog_in_Neuroscience')
