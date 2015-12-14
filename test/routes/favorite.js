@@ -70,7 +70,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should be able to post a single course', function(done) {
 
       authedAgent
-        .post('/api/favorites/9')
+        .post('/api/favorite/9')
         .expect(200)
         .end(done);
     });
@@ -78,7 +78,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should be able to post a second course', function(done) {
 
       authedAgent
-        .post('/api/favorites/18')
+        .post('/api/favorite/18')
         .expect(200)
         .end(done);
     });
@@ -86,7 +86,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should be able to post a third course', function(done) {
 
       authedAgent
-        .post('/api/favorites/5')
+        .post('/api/favorite/5')
         .expect(200)
         .end(done);
     });
@@ -94,7 +94,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should not post the same course to favorites multiple times', function(done) {
 
       authedAgent
-        .post('/api/favorites/9')
+        .post('/api/favorite/9')
         .expect(500)
         .end(done);
     });
@@ -102,7 +102,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should not be able to post a single course with a negative ID', function(done) {
 
       authedAgent
-        .post('/api/favorites/-1')
+        .post('/api/favorite/-1')
         .expect(404)
         .end(done);
     });
@@ -110,7 +110,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should not be able to post a single course with an invalid ID', function(done) {
 
       authedAgent
-        .post('/api/favorites/1000')
+        .post('/api/favorite/1000')
         .expect(404)
         .end(done);
     });
@@ -126,7 +126,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should be able to get all of a user\'s favorite courses', function(done) {
 
       authedAgent
-        .get('/api/favorites')
+        .get('/api/favorite')
         .expect(200)
         .expect(function(res) {
           var data = res.body;
@@ -150,7 +150,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should delete a favorite course', function(done) {
 
       authedAgent
-        .del('/api/favorites/5')
+        .del('/api/favorite/5')
         .expect(200)
         .expect(function(res) {
           var data = res.body;
@@ -164,7 +164,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should not make a difference if user deletes a course that isn\'t a favorite', function(done) {
 
       authedAgent
-        .del('/api/favorites/5')
+        .del('/api/favorite/5')
         .expect(200)
         .expect(function(res) {
           var data = res.body
@@ -174,7 +174,7 @@ describe('/api/favorite tests, POST and GET', function() {
         });
 
         authedAgent
-          .del('/api/favorites/7')
+          .del('/api/favorite/7')
           .expect(200)
           .expect(function(res) {
             var data = res.body
@@ -189,7 +189,7 @@ describe('/api/favorite tests, POST and GET', function() {
     it('should not be able to delete a course with a negative id', function(done) {
 
       authedAgent
-        .del('/api/favorites/-1')
+        .del('/api/favorite/-1')
         .expect(500)
         .end(done);
 

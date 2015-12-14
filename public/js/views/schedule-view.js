@@ -169,3 +169,4 @@ var app = app || {};
 
   app.ScheduleView = ScheduleView;
 })();
+

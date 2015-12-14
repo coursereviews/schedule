@@ -6,7 +6,7 @@ var app = app || {};
   var FavoritesCollection = Backbone.Collection.extend({
     model: app.CourseModel,
 
-    url: '/api/favorites',
+    url: '/api/favorite',
 
     initialize: function() {
       this.on('sync', this.setFavoriteAttribute);

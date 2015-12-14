@@ -48,3 +48,5 @@ var app = app || {};
   app.ScheduleModel = ScheduleModel;
 
 })();
+
+
