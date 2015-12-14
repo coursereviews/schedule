@@ -153,6 +153,7 @@ var app = app || {};
 		},
 
     departmentCourseList: function(list) {
+
       var self = this;
       var professor;
       var crn;
@@ -173,7 +174,6 @@ var app = app || {};
             schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
           });
           // requirements = item.requirements[0].name;
-
           item.requirements.forEach(function(req){
             requirements.push(req.name);
           });
@@ -294,7 +294,7 @@ var app = app || {};
         var code = elmt.code;
         // var department_id = elmt.department_id;
         var department = elmt.department;
-
+        var faved =elmt.favorited;
         elmt.courseOfferings.forEach(function(item) {
 
           var professors = [];
@@ -327,6 +327,8 @@ var app = app || {};
             description: description,
             crn: item.crn,
             href: item.href,
+            id: elmt.id,
+            favorite: faved,
           };
           courseList.push(courseObj);
         });

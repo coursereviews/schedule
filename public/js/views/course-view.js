@@ -25,6 +25,11 @@ var app = app || {};
     },
 
     render: function() {
+      if(this.model.get('favorite')===true){
+        this.model.set({starClass:'glyphicon glyphicon-star fav-star'});
+      }else{
+        this.model.set({starClass:'glyphicon glyphicon-star-empty fav-star'});
+      }
       this.$el.html(this.template(this.model.toJSON()));
       return this;
     },
@@ -33,12 +38,17 @@ var app = app || {};
       var star = $(e.currentTarget);
       if (star.attr('class') === 'glyphicon glyphicon-star-empty fav-star') {
         star.attr('class', 'glyphicon glyphicon-star fav-star');
+
+        var fav = new app.CourseFavoriteModel({courseId:this.model.get('id')});
+        fav.save();
+
       } else {
         star.attr('class', 'glyphicon glyphicon-star-empty fav-star');
-      }
-      star.closest('div').trigger('click');
 
-      // CODE FOR POST NEW FAVORITE ----->
+        var fav = new app.CourseFavoriteModel({id:this.model.get('id')});
+        fav.destroy();
+
+      } star.closest('div').trigger("click");
     },
 
     showDetailView: function(e) {
