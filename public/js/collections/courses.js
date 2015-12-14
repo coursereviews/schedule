@@ -7,6 +7,6 @@ var app = app || {};
     model: app.CourseModel,
   });
 
-  app.CourseCollection = new CourseCollection();
+  app.CourseCollection = CourseCollection;
 
 })();
