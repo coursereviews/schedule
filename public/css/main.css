@@ -5,16 +5,35 @@
 body,
 html {
   height: 100%;
+  font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+  background-color: #FAFAFB;
 }
 
 .navbar-default {
   background-color: #fff;
-  border-bottom-color: #3376b1;
+  border-bottom-color: rgba(75, 127, 173, 1);
+}
+
+.navbar-nav li.active a {
+  background: rgba(75, 127, 173, 0.9) !important;
+  color: #FFF !important;
+}
+
+.navbar-nav li:hover a,
+.navbar-nav li:active a {
+  background: rgba(75, 127, 173, 0.9) !important;
+  color: #FFF !important;
 }
 
 .card-container.card {
   max-width: 350px;
   padding: 40px 40px;
+}
+
+.intro-text {
+  text-align: center;
 }
 
 .departments-list {
@@ -31,12 +50,12 @@ html {
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
-          box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
 .course-panel-heading {
   padding: 2px 15px;
-  background-color: rgb(66, 100, 150);
+  background-color: #3076B3;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
@@ -51,6 +70,16 @@ html {
 .course-panel-body {
   background-color: white;
   padding: 5px;
+}
+
+.fav-star {
+  font-size: 1.3em;
+  color: white;
+}
+
+.fav-star:hover {
+  font-weight: bold;
+  color: white;
 }
 
 #loc_select .list-group-item:hover {
@@ -73,7 +102,7 @@ html {
 }
 
 #loc_select .list-group-horizontal .list-group-item:first-child {
-  border-top-right-radius :0;
+  border-top-right-radius: 0;
   border-bottom-left-radius: 4px;
 }
 
@@ -81,6 +110,7 @@ html {
   border-top-right-radius: 4px;
   border-bottom-left-radius: 0;
 }
+
 
 /*
  * Card component
@@ -214,11 +244,4 @@ html {
 .course-item {
   border-bottom: 1px solid #797979;
   padding: 5px 10px;
-}
-
-.schedule-container {
-  border: 1px solid grey;
-  border-radius: 5px;
-  padding: 0;
-  margin: 0;
 }

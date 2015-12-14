@@ -10,30 +10,39 @@ var app = app || {};
         this.currentView.remove();
       }
       this.currentView = view;
+
+      var route = Backbone.history.fragment.split('/')[0];
+
+      var $el = $('#navbar-' + route);
+      if ($el.hasClass('active') === false) {
+        $('#navbar li.active').removeClass('active');
+        $el.addClass('active');
+      }
+
       return $('#main-app').html(this.currentView.render().el);
     }
   };
 
-  app.AppRouter = Backbone.Router.extend({
+  var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'schedule(/:id)': 'schedule',
       'search': 'search',
     },
-    initialize: function() {
 
-    },
     index: function() {
-      console.log('index');
+      this.navigate('search', {trigger: true, replace: true});
     },
+
     schedule: function(id) {
-      console.log('schedule');
-      var schedule = app.ScheduleCollection;
-      ViewManager.showView(new app.ScheduleView({model: schedule}));
+      app.scheduleId = id;
+      ViewManager.showView(new app.ScheduleMainView());
     },
+
     search: function() {
-      console.log('search');
       ViewManager.showView(new app.SearchView());
     }
   });
+
+  app.AppRouter = AppRouter;
 })();
