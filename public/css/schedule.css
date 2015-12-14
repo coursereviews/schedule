@@ -2,7 +2,7 @@
   padding: 0;
 }
 
-.name {
+.schedule-name {
   padding: 3px;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -12,16 +12,16 @@
   border-radius: 5px;
 }
 
-.name:hover,
-.name:focus {
+.schedule-name:hover,
+.schedule-name:focus {
   border-color: #ddd;
 }
 
-.name:focus {
+.schedule-name:focus {
   box-shadow: inset 0 0 1px #e5e5e5;
 }
 
-.name.not-replaced {
+.schedule-name.not-replaced {
   color: #999;
   font-weight: 500;
   font-style: italic;
