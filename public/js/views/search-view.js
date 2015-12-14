@@ -6,7 +6,7 @@ var app = app || {};
   var SearchView = Backbone.View.extend({
 
     events: {
-      'keyup .form-control': 'doSearch',
+      'keyup .form-control.input-md': 'doSearch',
       'change .form-control': 'doSearch'
     },
 
@@ -97,7 +97,6 @@ var app = app || {};
         } else { changed.removeClass('active'); }
 
     },
-
 
     matchAll: function(courselists) {
       var self = this;
@@ -197,6 +196,7 @@ var app = app || {};
     },
 
     daysCourseList: function(list) {
+      $('.results-list').empty();
       var self = this;
       var department = list[0].name;
       list.forEach(function(elmt) {
@@ -233,8 +233,15 @@ var app = app || {};
           crn: crn,
           href: href,
         });
-        self.addList(elmt);
+        self.addMeetList(elmt);
       });
+    },
+
+    addMeetList: function(course) {
+      var view = new app.CourseView({
+        model: course
+      });
+      this.$('.results-list').append(view.render().el);
     },
 
     instructorCourseList: function(list) {
