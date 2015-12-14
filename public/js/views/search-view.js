@@ -89,6 +89,8 @@ var app = app || {};
                     this.instructorCourseList(r);
                   } else if(attribute == 'requirements'){
                     this.reqCourseList(r);
+                  } else if(attribute == 'meeting'){
+                    this.daysCourseList(r);
                   } else {
                     this.newCourseList(r);
                   }
@@ -176,6 +178,52 @@ var app = app || {};
        });
      });
    },
+
+   daysCourseList: function(list){
+     var self = this;
+     var department = list[0].name;
+     list.forEach(function(elmt){
+     var code= elmt.courseOffering.course_code;
+     var title= elmt.courseOffering.course.title;
+     console.log(elmt.courseOffering.course.title);
+     console.log("test");
+   //  var requirement= "AAL";
+   //  var schedule=[];
+   //  elmt.start_time.push(schedule);
+     var schedule=  elmt.start_time+ " - "+ elmt.end_time + " "+ elmt.days;
+     var location= elmt.building+ " "+ elmt.room;
+     var requirement=[];
+     var crn= elmt.courseOffering.crn;
+     var href= elmt.courseOffering.href;
+     var description= elmt.courseOffering.course.description;
+     var type=elmt.courseOffering.course.type;
+     var profs=[];
+     elmt.courseOffering.requirements.forEach(function (rq){
+       requirement.push(rq.name);
+     });
+     elmt.courseOffering.professors.forEach(function (pr){
+       profs.push(pr.name);
+     });
+   //console.log("the length of the array is "+ requirement.length);
+     elmt = new app.CourseModel({
+       title: title,
+       code: code,
+       instructor: profs,
+       department: department,
+       location: location,
+       requirements: requirement,
+       term: elmt.term,
+       type: type,
+       schedule:schedule,
+       description:description,
+       crn: crn,
+       href: href,
+     });
+     self.addList(elmt);
+  //console.log(x);
+   //console.log(self);
+ });
+},
 
     instructorCourseList: function(list){
       var self = this;
