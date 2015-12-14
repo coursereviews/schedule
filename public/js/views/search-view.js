@@ -109,27 +109,6 @@ var app = app || {};
       //var items = Object.keys(offeringObj)
     },
 
-    newCourseList: function(list) {
-      var self = this;
-      list.forEach(function(elmt) {
-        elmt = new app.CourseModel({
-          title: elmt.title,
-          code: elmt.code,
-          instructor: elmt.instructor,
-          department: elmt.department,
-          location: elmt.location,
-          requirements: elmt.requirements,
-          term: elmt.term,
-          type: elmt.type,
-          schedule: elmt.schedule,
-          description: elmt.description,
-          crn: elmt.crn,
-          href: elmt.href,
-        });
-        self.addList(elmt);
-      });
-    },
-
     departmentCourseList: function(list){
       var self = this;
       var professor;
