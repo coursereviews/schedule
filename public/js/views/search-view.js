@@ -59,7 +59,7 @@ var app = app || {};
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
         if ($('.active').length > 0) {
-          $('.active:not('li')').removeClass('active');
+          $('.active:not("li")').removeClass('active');
         }
 
         var queries = self.getQueryStrings();
