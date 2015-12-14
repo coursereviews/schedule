@@ -131,26 +131,51 @@ var app = app || {};
 
     departmentCourseList: function(list){
       var self = this;
+      var professor, description, title, code, term, crn, type, href;
+      var schedule = [];
+      var location = [];
+      var requirements = [];
       var department = list[0].name;
       list[0].courses.forEach(function(elmt){
-        elmt = new app.CourseModel({
-          title: elmt.title,
-          code: elmt.code,
-          instructor: elmt.instructor,
-          department: department,
-          location: elmt.location,
-          requirements: elmt.requirements,
-          term: elmt.term,
-          type: elmt.type,
-          schedule: elmt.schedule,
-          description: elmt.description,
-          crn: elmt.crn,
-          href: elmt.href,
-        });
-        self.addList(elmt);
-        //console.log(self);
-      });
-    },
+        description = elmt.description;
+        title = elmt.title;
+        code = elmt.code;
+        term = elmt.term;
+        type = elmt.type;
+        href = elmt.href;
+
+       elmt.courseOfferings.forEach(function(item){
+         professor = item.professors[0]['name'];
+
+         item.meetings.forEach(function(m){
+           location.push(m.building+' '+m.room);
+         });
+
+         item.meetings.forEach(function(meet){
+           schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+         });
+
+         item.requirements.forEach(function(req){
+           requirements.push(req.name);
+         });
+         elmt = new app.CourseModel({
+           title: title,
+           code: code,
+           instructor: professor,
+           department: department,
+           location: location,
+           requirements: requirements,
+           term: term,
+           type: type,
+           schedule: schedule,
+           description: description,
+           crn: item.crn,
+           href: href,
+         });
+         self.addList(elmt);
+       });
+     });
+   },
 
     instructorCourseList: function(list){
       var self = this;
