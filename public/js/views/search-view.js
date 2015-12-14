@@ -6,17 +6,38 @@ var app = app || {};
   app.SearchView = Backbone.View.extend({
 
     initialize: function() {
-      this.render();
+      _.bindAll(this, 'renderSelect2');
     },
 
     render: function() {
       this.$el.html($("#search-template").html());
+
+      this.$('input.time').timepicker({
+        showDuration: true,
+        timeFormat: 'g:ia',
+        step: 5,
+        id: "schedule"
+      });
+
+      this.$('.days').addClass('hidden');
+
+      _.defer(this.renderSelect2);
+
       return this;
     },
 
+    renderSelect2: function() {
+      this.$('.days').select2({
+        placeholder: 'Select multiple days'
+      })
+      .removeClass('hidden');
+      this.$('.reqs').select2({
+        placeholder: 'Select a requirement'
+      })
+      .removeClass('hidden');
+    },
+
     events: {
-      "click .list-group-item": "doSearch",
-      "change .form-group": "doSearch",
       "change .form-control": "doSearch"
     },
 
@@ -25,33 +46,36 @@ var app = app || {};
       var changed = $(e.currentTarget);
 
       if (changed.prop("tagName") === "SELECT") { changed = changed.find(":selected"); }
-      else if (changed.attr("class") === "form-group") { changed = changed.find("input:checked")}
       else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
 
       var querystring = 'query/';
-      $('.results-list').empty();
+      this.clearAll(changed);
+
 
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
         if ($('.active').length > 0) {$('.active').removeClass('active');}
 
-        var attribute = $(e.currentTarget).attr('id');
+
+        var attribute = changed.attr('id');
+
         if (attribute == 'subject'){
-          querystring += 'department?code' + '=' +$(e.currentTarget).attr('value');
+          querystring += 'department?code' + '=' +changed.attr('value');
+        } else if (attribute == 'description') {
+          querystring += 'course?description=' + changed.attr('value').replace(' ','_');
+        } else if (attribute == 'instructor') {
+          querystring += 'professor?name=' + changed.attr('value').replace(' ','_');
+        } else if (attribute == 'requirements') {
+          querystring += 'requirement?code=' + changed.attr('value');
+        } else if (attribute == 'meeting') {
+          var meetInputs = [$("#loc_select"), $("[name='start_time']"), $("[name='end_time']"), $("[name='days']")];
+          querystring += "meeting?";
+          meetInputs.forEach(function(inp) {
+            if (inp.val() !== '' &&  inp.val() !== null) {
+            querystring += '&' +inp.attr('name') +'=' +inp.val();} });
         }
-        else if (attribute == 'description') {
-          querystring += 'course?description=' + $(e.currentTarget).attr('value').replace(' ','_');
-        }
-        else if (attribute == 'instructor') {
-          querystring += 'professor?name=' + $(e.currentTarget).attr('value').replace(' ','_');
-        }
-        else if (attribute == 'requirements') {
-          querystring += 'requirement?code=' + $(e.currentTarget).attr('value');
-        }
-        else if (attribute == 'schedule') {
-          querystring += 'meeting?code=' + $(e.currentTarget).attr('value');
-          console.log(querystring);
-        }
+
+        console.log(querystring);
 
         $.ajax({method: 'GET',
                 url: '/api/catalog/'+querystring,
@@ -60,18 +84,13 @@ var app = app || {};
                 success: function(r) {
                   if(attribute == 'subject'){
                     this.departmentCourseList(r);
-                  }
-                  else if(attribute == 'description') {
+                  } else if(attribute == 'description') {
                     this.descriptionCourseList(r);
-                  }
-                  else if(attribute == 'instructor') {
+                  } else if(attribute == 'instructor') {
                     this.instructorCourseList(r);
-                  }
-                  else if(attribute == 'requirements'){
+                  } else if(attribute == 'requirements'){
                     this.reqCourseList(r);
-                  }
-
-                  else {
+                  } else {
                     this.newCourseList(r);
                   }
                 }
@@ -88,8 +107,6 @@ var app = app || {};
 
     offeringDetail: function(offeringObj){
       //var items = Object.keys(offeringObj)
-
-
     },
 
     newCourseList: function(list) {
@@ -153,7 +170,6 @@ var app = app || {};
           });
           self.addList(elmt);
         });
-
       });
     },
 
@@ -192,6 +208,7 @@ var app = app || {};
         });
       });
     },
+
     descriptionCourseList: function(list){
       var self = this;
       list.forEach(function(elmt){
@@ -201,7 +218,6 @@ var app = app || {};
         var code = elmt.code;
         //var department_id = elmt.department_id;
         var department = elmt.department;
-
 
         elmt.courseOfferings.forEach(function(item){
 
@@ -242,6 +258,7 @@ var app = app || {};
 
       });
     },
+
     reqCourseList: function(list){
       var self = this;
       list.forEach(function(elmt) {
@@ -277,6 +294,23 @@ var app = app || {};
           self.addList(elmt);
         });
       });
+    },
+
+    clearAll: function(newInp){
+      var allinps = [$("#description"), $("#instructor"), $("#loc_select"), $("#subject"),
+                     $("[name='start_time']"), $("[name='end_time']"), ];
+      allinps.forEach(function(inp) {
+        if (newInp.attr('id') == 'meeting'){
+          if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') { inp.val(''); }
+          $('select[class="reqs form-control"]').select2('val', '');
+        } else {
+          console.log(inp.attr('id') +' ' +newInp.attr('id'));
+          if (inp.attr('id') !== newInp.attr('id')) { inp.val(''); }
+          if (newInp.attr('id') !== 'requirements') { $('select[class="reqs form-control"]').select2('val', ''); }
+          $('select[class="days form-control"]').select2('val', '');
+        }
+      });
+      $('.results-list').empty();
     }
 
 

@@ -6,6 +6,11 @@
     "backbone": "1.2.x",
     "underscore": "1.8.x",
     "jquery": "2.1.x",
-    "bootstrap": "3.3.x"
+    "bootstrap": "3.3.x",
+    "datepair.js": "0.4.x",
+    "jt.timepicker": "1.8.x",
+    "bootstrap-datepicker": "1.5.x",
+    "select2-bootstrap-css": "1.4.x",
+    "select2": "3.5.x"
   }
 }

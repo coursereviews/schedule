@@ -5,7 +5,6 @@ var app = app || {};
 
   app.CourseCollection = Backbone.Collection.extend({
     model: app.CourseModel,
-    url: '/courses',
   });
 
 })();

@@ -1,21 +1,22 @@
 <script type="text/template" id="course-item-template">
 
-<div class="col-md-12">
+  <div class="col-md-12">
 
-  <div class="course-panel-heading"><table><tr>
-    <td style="width:650px"><h5 style="color: white"> <%= title %> </h5></td>
-    <td style="width:200px" align="left"><h6 style="color: white" align="right"> <%= code %> </h6></td>
-    <td style="width:30px" align="right"><span class="glyphicon glyphicon-star-empty" style="font-size: 1.3em; color:white"></span></td>
-  </tr></table></div>
+    <div class="course-panel-heading"><table><tr>
+      <td style="width:750px"><h5 style="color: white"> <%= title %> </h5></td>
+      <td style="width:300px" align="left"><h6 style="color: white" align="right"> <%= code %> </h6></td>
+      <td style="width:30px" align="right">
+        <span id="favstar" class="glyphicon glyphicon-star-empty fav-star"></span>
+      </td>
+    </tr></table></div>
 
-  <div class="course-panel-body hidden"><div class="row"><div class="col-lg-12"><table class="table">
-    <tr> <td colspan="2"> <%= instructor %> </td> </tr>
-    <tr> <td colspan="2"> <%= description %> </td> </tr>
-    <tr> <td>Location: <%= location %> </td> <td>Schedule: <%= schedule %> </td> </tr>
-    <tr> <td>Requirements: <%= requirements %> </td> <td>CRN: <%= crn %> </td> </tr>
-    <tr> <td colspan="2" align="center"><a href="<%= href %>" class="btn btn-primary">Catalog Entry</a></td></tr>
-  </table></div></div></div>
+    <div class="course-panel-body hidden"><div class="row"><div class="col-lg-12"><table class="table">
+      <tr> <td colspan="2"> <%= instructor %> </td> </tr>
+      <tr> <td colspan="2"> <%= description %> </td> </tr>
+      <tr> <td>Location: <%= location %> </td> <td>Schedule: <%= schedule %> </td> </tr>
+      <tr> <td>Requirements: <%= requirements %> </td> <td>CRN: <%= crn %> </td> </tr>
+      <tr> <td colspan="2" align="center"><a href="<%= href %>" class="btn btn-primary">Catalog Entry</a></td></tr>
+    </table></div></div></div>
 
-</div>
-
+  </div>
 </script>

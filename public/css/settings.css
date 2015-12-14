@@ -1,0 +1,8 @@
+.extracurricular-delete:hover .extracurricular-delete-text {
+  display: inline;
+}
+
+.extracurricular-delete-text {
+  font-size: 14px;
+  display: none;
+}
