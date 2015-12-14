@@ -40,19 +40,18 @@ None so far.
 
 ## Using the Catalog API
 
-Syntax Diagram of the catalog API:
 
-[Click Here](./img/catalog_api_diagram.png)
+[Syntax Diagram of the catalog API](./img/catalog_api_diagram.png)
 
 Example URL to get catalog data:  
 http://localhost:8000/api/catalog/query/course?department_id=6&id=11  
 
 The catalog API only takes GET requests. For each request (which will query a DB table),
-a list of results matching the query will be returned. Each item in the list will contain
-(in JSON format) the fields of the row in the database that the item corresponds to,
-along with the data referenced by the foreign keys in said row. Below is a list of
-each table along with the tables referenced by its foreign keys (i.e. the relations
-in the database):  
+a list of results matching the query will be returned.  
+Each item in this list will contain (in JSON format) the appropriate fields of the row in the database that the item corresponds to, along with the data related to that row as defined by the DB schema.
+(For more details on the structure of the data returned, view the results of a catalog API GET request in the browser).  
+Below is a list of each table along with the tables from which it gets its "related" data (these are almost the exact database table relationships):  
+
 - **course:** department, courseoffering  
 - **courseoffering:** course, term, professor, schedule, requirement, meeting
 - **department:** course  
