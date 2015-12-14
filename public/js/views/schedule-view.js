@@ -167,6 +167,8 @@ var app = app || {};
 
     remove: function() {
       if (app.schedule) {
+        app.schedule.get('extraCurriculars').reset();
+        app.schedule.get('courseOfferings').reset();
         app.schedule.clear();
         app.schedule = null;
       }
