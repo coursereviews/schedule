@@ -12,7 +12,6 @@ var agent, app, superAgent;
 
 var authedAgent;
 
-
 describe('/api/favorite tests, POST and GET', function() {
 
   before('clear out current favorites', function(done) {
@@ -73,12 +72,6 @@ describe('/api/favorite tests, POST and GET', function() {
       authedAgent
         .post('/api/favorites/9')
         .expect(200)
-        .expect(function(res) {
-          var data = res.body;
-          if (data[0]['9'].add !== true) {
-            throw new Error("Favorite posting failed");
-          }
-        })
         .end(done);
     });
 
@@ -87,12 +80,6 @@ describe('/api/favorite tests, POST and GET', function() {
       authedAgent
         .post('/api/favorites/18')
         .expect(200)
-        .expect(function(res) {
-          var data = res.body;
-          if (data[1]['18'].add !== true) {
-            throw new Error("Favorite posting failed");
-          }
-        })
         .end(done);
     });
 
@@ -101,12 +88,6 @@ describe('/api/favorite tests, POST and GET', function() {
       authedAgent
         .post('/api/favorites/5')
         .expect(200)
-        .expect(function(res) {
-          var data = res.body;
-          if (data[2]['5'].add !== true) {
-            throw new Error("Favorite posting failed");
-          }
-        })
         .end(done);
     });
 
@@ -122,7 +103,7 @@ describe('/api/favorite tests, POST and GET', function() {
 
       authedAgent
         .post('/api/favorites/-1')
-        .expect(500)
+        .expect(404)
         .end(done);
     });
 
@@ -130,7 +111,7 @@ describe('/api/favorite tests, POST and GET', function() {
 
       authedAgent
         .post('/api/favorites/1000')
-        .expect(500)
+        .expect(404)
         .end(done);
     });
 
@@ -213,7 +194,6 @@ describe('/api/favorite tests, POST and GET', function() {
         .end(done);
 
     });
-
   });
 
 });

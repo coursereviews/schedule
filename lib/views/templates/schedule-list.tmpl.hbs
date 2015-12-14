@@ -1,0 +1,13 @@
+<script type="text/template" id="schedule-list-template">
+  <h4>My Schedules</h4>
+  <div class="list-group schedules-list"></div>
+  <div class="no-schedules-message text-center hidden">
+    <p>You don't have any schedules yet.</p>
+    <a href="#schedule/new" class="btn btn-primary">Create a schedule</a>
+  </div>
+</script>
+
+<script type="text/template" id="schedule-list-item-template">
+  <h4 class="list-group-item-heading"><%- name %></h4>
+  <p class="list-group-item-text"><%- term %>, created <%- created_at %></h4>
+</script>

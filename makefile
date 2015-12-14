@@ -3,7 +3,6 @@ SHELL := /bin/bash
 NPM = npm
 NODE = node
 BOWER = node_modules/.bin/bower
-KNEX_CLI = node_modules/.bin/knex
 JSCS = node_modules/.bin/jscs --esnext --config ./.jscsrc
 JSHINT_NODE = node_modules/.bin/jshint --extract=auto --config ./.jshintrc
 ISTANBUL = node --harmony node_modules/.bin/istanbul
@@ -23,12 +22,12 @@ start:
 
 
 .PHONY: setup
-setup: setup-dependencies setup-migrations
+setup: setup-dependencies setup-migrations setup-catalog
 
 
 .PHONY: setup-migrations
 setup-migrations:
-	$(KNEX_CLI) migrate:latest --knexfile lib/settings/knexfile.js
+	$(NPM) run migrate:latest
 
 
 .PHONY: setup-dependencies
@@ -36,6 +35,11 @@ setup-dependencies:
 	$(NPM) install
 	$(BOWER) install
 
+
+.PHONY: setup-catalog
+setup-catalog:
+	@echo 'scraping catalog for Spring (201620)'
+	$(NODE) --harmony ./lib/scripts/scrape_catalog.js 201620
 
 .PHONY: clean
 clean:

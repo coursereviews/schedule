@@ -19,7 +19,6 @@ describe('POST /signup', function() {
   });
 });
 
-
 describe('POST /login', function() {
 
   beforeEach(function() {
