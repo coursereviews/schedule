@@ -60,8 +60,7 @@ var app = app || {};
 
     renderSchedule: function() {
       this.$el.html(this.template());
-      this.$('.panel-body')
-        .css('height', $(window).height() - 101 - 90);
+      this.$('.panel-body').css('height', $(window).height() - 101 - 90);
 
       // Hide the name until we have time to style it.
       // Defer autosizing until it's been inserted into the DOM.

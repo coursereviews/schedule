@@ -4,7 +4,7 @@ var app = app || {};
   'use strict';
 
 
-  app.CourseModel = Backbone.Model.extend({
+  var CourseModel = Backbone.Model.extend({
     defaults: {
       title: '',
       code: '',

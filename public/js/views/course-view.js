@@ -15,30 +15,8 @@ var app = app || {};
     template: _.template($('#course-item-template').html()),
 
     events: {
-      "click .course-panel-heading": "showDetailView",
-      "click #favstar": "favorite"
-    },
-
-    favorite: function(e) {
-      var star = $(e.currentTarget)
-      if (star.attr('class') == 'glyphicon glyphicon-star-empty fav-star'){
-        star.attr('class', 'glyphicon glyphicon-star fav-star');
-      } else {
-        star.attr('class', 'glyphicon glyphicon-star-empty fav-star');
-      } star.closest('div').trigger("click");
-
-      // CODE FOR POST NEW FAVORITE ----->
-    },
-
-    showDetailView: function(e){
-      var hiddenDetails = $(e.currentTarget).parent().children(".course-panel-body.hidden");
-      var shownDetails = $(e.currentTarget).parent().children(".course-panel-body");
-      if (hiddenDetails.length !== 0) {
-        hiddenDetails.removeClass("hidden");
-        hiddenDetails.show();
-      } else {
-        shownDetails.addClass("hidden");
-        shownDetails.hide();}
+      'click .course-panel-heading': 'showDetailView',
+      'click #favstar': 'favorite'
     },
 
     initialize: function() {
@@ -51,6 +29,29 @@ var app = app || {};
       return this;
     },
 
+    favorite: function(e) {
+      var star = $(e.currentTarget);
+      if (star.attr('class') === 'glyphicon glyphicon-star-empty fav-star') {
+        star.attr('class', 'glyphicon glyphicon-star fav-star');
+      } else {
+        star.attr('class', 'glyphicon glyphicon-star-empty fav-star');
+      }
+      star.closest('div').trigger('click');
+
+      // CODE FOR POST NEW FAVORITE ----->
+    },
+
+    showDetailView: function(e) {
+      var hiddenDetails = $(e.currentTarget).parent().children('.course-panel-body.hidden');
+      var shownDetails = $(e.currentTarget).parent().children('.course-panel-body');
+      if (hiddenDetails.length !== 0) {
+        hiddenDetails.removeClass('hidden');
+        hiddenDetails.show();
+      } else {
+        shownDetails.addClass('hidden');
+        shownDetails.hide();
+      }
+    }
   });
 
 })();
