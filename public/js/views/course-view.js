@@ -26,7 +26,7 @@ var app = app || {};
       } else {
         star.attr('class', 'glyphicon glyphicon-star-empty fav-star');
       } star.closest('div').trigger("click");
-      
+
       // CODE FOR POST NEW FAVORITE ----->
     },
 
