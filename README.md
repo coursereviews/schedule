@@ -38,6 +38,23 @@ where `201590` is the term id.
 
 None so far.
 
+## Using the API
+
+Syntax Diagram of the catalog API:
+
+
+Example URL to get catalog data:  
+http://localhost:8000/api/catalog/query/course?department_id=6&id=11
+
+## Running Tests
+
+It's really simple!!!  
+
+[! Alt text](./img/catalog_api_diagram.png)
+
+```bash
+make test
+```
 
 ## Authors
 
