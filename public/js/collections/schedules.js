@@ -4,10 +4,10 @@ var app = app || {};
   'use strict';
 
   var ScheduleCollection = Backbone.Collection.extend({
-    model: app.CourseFavoriteModel,
-    url: '/api/schedule/'
+    model: app.ScheduleModel,
+
+    url: '/api/schedule'
   });
 
-  app.ScheduleCollection = new ScheduleCollection();
+  app.schedules = new ScheduleCollection();
 })();
-

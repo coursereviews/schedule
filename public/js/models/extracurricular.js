@@ -3,7 +3,11 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.ExtraCurricular = Backbone.Model.extend({
+  function toSentence(a, b, i, array) {
+    return a + (i + 1 === array.length ? (array.length === 2 ? '' : ',') + ' and ' : ', ') + b;
+  }
+
+  var ExtraCurricular = Backbone.Model.extend({
     defaults: {
       start_time: '',
       end_time: '',
@@ -19,10 +23,6 @@ var app = app || {};
     }
   });
 
-  function toSentence(a, b, i, array) {
-    return a + (i + 1 == array.length
-      ? (array.length == 2 ? '' : ',') + ' and '
-      : ', ') + b;
-  }
+  app.ExtraCurricular = ExtraCurricular;
 
 })();

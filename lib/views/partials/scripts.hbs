@@ -1,30 +1,46 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
 <script type="text/javascript" src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="bower_components/jt.timepicker/jquery.timepicker.js"></script>
 <script type="text/javascript" src="bower_components/datepair.js/dist/jquery.datepair.js"></script>
 <script type="text/javascript" src="bower_components/select2/select2.js"></script>
+<script type="text/javascript" src="./js/vendor/jQuery.autosize.input.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+
+
 
 <!-- models -->
 <script src="./js/models/schedule.js"></script>
 <script src="./js/models/courseFavorite.js"></script>
 <script src="./js/models/extracurricular.js"></script>
 <script src="./js/models/course.js"></script>
-
+<script src="./js/models/term.js"></script>
 
 <!-- collections -->
 <script src="./js/collections/schedule.js"></script>
 <script src="./js/collections/courseFavorites.js"></script>
+<script src="./js/collections/schedules.js"></script>
 <script src="./js/collections/extracurriculars.js"></script>
-<script src="./js/collections/courses.js"></script>
+<script src="./js/collections/courseofferings.js"></script>
+<script src="./js/collections/favorites.js"></script>
+<script src="./js/collections/terms.js"></script>
+
 
 <!-- views -->
+<script src="./js/views/schedule-main-view.js"></script>
 <script src="./js/views/schedule-view.js"></script>
 <script src="./js/views/courseFavorite-view.js"></script>
+<script src="./js/views/schedule-course-item-view.js"></script>
+<script src="./js/views/schedule-list-view.js"></script>
+<script src="./js/views/course-list-item-view.js"></script>
 <script src="./js/views/search-view.js"></script>
 <script src="./js/views/course-view.js"></script>
 <script src="./js/views/extracurricular-view.js"></script>
 <script src="./js/views/singleFavorite-view.js"></script>
 <script src="./js/router.js"></script>
+<script src="./js/views/schedule-list-item-view.js"></script>
+
+<!-- routers -->
+<script src="./js/routers/app-router.js"></script>
 <script src="./js/app.js"></script>

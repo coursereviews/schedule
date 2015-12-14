@@ -1,28 +1,28 @@
 <script type="text/template" id="schedule-template">
-  <div class="container schedule-view">
-
-    <div class="row">
-      <div class="col-sm-12 search-input">
-        <input type="text" class="form-control" placeholder="Seach Courses" aria-describedby="basic-addon1">
-      </div>
+  <input name="schedule-name" type="text" class="schedule-name not-replaced h4">
+  <select name="schedule-term" class="schedule-term pull-right"></select>
+  <div class="panel panel-default">
+    <div class="schedule-panel-heading">
+      {{#each days}}
+      <div class="day-title {{this}}">{{this}}</div>
+      {{/each}}
     </div>
+    <div class="panel-body">
 
-    <div class="row" id="favorite_courses">
-
-      <ul id="courses" class=" col-sm-4 course-list">
-        <h2>Favorite Courses</h2>
-
-      </ul>
-
-
-      <div class="col-sm-8">
-        <h2>Spring 2016</h2>
-        <p></p>
-        <div class="schedule-container" style="height: 700px;">
-        </div>
-
-
+      <div class="time-container">
+        {{#each timeArray}}
+          <div class="time-block">{{this}}</div>
+        {{/each}}
       </div>
+
+      {{#each days}}
+        <div class="day {{this}}">
+          {{#times 29}}
+            <div class="block-30-mins"></div>
+          {{/times}}
+        </div>
+      {{/each}}
+      <div class="schedule-course-items"></div>
     </div>
   </div>
 </script>

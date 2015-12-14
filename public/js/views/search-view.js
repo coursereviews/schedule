@@ -3,20 +3,25 @@ var app = app || {};
 (function() {
   'use strict';
 
-  app.SearchView = Backbone.View.extend({
+  var SearchView = Backbone.View.extend({
+
+    events: {
+      'keydown .form-control': 'doSearch',
+      'change .form-control': 'doSearch'
+    },
 
     initialize: function() {
       _.bindAll(this, 'renderSelect2');
     },
 
     render: function() {
-      this.$el.html($("#search-template").html());
+      this.$el.html($('#search-template').html());
 
       this.$('input.time').timepicker({
         showDuration: true,
         timeFormat: 'g:ia',
         step: 5,
-        id: "schedule"
+        id: 'schedule'
       });
 
       this.$('.days').addClass('hidden');
@@ -27,89 +32,105 @@ var app = app || {};
     },
 
     renderSelect2: function() {
-      this.$('.days').select2({
-        placeholder: 'Select multiple days'
-      })
-      .removeClass('hidden');
+      this.$('.days')
+        .select2({placeholder: 'Select multiple days'})
+        .removeClass('hidden');
+
       // Once search by mult requirements is implemented this will be useful
       // this.$('.reqs').select2({
-        // placeholder: 'Select a requirement'
+      // placeholder: 'Select a requirement'
       // })
       // .removeClass('hidden');
-    },
-
-    events: {
-      "change .form-control": "doSearch"
     },
 
     doSearch: function(e) {
 
       var changed = $(e.currentTarget);
 
-      if (changed.prop("tagName") === "SELECT") { changed = changed.find(":selected"); }
-      else if (changed.prop("tagName") === "INPUT") { changed.attr('value', changed.val()) }
+      if (changed.prop('tagName') === 'SELECT') {
+        changed = changed.find(':selected');
+      } else if (changed.prop('tagName') === 'INPUT') {
+        changed.attr('value', changed.val());
+      }
 
       var querystring = 'query/';
       this.clearAll(changed);
 
       if (changed.attr('class') === 'list-group-item' || 'form-control') {
 
-        if ($('.active').length > 0) {$('.active').removeClass('active');}
+        if ($('.active').length > 0) {
+          $('.active').removeClass('active');
+        }
 
         var attribute = changed.attr('id');
 
-        if (attribute == 'subject'){
-          querystring += 'department?code' + '=' +changed.attr('value');
-        } else if (attribute == 'description') {
-          querystring += 'course?description=' + changed.attr('value').replace(' ','_');
-        } else if (attribute == 'instructor') {
-          querystring += 'professor?name=' + changed.attr('value').replace(' ','_');
-        } else if (attribute == 'requirements') {
+        if (attribute === 'subject') {
+          querystring += 'department?code' + '=' + changed.attr('value');
+        } else if (attribute === 'description') {
+          querystring += 'course?description=' + changed.attr('value').replace(' ', '_');
+        } else if (attribute === 'instructor') {
+          querystring += 'professor?name=' + changed.attr('value').replace(' ', '_');
+        } else if (attribute === 'requirements') {
           querystring += 'requirement?code=' + changed.attr('value');
-        } else if (attribute == 'meeting') {
-          var meetInputs = [$("#loc_select"), $("[name='start_time']"), $("[name='end_time']"), $("[name='days']")];
-          querystring += "meeting?";
+        } else if (attribute === 'meeting') {
+          var meetInputs = [$('#loc_select'),
+                            $('[name="start_time"]'),
+                            $('[name="end_time"]'),
+                            $('[name="days"]')];
+          querystring += 'meeting?';
           meetInputs.forEach(function(inp) {
-            if (inp.val() !== '' &&  inp.val() !== null) {
-            querystring += '&' +inp.attr('name') +'=' +inp.val();} });
+            if (inp.val() !== '' && inp.val() !== null) {
+              querystring += '&' + inp.attr('name') + '=' + inp.val();
+            }
+          });
         }
 
-        console.log('/api/catalog/' +querystring);
+        $.ajax({
+          method: 'GET',
+          url: '/api/catalog/' + querystring,
+          dataType: 'json',
+          context: this,
+          success: function(r) {
 
-        $.ajax({method: 'GET',
-                url: '/api/catalog/'+querystring,
-                dataType: 'json',
-                context: this,
-                success: function(r) {
-                  if(attribute == 'subject'){
-                    this.departmentCourseList(r);
-                  } else if(attribute == 'description') {
-                    this.descriptionCourseList(r);
-                  } else if(attribute == 'instructor') {
-                    this.instructorCourseList(r);
-                  } else if(attribute == 'requirements'){
-                    this.reqCourseList(r);
-                  } else {
-                    this.newCourseList(r);
-                  }
-                }
-              });
-        } else { changed.removeClass('active'); }
+            switch (attribute) {
+              case 'subject':
+                this.departmentCourseList(r);
+                break;
+              case 'description':
+                this.descriptionCourseList(r);
+                break;
+              case 'instructor':
+                this.instructorCourseList(r);
+                break;
+              case 'requirements':
+                this.reqCourseList(r);
+                break;
+              case 'meeting':
+                this.daysCourseList(r);
+                break;
+              default:
+                this.newCourseList(r);
+            }
+          }
+        });
+      } else {
+        changed.removeClass('active');
+      }
 
     },
 
     addList: function(course) {
-      var reslist = this.$('.results-list');
-			var view = new app.CourseView( {model: course} );
-			this.$('.results-list').append(view.render().el);
-		},
+      var view = new app.CourseView({
+        model: course
+      });
+      this.$('.results-list').append(view.render().el);
+    },
 
-    offeringDetail: function(offeringObj){
-      //var items = Object.keys(offeringObj)
+    offeringDetail: function(offeringObj) {
+      // var items = Object.keys(offeringObj)
     },
 
     newCourseList: function(list) {
-      var self = this;
       list.forEach(function(elmt) {
         elmt = new app.CourseModel({
           title: elmt.title,
@@ -126,18 +147,18 @@ var app = app || {};
           href: elmt.href,
           id: elmt.id
         });
-        self.addList(elmt);
-      });
+        this.addList(elmt);
+      }.bind(this));
     },
 
-    departmentCourseList: function(list){
+    departmentCourseList: function(list) {
       var self = this;
-      var professor, description, title, code, term, crn, type, href;
+      var professor, description, title, code, term, type, href;
       var schedule = [];
       var location = [];
       var requirements = [];
       var department = list[0].name;
-      list[0].courses.forEach(function(elmt){
+      list[0].courses.forEach(function(elmt) {
         description = elmt.description;
         title = elmt.title;
         code = elmt.code;
@@ -145,16 +166,16 @@ var app = app || {};
         type = elmt.type;
         href = elmt.href;
 
-       elmt.courseOfferings.forEach(function(item){
-         professor = item.professors[0]['name'];
+        elmt.courseOfferings.forEach(function(item) {
+          professor = item.professors[0].name;
 
-         item.meetings.forEach(function(m){
-           location.push(m.building+' '+m.room);
-         });
+          item.meetings.forEach(function(m) {
+            location.push(m.building + ' ' + m.room);
+          });
 
-         item.meetings.forEach(function(meet){
-           schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
-         });
+          item.meetings.forEach(function(meet) {
+            schedule.push(meet.start_time + ' - ' + meet.end_time + ', ' + meet.days);
+          });
 
          item.requirements.forEach(function(req){
            requirements.push(req.name);
@@ -179,28 +200,69 @@ var app = app || {};
      });
    },
 
-    instructorCourseList: function(list){
+    daysCourseList: function(list) {
+      var self = this;
+      var department = list[0].name;
+      list.forEach(function(elmt) {
+        var code = elmt.courseOffering.course_code;
+        var title = elmt.courseOffering.course.title;
+        //  var requirement= 'AAL';
+        //  var schedule=[];
+        //  elmt.start_time.push(schedule);
+        var schedule = elmt.start_time + ' - ' + elmt.end_time + ' ' + elmt.days;
+        var location = elmt.building + ' ' + elmt.room;
+        var requirement = [];
+        var crn = elmt.courseOffering.crn;
+        var href = elmt.courseOffering.href;
+        var description = elmt.courseOffering.course.description;
+        var type = elmt.courseOffering.course.type;
+        var profs = [];
+        elmt.courseOffering.requirements.forEach(function(rq) {
+          requirement.push(rq.name);
+        });
+        elmt.courseOffering.professors.forEach(function(pr) {
+          profs.push(pr.name);
+        });
+        elmt = new app.CourseModel({
+          title: title,
+          code: code,
+          instructor: profs,
+          department: department,
+          location: location,
+          requirements: requirement,
+          term: elmt.term,
+          type: type,
+          schedule: schedule,
+          description: description,
+          crn: crn,
+          href: href,
+        });
+        self.addList(elmt);
+      });
+    },
+
+    instructorCourseList: function(list) {
       var self = this;
       list.forEach(function(elmt) {
         var professor = elmt.name;
-        elmt.courseOfferings.forEach(function(item){
+        elmt.courseOfferings.forEach(function(item) {
           var location = [];
-          item.meetings.forEach(function(m){
-            location.push(m.building+' '+m.room);
+          item.meetings.forEach(function(m) {
+            location.push(m.building + ' ' + m.room);
           });
           var requirements = [];
-          item.requirements.forEach(function(req){
+          item.requirements.forEach(function(req) {
             requirements.push(req.name);
           });
           var schedule = [];
-          item.meetings.forEach(function(meet){
-            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          item.meetings.forEach(function(meet) {
+            schedule.push(meet.start_time + ' - ' + meet.end_time + ', ' + meet.days);
           });
           elmt = new app.CourseModel({
             title: item.course.title,
             code: item.course.code,
             instructor: professor,
-            department: elmt.department, //undefined
+            department: elmt.department,
             location: location,
             requirements: requirements,
             term: item.term.code,
@@ -216,45 +278,44 @@ var app = app || {};
       });
     },
 
-    descriptionCourseList: function(list){
+    descriptionCourseList: function(list) {
       var self = this;
-      list.forEach(function(elmt){
+      list.forEach(function(elmt) {
         var description = elmt.description;
         var title = elmt.title;
         var type = elmt.type;
         var code = elmt.code;
-        //var department_id = elmt.department_id;
         var department = elmt.department;
 
-        elmt.courseOfferings.forEach(function(item){
+        elmt.courseOfferings.forEach(function(item) {
 
           var professors = [];
-          item.professors.forEach(function(p){
+          item.professors.forEach(function(p) {
             professors.push(p.name);
           });
           var location = [];
-          item.meetings.forEach(function(m){
-            location.push(m.building+' '+m.room);
+          item.meetings.forEach(function(m) {
+            location.push(m.building + ' ' + m.room);
           });
           var requirements = [];
-          item.requirements.forEach(function(req){
+          item.requirements.forEach(function(req) {
             requirements.push(req.name);
           });
           var schedule = [];
-          item.meetings.forEach(function(meet){
-            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          item.meetings.forEach(function(meet) {
+            schedule.push(meet.start_time + ' - ' + meet.end_time + ', ' + meet.days);
           });
 
           item = new app.CourseModel({
             title: title,
             code: code,
-            instructor: professors,//undefined
+            instructor: professors,
             department: department,
-            location: location,//undefined
-            requirements: requirements,//undefined
-            term: item.term.code,//undefined
+            location: location,
+            requirements: requirements,
+            term: item.term.code,
             type: type,
-            schedule: schedule, //undefined
+            schedule: schedule,
             description: description,
             crn: item.crn,
             href: item.href,
@@ -267,29 +328,29 @@ var app = app || {};
       });
     },
 
-    reqCourseList: function(list){
+    reqCourseList: function(list) {
       var self = this;
       list.forEach(function(elmt) {
         var requirement = elmt.name;
-        elmt.courseOfferings.forEach(function(item){
+        elmt.courseOfferings.forEach(function(item) {
           var location = [];
-          item.meetings.forEach(function(m){
-            location.push(m.building+' '+m.room);
+          item.meetings.forEach(function(m) {
+            location.push(m.building + ' ' + m.room);
           });
           var professors = [];
-          item.professors.forEach(function(p){
+          item.professors.forEach(function(p) {
             professors.push(p.name);
           });
 
           var schedule = [];
-          item.meetings.forEach(function(meet){
-            schedule.push(meet.start_time+" - "+meet.end_time+", "+meet.days);
+          item.meetings.forEach(function(meet) {
+            schedule.push(meet.start_time + ' - ' + meet.end_time + ', ' + meet.days);
           });
           elmt = new app.CourseModel({
             title: item.course.title,
             code: item.course.code,
             instructor: professors,
-            department: elmt.department, //undefined
+            department: elmt.department, // undefined
             location: location,
             requirements: requirement,
             term: item.term.code,
@@ -305,15 +366,23 @@ var app = app || {};
       });
     },
 
-    clearAll: function(newInp){
-      var allinps = [$("#description"), $("#instructor"), $("#loc_select"), $("#subject"),
-                     $("[name='start_time']"), $("[name='end_time']"), $("#requirements")];
+    clearAll: function(newInp) {
+      var allinps = [$('#description'),
+                     $('#instructor'),
+                     $('#loc_select'),
+                     $('#subject'),
+                     $('[name="start_time"]'),
+                     $('[name="end_time"]'),
+                     $('#requirements')];
       allinps.forEach(function(inp) {
-        if (newInp.attr('id') == 'meeting'){
-          if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') { inp.val(''); }
+        if (newInp.attr('id') === 'meeting') {
+          if (inp.attr('id') !== 'meeting' && inp.attr('id') !== 'loc_select') {
+            inp.val('');
+          }
         } else {
-          console.log(inp.attr('id') +' ' +newInp.attr('id'));
-          if (inp.attr('id') !== newInp.attr('id')) { inp.val(''); }
+          if (inp.attr('id') !== newInp.attr('id')) {
+            inp.val('');
+          }
           $('select[class="days form-control"]').select2('val', '');
         }
       });
@@ -321,5 +390,6 @@ var app = app || {};
     }
 
   });
-})();
 
+  app.SearchView = SearchView;
+})();
