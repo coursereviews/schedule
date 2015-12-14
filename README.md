@@ -38,19 +38,34 @@ where `201590` is the term id.
 
 None so far.
 
-## Using the API
+## Using the Catalog API
 
 Syntax Diagram of the catalog API:
 
+[Click Here](./img/catalog_api_diagram.png)
 
 Example URL to get catalog data:  
-http://localhost:8000/api/catalog/query/course?department_id=6&id=11
+http://localhost:8000/api/catalog/query/course?department_id=6&id=11  
+
+The catalog API only takes GET requests. For each request (which will query a DB table),
+a list of results matching the query will be returned. Each item in the list will contain
+(in JSON format) the fields of the row in the database that the item corresponds to,
+along with the data referenced by the foreign keys in said row. Below is a list of
+each table along with the tables referenced by its foreign keys (i.e. the relations
+in the database):  
+- **course:** department, courseoffering  
+- **courseoffering:** course, term, professor, schedule, requirement, meeting
+- **department:** course  
+- **meeting:** courseoffering  
+- **professor:** courseoffering  
+- **requirement:** courseoffering  
+- **term:** courseoffering  
+
+
 
 ## Running Tests
 
 It's really simple!!!  
-
-[! Alt text](./img/catalog_api_diagram.png)
 
 ```bash
 make test
