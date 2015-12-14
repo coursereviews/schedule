@@ -10,11 +10,20 @@ var app = app || {};
         this.currentView.remove();
       }
       this.currentView = view;
+
+      var route = Backbone.history.fragment.split('/')[0];
+
+      var $el = $('#navbar-' + route);
+      if ($el.hasClass('active') === false) {
+        $('#navbar li.active').removeClass('active');
+        $el.addClass('active');
+      }
+
       return $('#main-app').html(this.currentView.render().el);
     }
   };
 
-  app.AppRouter = Backbone.Router.extend({
+  var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'schedule(/:id)': 'schedule',
@@ -27,13 +36,13 @@ var app = app || {};
 
     schedule: function(id) {
       app.scheduleId = id;
-
       ViewManager.showView(new app.ScheduleMainView());
     },
 
     search: function() {
-      console.log('triggasd');
       ViewManager.showView(new app.SearchView());
     }
   });
+
+  app.AppRouter = AppRouter;
 })();

@@ -34,6 +34,17 @@ var app = app || {};
 
     addAllFavorites: function() {
       this.$('.favorites').html('');
+
+      if (app.favorites.length === 0) {
+        $('.favorites').append(
+          '<div class="text-center" style="margin-top: 20px">' +
+            '<h5 style="font-weight: 300; font-size: 15px">' +
+            'Your favorite courses will appear here. Search and favorite them:</h5>' +
+            '<a href="#search" class="btn btn-primary">Search Courses</a>' +
+          '</div>'
+        );
+      }
+
       app.favorites.each(this.addOneFavorite, this);
     },
 

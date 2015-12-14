@@ -2,6 +2,7 @@
   padding: 0;
   width: 100%;
   height: 40px;
+  background: #FFF;
 }
 
 .schedule .day-title {
@@ -13,6 +14,12 @@
   height: 40px;
   padding: 10px;
   text-transform: capitalize;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule .day-title:last-child {
+  border-right: 0px solid transparent;
 }
 
 .schedule .panel-body {
@@ -21,18 +28,20 @@
 }
 
 .schedule-name {
-  padding: 3px;
+  padding: 4px;
   margin-top: 3px;
   margin-bottom: 3px;
   outline: none;
   max-width: 500px;
   border: 1px solid transparent;
   border-radius: 5px;
+  background-color: #FAFAFB;
 }
 
 .schedule-name:hover,
 .schedule-name:focus {
-  border-color: #ddd;
+  border-color: #eee;
+  background-color: #FFF;
 }
 
 .schedule-name:focus {
@@ -48,7 +57,7 @@
 .schedule .time-container {
   width: 15%;
   left: 0;
-  top: 15px;
+  top: 13px;
   position: absolute;
   padding-left: 5px;
 }
@@ -66,7 +75,7 @@
 }
 
 .schedule .day:not(:nth-last-child(2)) {
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #eee;
 }
 
 .schedule .course-offering {
