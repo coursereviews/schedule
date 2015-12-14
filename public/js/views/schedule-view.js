@@ -22,9 +22,9 @@ var app = app || {};
       // Create a new model to represent the schedule.
       // If an id is specified, we'll try to get the model from the server.
       if (app.scheduleId === 'new') {
-        this.model = new app.ScheduleModel();
+        this.model = app.schedule = new app.ScheduleModel();
       } else {
-        this.model = new app.ScheduleModel({id: app.scheduleId});
+        this.model = app.schedule = new app.ScheduleModel({id: app.scheduleId});
       }
 
       // Bind to the error event before requesting the schedule.
@@ -32,6 +32,8 @@ var app = app || {};
       this.listenTo(this.model, 'error', this.handleScheduleNotFound);
 
       this.listenTo(app.terms, 'reset', this.renderTerms);
+
+      this.listenTo(this.model.get('courseOfferings'), 'add', this.addOneCourseOffering);
 
       _.bindAll(this, 'autosizeInput', 'renderSelect2');
 
