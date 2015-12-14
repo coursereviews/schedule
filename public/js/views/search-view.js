@@ -143,40 +143,42 @@ var app = app || {};
     daysCourseList: function(list) {
       var courseList = [];
       var self = this;
-      var department = list[0].name;
+      // var department = list[0].name;
       list.forEach(function(elmt) {
         var code = elmt.courseOffering.course_code;
         var title = elmt.courseOffering.course.title;
         var schedule = elmt.start_time + ' - ' + elmt.end_time + ' ' + elmt.days;
         var location = elmt.building + ' ' + elmt.room;
-        var requirement = [];
+        var requirements = [];
         var crn = elmt.courseOffering.crn;
         var href = elmt.courseOffering.href;
+        var department = elmt.courseOffering.course.department.name;
         var description = elmt.courseOffering.course.description;
         var type = elmt.courseOffering.course.type;
         var profs = [];
         elmt.courseOffering.requirements.forEach(function(rq) {
-          requirement.push(rq.name);
+          requirements.push(rq.name);
         });
         elmt.courseOffering.professors.forEach(function(pr) {
           profs.push(pr.name);
         });
-        elmt = new app.CourseModel({
+        var courseObj = {
           title: title,
           code: code,
           instructor: profs,
           department: department,
           location: location,
-          requirements: requirement,
-          term: elmt.term,
+          requirements: requirements,
+          term: elmt.term, //undefined
           type: type,
           schedule: schedule,
           description: description,
           crn: crn,
           href: href,
-        });
-        courseList.push(elmt);
+        };
+        courseList.push(courseObj);
       });
+      console.log(courseList);
       return courseList;
     },
 
