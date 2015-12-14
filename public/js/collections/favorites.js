@@ -6,7 +6,6 @@ var app = app || {};
   var FavoritesCollection = Backbone.Collection.extend({
     model: app.CourseModel,
 
-    //incorrect url for now, it's favorite
     url: '/api/favorite',
 
     initialize: function() {
